@@ -8,6 +8,6 @@ Target inside the vault, for reference:
 ## Convention
 
 - Folder and file names under this directory match the vault's own path exactly, folder for folder, so `01. Inbox/Capture Here.md` here is meant for `01. Inbox/Capture Here` in the vault.
-- Newest content goes at the top of a file, nothing gets deleted.
-- Codex checks this folder weekly and is responsible for moving new content into the real vault, since it can reach the local device, this Bob-the-PM copy cannot.
+- Codex checks this folder weekly and is responsible for filing new content into the real vault, since it can reach the local device and Drive-backed vault directly, a cloud session like Claude's cannot.
+- Once an entry has been filed successfully into the real vault, Codex deletes it from here and pushes the change, it does not stay as a record. If filing fails, the entry stays here for retry on the next run.
 - Once the user has the GitHub Sync plugin and a dedicated vault repository set up, this folder becomes unnecessary, it exists only as a stopgap until then.
