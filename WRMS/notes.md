@@ -4,10 +4,10 @@ Copy this into a new folder for a new project, named `notes.md`. Add new entries
 
 ---
 
-## [2026-09-13] Staffing update
+## [Logged 2026-09-13, event date unknown - a few months prior] Staffing update
 
 **What we already know, confirmed, not guessed:**
-- Roy Li has left the company for Dolphlink.
+- Roy Li has left the company for Dolphlink. Exact date not known, only that it happened a few months before this was logged (2026-09-13).
 
 **What we are choosing to leave open, or unsure of, for now:**
 - Everything else about WRMS: scope, goal, other people involved.
