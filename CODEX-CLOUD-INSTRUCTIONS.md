@@ -34,6 +34,7 @@ Capture phrases are "note this", "take note", "take a note", "remind me", "captu
 - For a PA capture, write plain prose or an existing accepted prefix (`meeting:`, `task:`, `idea:`, or `source:`) into [`obsidian-temp-notes/01. Inbox/Capture Here.md`](obsidian-temp-notes/01.%20Inbox/Capture%20Here.md).
 - For a PM decision, write the decision into the matching project's `notes.md` and also into the same `Capture Here.md`, prefixed exactly `project: [<project name>]`.
 - Do not write a normal Obsidian capture directly to Google Drive. Use the GitHub `obsidian-temp-notes` route. The activity-audit task may write to the Drive-backed vault only when `CODEX-ACTIVITY-AUDIT-RULES.md` explicitly permits it and only after completing its verification and sync-safety checks.
+- Selecting, invoking, or being routed through a Google Drive add-on does not change the capture destination. A PA capture must still be written to the GitHub `obsidian-temp-notes` handoff. If a normal PA capture was mistakenly written directly to Drive, do not create another Drive note; repair the handoff by staging the exact original capture text in GitHub so the audit can deduplicate it against the existing Drive capture by content hash and then clear the staging entry safely.
 
 ## Permanent account boundary
 
