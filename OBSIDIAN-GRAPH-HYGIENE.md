@@ -61,9 +61,9 @@ Prefer to append or minimally patch an existing owning note when a new source it
 - a tender clarification or award milestone;
 - a service/change request update.
 
-Keep the raw/source record in `S Sources`, `X Filtered Out`, or the existing evidence structure when auditability requires it, but do not promote that source container as a new project node unless it has independent meaning.
+Keep raw/source records only as long as needed for auditability and recovery. Raw evidence does not have to remain inside the live Obsidian vault forever when a verified archive copy exists outside the vault and the canonical knowledge has already been promoted.
 
-Repeated calendar acceptance/decline messages for one event should point to one canonical event/project owner. The source messages may remain as evidence, but they should not each become the only visible representation of the event.
+Repeated calendar acceptance/decline messages for one event should point to one canonical event/project owner. The source messages may remain as evidence during processing, but they should not each become the only visible representation of the event.
 
 ## Audit-source graph rule
 
@@ -71,7 +71,38 @@ Batch manifests, filtered-audit notes, HubSpot record-range files, Gmail evidenc
 
 They should link primarily within the source/audit layer and to canonical owners only where needed for traceability. Do not fan every batch note directly into Benson Foo, TOPPAN Ecquaria, and multiple broad MOCs when the same relationship is already represented through the canonical owner.
 
-Never delete historical source batches solely to reduce graph density.
+Historical source batches must never be destroyed merely to make the graph prettier. However, the user has explicitly requested that pure Gmail/HubSpot batch containers stop cluttering the live `Ben` graph. After the source-batch compaction checks below pass, a pure raw batch may be archived outside the live vault and removed from the live vault. This is an evidence-preserving migration, not cosmetic deletion.
+
+## Source-batch compaction and live-graph retention
+
+The live vault should contain business knowledge plus compact source navigation, not thousands of raw range/batch containers.
+
+Examples of pure batch containers include:
+
+- `* Gmail Batch * Filtered Audit.md` and equivalent Gmail batch/progress/evidence range files;
+- `HubSpot Emails - ... Records ...md`;
+- `HubSpot Notes - ... Records ...md`;
+- `HubSpot Contacts - ... Records ...md`;
+- `HubSpot Companies - ... Records ...md`;
+- other HubSpot object-range files whose primary purpose is raw historical audit storage rather than an independent business record.
+
+Do not archive canonical business owners, project/tender/SR/CR/deal notes, useful MOCs, or human-authored notes simply because they originated from Gmail or HubSpot.
+
+For each pure batch container, use this sequence:
+
+1. Re-read it and identify all substantive records or facts it contains.
+2. Verify that substantive business knowledge has already been promoted or linked to the correct canonical project/tender/SR/CR/deal/account owner. If not, promote/repair that knowledge first.
+3. Verify stable provider IDs, record counts, source range, content hash, and current vault path.
+4. Create a durable archive copy outside the live `Ben` vault in the authorized audit/checkpoint storage, preserving the full raw/readable content plus original path, stable IDs, before-hash, archive timestamp, and archive file ID/path.
+5. Re-read the archive copy and verify its hash/content before changing the live vault.
+6. Replace direct business-note links to the raw batch with the appropriate compact source MOC or canonical owner where needed so that removing the raw batch will not create broken knowledge navigation.
+7. Through the approved local Codex writer and Obsidian MCP, remove the verified pure batch file from the live `Ben` vault. Do not use the Google Drive connector to delete the live-vault file.
+8. Update the compact source MOC/checkpoint with the archived batch's source range, provider IDs, original vault path, archive location, and hash so audit retrieval remains possible.
+9. Re-scan the affected vault area for broken wikilinks and verify the canonical owner chain remains intact.
+
+If the archive copy cannot be created or verified, the raw batch stays in the live vault and the repair remains pending. No archive failure is permission to delete evidence.
+
+This compaction is bounded and resumable. Process at most one source family (for example Gmail batches, HubSpot Emails, HubSpot Notes, HubSpot Contacts, or HubSpot Companies) or 50 batch files per maintenance run, whichever is smaller. Persist the next resume position.
 
 ## Daily graph-hygiene pass
 
@@ -83,11 +114,12 @@ Never delete historical source batches solely to reduce graph density.
 - repeated event/RSVP notes lacking a canonical event/project link;
 - project/tender/SR/CR notes missing controlled category/owner metadata;
 - source/audit records incorrectly promoted as knowledge owners;
-- newly created canonical owners that older related notes should now link to.
+- newly created canonical owners that older related notes should now link to;
+- pure Gmail/HubSpot batch containers that are eligible for evidence-preserving source-batch compaction.
 
 The cloud task does not edit the live vault. It creates deterministic repair manifests under `obsidian-local-writers/repairs/` for an approved local Codex processor.
 
-Each daily pass is bounded: repair one coherent project/account cluster or at most 50 target notes, whichever is smaller. Persist the next resume position. This prevents mass rewriting and keeps repairs reviewable.
+Each daily pass is bounded: repair one coherent project/account cluster or one source-batch family, with at most 50 target notes/files, whichever is smaller. Persist the next resume position. This prevents mass rewriting and keeps repairs reviewable.
 
 ## WRMS canonical grouping
 
@@ -113,16 +145,17 @@ The current `WRMS Personnel Update` capture is an example of a note that should 
 
 ## Safety and verification
 
-All graph repairs are performed only by the approved local Codex writer through Obsidian MCP while holding the shared processor lock.
+All graph repairs and live-vault removals are performed only by the approved local Codex writer through Obsidian MCP while holding the shared processor lock.
 
-Before every patch:
+Before every patch or removal:
 
 - re-read the current note through Obsidian MCP;
 - preserve stable IDs, capture IDs, content hashes, provider IDs, user-authored text, and valid frontmatter;
 - never touch `.obsidian/` or application state;
-- never bulk move/rename/delete files for cosmetic cleanup;
-- never resolve an ambiguous owner by title similarity alone.
+- never bulk move/rename/delete files without a verified repair manifest and bounded batch;
+- never resolve an ambiguous owner by title similarity alone;
+- for raw batch removal, require a verified external archive copy and compact index/checkpoint first.
 
-After every patch, re-read the exact destination through Obsidian MCP and verify the expected owner link/metadata and preserved source identity.
+After every patch or removal, re-read the exact destination/owner through Obsidian MCP, verify preserved source identity, and run a broken-link check for the affected cluster.
 
 If the owner is ambiguous, use `unresolved_routing` and leave the evidence intact.
