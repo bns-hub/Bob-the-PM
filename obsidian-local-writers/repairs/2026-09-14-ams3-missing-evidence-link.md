@@ -15,6 +15,7 @@ source_of_truth: OBSIDIAN-GRAPH-HYGIENE.md
 
 - `Excalidraw/Drawing NEA AMS3, 2026-09-14 17.11.28.excalidraw.md` was linked through its `project` property to the verified owner `E Efforts/HubSpot Deals/NEA Consolidated Application Maintenance Services (AMS3)(NEA000ETT26000073).md`.
 - The drawing's link resolves and the owner reports the drawing as a backlink.
+- Google Drive later showed the synced drawing as file ID `1Xv7SjVPD_NpSyOUK64Kfe2eb7tYzvdNU`, updated at `2026-09-14T10:16:13.893Z`, with the same AMS3 `project` link present. This confirms the local amendment propagated to Drive.
 - The affected-cluster check found one older unrelated broken link in the AMS3 owner: `[[S Sources/NEA AMS3 Management Price Review Acceptance|NEA AMS3 Management Price Review Acceptance]]`.
 - The expected target was not resolved during the bounded check. The link was left unchanged to preserve evidence and avoid guessing.
 
