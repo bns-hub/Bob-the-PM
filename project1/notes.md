@@ -9,8 +9,8 @@
 - A second copy of a key value was pasted into this chat after the first exposure. It was not stored, written to any file, or committed anywhere in this repository. If that pasted value is the same key just rotated, it is now superseded; if it was meant as the *new* key, it should be treated as exposed too and rotated again rather than kept as the working key.
 
 **What we are choosing to leave open, or unsure of, for now:**
-- Whether the HTTP 401 Unauthorized seen in the ingestion-contract session actually clears with the new key — not yet confirmed by an authenticated `get_server_info` round trip against vault `Ben`.
-- Whether the desktop has the same rotated key and restart, or only the laptop.
+- **Update, same day:** `obsidian-local-writers/PC1-codex.md` now shows `vault_validation_status: mcp_authenticated_vault_ben` with a successful authenticated round trip on 2026-09-14 — the HTTP 401 is confirmed cleared on device PC1 (desktop). `last_successful_capture_id` is still `null`, so no capture has actually been written and verified yet; the queued William capture is next.
+- Whether the laptop (the device this session's earlier entries verified separately) is on the same rotated key, or only PC1.
 
 **The one goal for this phase:**
 - Same as prior entries: confirm the local writer actually completes an authenticated round trip against `Ben` with the new key, then process the queued William capture through the ingestion contract.
