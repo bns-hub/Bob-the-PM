@@ -2,6 +2,8 @@
 
 This file is the device-independent entry point for ChatGPT and Codex sessions that can access GitHub. The shared source of truth is the `bns-hub/Bob-the-PM` repository. Do not create a separate local notebook or a second copy in Google Drive.
 
+`bns-hub/Bob-the-PM` is a shared notebook, not code: one folder per project, each holding a `notes.md` running log, newest entry at the top, nothing deleted. A few shared, project-independent files live loose in the main folder: this file, `README.md`, `CODEX-ACTIVITY-AUDIT-RULES.md`, `PROJECT-TEMPLATE.md`, and the `obsidian-temp-notes/` folder. Its purpose: whichever tool picks up a piece of work next, Claude or Codex, reads what was already decided instead of asking the same questions again.
+
 These instructions apply only when the current ChatGPT or Codex surface has permission to read and write this GitHub repository. If access is unavailable, say so plainly. Do not pretend that cached, copied, or local content is current.
 
 ## Start of relevant work
@@ -42,7 +44,9 @@ Work Gmail may use only the connection named exactly `Work`, authenticated as `b
 
 Gmail belonging to `bnsn4ull@gmail.com` is off-limits. Do not connect it. Never read, search, summarise, or export its mail unless the user explicitly changes this rule.
 
-Google Drive access through the authorised work account may include folders shared from `bnsn4ull@gmail.com`. Shared Drive access does not grant access to that account's Gmail.
+Google Drive access through the authorised work account may include folders shared from `bnsn4ull@gmail.com`, including the Obsidian vault folder — the vault's owner shows as `bnsn4ull@gmail.com`, which is correct, it was shared into the work account on purpose. Shared Drive access does not grant access to that account's Gmail.
+
+Work Gmail, Google Drive (as above), the local drive (Codex reaches this directly), and HubSpot (the authorised work portal for the same work account) are all already set up — do not re-ask about or re-set-up any of these. Full detail, including the identity-verification rules for the activity-audit task specifically, is in `CODEX-ACTIVITY-AUDIT-RULES.md`.
 
 ## Required account-level pointer
 
