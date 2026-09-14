@@ -15,6 +15,10 @@ Google Drive was tried instead of this and dropped, direct-write file sharing di
 - Codex checks this folder on every run and is responsible for filing new content into the real vault, since it can reach the local device and Drive-backed vault directly, a cloud session like Claude's cannot.
 - Once an entry has been filed successfully into the real vault, Codex deletes it from here and pushes the change, it does not stay as a record. If filing fails, the entry stays here for retry on the next run.
 
+## Lossless capture rule
+
+Every Bob capture is written here immediately before any PA/PM classification follow-up. If classification is not yet known, prefix the exact text with `pending-classification:`. Pending entries stay in GitHub and must not be filed or deleted by Obsidian Export until they are classified. This makes GitHub the durable handoff queue instead of relying on chat history.
+
 ## Two kinds of entries land here
 
 - **PA captures**, meeting notes, tasks, ideas, anything, plain prose or an existing accepted prefix (`meeting:`, `task:`, `idea:`, `source:`), whichever fits. Filed using Codex's normal categorisation rules.
