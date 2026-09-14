@@ -2,6 +2,10 @@
 
 ## New captures
 
+Charlyn from Sales is leaving the company permanently. She provided her handover notes in the linked Google Sheet. No other notes at this point.
+
+---
+
 TEST-CODEX-HANDOFF-2026-09-14-0938
 This is a controlled end-to-end handoff test. If processed successfully, create/file the corresponding vault note according to the existing capture rules, verify the Drive destination, then remove only this test entry from GitHub.
 
