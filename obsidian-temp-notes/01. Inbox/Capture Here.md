@@ -7,7 +7,7 @@ This is a controlled end-to-end handoff test. If processed successfully, create/
 
 ---
 
-task: Copper outreach email sending session, expected 2026-09-14.
+task: Corporate outreach email sending session, expected 2026-09-14.
 
 ---
 
