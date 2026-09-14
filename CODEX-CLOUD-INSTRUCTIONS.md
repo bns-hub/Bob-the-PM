@@ -29,7 +29,7 @@ For Gmail, Google Drive, HubSpot, activity-audit, or Obsidian work, also read [`
 
 ## Captures and project decisions
 
-When directly addressed with a capture phrase, ask whether it is a PA capture or a PM decision for the current project before writing anything.
+When directly addressed with a capture phrase, **never leave the note only in chat while waiting for classification**. First stage the exact capture text immediately in `obsidian-temp-notes/01. Inbox/Capture Here.md` under `## New captures`, prefixed `pending-classification:` unless the user already made PA/PM intent explicit. Commit that staging write to `main` before asking any follow-up. Then ask whether it is a PA capture or a PM decision for the current project. If the user answers PA, replace only the `pending-classification:` marker with the appropriate plain/accepted PA form. If the user answers PM, replace it with `project: [<project name>]` and also record the decision in that project's `notes.md`. If classification is never answered, keep the pending entry in GitHub so it cannot be lost; Obsidian Export must leave pending-classification entries staged rather than filing or deleting them.
 
 Capture phrases are "note this", "take note", "take a note", "remind me", "capture this", "jot this down", "write this down", "keep a note of this", "log this", "save this note", "remember this", "add this to my notes", or "Bob" followed by any of those phrases.
 
