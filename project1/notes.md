@@ -2,6 +2,25 @@
 
 ---
 
+## 2026-09-14 Obsidian delivery architecture corrected; local writer still missing
+
+**What we already know, confirmed, not guessed:**
+- The Roy Li/WRMS capture failure (marked "filed" by Codex, but not actually found in the vault on direct search) was caused by a real architecture problem, not a one-off bug: a cloud write into the shared Google Drive vault folder is owned by the work account and does not reliably reach the personal-account local filesystem mirror that Obsidian actually watches.
+- The corrected, now-permanent flow is recorded in `OBSIDIAN-DELIVERY-ARCHITECTURE.md` in the main Bob-the-PM folder: Bob capture -> GitHub queue -> a local writer with real filesystem access to the `Ben` vault -> Obsidian indexes it -> Google Drive for Desktop syncs that local file up -> cloud `Obsidian Export` verifies the synced copy -> only then the transient GitHub entry is cleared. A cloud-created Drive file alone no longer counts as delivery.
+- `CODEX-CLOUD-INSTRUCTIONS.md` now points to this architecture file, and the daily `Obsidian Export` task reads it on every run. `daily-agenda/notes.md` and project `notes.md` are explicitly permanent history, never deleted after export.
+
+**What we are choosing to leave open, or unsure of, for now:**
+- The one piece this doesn't yet solve: **there is no local writer set up.** The architecture names "PC/laptop local Codex" as the preferred authoritative writer, but that's a local install/schedule/trigger the user still needs to set up on their own machine with access to the real `Ben` vault folder. Until it exists, captures will queue correctly in GitHub but sit at "awaiting local vault write" rather than actually reaching Obsidian.
+
+**The one goal for this phase:**
+- Get a real local writer running on the PC/laptop so captures actually complete the chain end to end, not just queue.
+
+**Anything the next session should NOT re-ask, because it is already settled:**
+- Do not re-debate the architecture; `OBSIDIAN-DELIVERY-ARCHITECTURE.md` is authoritative and overrides older wording elsewhere about cloud Drive writes counting as delivery.
+- Do not treat a cloud-created Drive `.md` as proof a capture reached Obsidian.
+
+---
+
 ## 2026-09-14 Documented Bob's existing access; Drive-ownership question resolved; Bob going into Codex next
 
 **What we already know, confirmed, not guessed:**
