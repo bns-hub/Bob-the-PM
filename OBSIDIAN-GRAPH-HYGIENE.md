@@ -121,6 +121,21 @@ The cloud task does not edit the live vault. It creates deterministic repair man
 
 Each daily pass is bounded: repair one coherent project/account cluster or one source-batch family, with at most 50 target notes/files, whichever is smaller. Persist the next resume position. This prevents mass rewriting and keeps repairs reviewable.
 
+## Weekly ownership and link pass
+
+Once per seven-day cycle, inspect every note created or materially changed since the previous successful weekly checkpoint. Include ordinary Markdown notes, Excalidraw drawings, Canvas files, and attachment companion notes. Do not exclude a note merely because its file type or folder is non-standard.
+
+For each substantive item:
+
+1. resolve the verified canonical project, tender, service request, change request, deal, account, person, or subject owner;
+2. prefer the most specific verified owner over a broad MOC or account umbrella;
+3. add only the smallest useful controlled property, tag, or wikilink required to make the relationship visible;
+4. preserve all user-authored content, drawing data, source IDs, capture IDs, and hashes;
+5. confirm the new link resolves and check the affected owner cluster for broken links;
+6. use `unresolved_routing` and create a bounded repair entry when the owner cannot be proved.
+
+The 2026-09-14 AMS3 Excalidraw repair is the reference pattern: the drawing was left intact, given one `project` wikilink to the verified AMS3 HubSpot deal owner, and then checked for link resolution and backlinks.
+
 ## WRMS canonical grouping
 
 WRMS is a concrete example of the required behavior.

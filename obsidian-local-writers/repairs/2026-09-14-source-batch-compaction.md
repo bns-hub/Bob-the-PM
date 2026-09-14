@@ -84,3 +84,31 @@ After each bounded family run, update this repair file with:
 - completed/checked timestamp
 
 This repair remains pending until Gmail, HubSpot Emails, HubSpot Notes, HubSpot Contacts, and HubSpot Companies raw range/batch clutter has been processed across the full live vault.
+
+## 2026-09-14 analysis checkpoint
+
+- Cloud synced-view count: 29 Gmail filtered-audit Drive objects, representing 28 distinct logical filenames because one title occurs twice.
+- HubSpot source MOCs report 87 Email batches, 39 Note batches, 27 Contact batches, and 11 Company batches.
+- Canonical source MOCs exist for Gmail Activities, Email Sources, HubSpot Emails, HubSpot Notes, HubSpot Contacts, and HubSpot Companies.
+- Current source MOCs still link directly to raw batch files. Archive pointers must replace those links before any corresponding local file is removed.
+- The duplicate title `2025-09-17 to 2025-09-25 Filtered Audit.md` has two different Drive IDs and different hashes. Match the single local-vault file by full content hash before selecting the archive source. Never merge or delete by title alone.
+- No live source-batch file was removed during this checkpoint.
+
+### Next bounded batch: Gmail 1 of 3
+
+Process these ten Drive objects in this exact order, stopping on the first unresolved archive or ownership prerequisite:
+
+| Order | Title | Drive ID | Synced-view SHA-256 |
+|---:|---|---|---|
+| 1 | 2025-09-17 to 2025-09-25 Filtered Audit.md | `1OG-kXHmK85iAl-up2adbbUxd3YyVaaCw` | `81a6639cf478f725c6605a7ffada84da5cd067cdb7335833b36207a03c7f0bb0` |
+| 2 | 2025-09-17 to 2025-09-25 Filtered Audit.md | `1WNBZ6BTFs1dyJGCzqtzuyCRBjCHRapTE` | `90a9bc7d10a2c7c78c0100827c2bf68d51dfa504d1977b6ec8018e36a4b63bcc` |
+| 3 | 2025-09-25 onward Gmail Batch 008 Filtered Audit.md | `1MmEHMp1OeLCCEr_BaXPuZzvPeHLmoQ-a` | `fbe59e94f6d8a37a3ef60129a2994bccebf9c0ecf61686ede178dd7d183c120d` |
+| 4 | 2025-10-01 to 2025-10-14 Gmail Batch 008 Filtered Audit.md | `1vvrEcoU8SVE4JBwp6Y8yjwKx4Mbu01Ch` | `faea770d3ce90ae9b14076a773f21758faab0b42ad282d753aa95f75424c0476` |
+| 5 | 2025-10-14 to 2025-10-28 Gmail Batch 008 Filtered Audit.md | `1Nfkli_vrIqveDzUgo2015QlSFnX0pQ6T` | `8e3e0afa6a56a7c900ff9971acf38a51980f61fe5c2f8f09060c9f7cdb51e7da` |
+| 6 | 2025-10-28 to 2025-11-04 Gmail Batch 008 Filtered Audit.md | `1iHR6Y6SeqxUI5Bmy8dSf0HVqCVYB8K4P` | `e8e348715763962dd462cadefb185a464bb38b38726f30180c93ca87aca6ec1b` |
+| 7 | 2025-11-05 to 2025-11-18 Gmail Batch 008 Filtered Audit.md | `1h_dLJwy3PXlxUJSx6W-Sc5YVns8QkQfv` | `940856b90923a2c3c81a2b4945768b54eb0c0713a0ba1a339d5b2c2de510f5ef` |
+| 8 | 2025-11-19 to 2025-12-02 Gmail Batch 008 Filtered Audit.md | `1PCfcJvwA6V1cuC50nxneV1LR_eRo_qas` | `37ae99f1e067dbf154001f33a498764f39aa3051fbe15beff1cc8541a0a0d99e` |
+| 9 | 2025-12-02 to 2025-12-16 Gmail Batch 008 Filtered Audit.md | `1fimVKUhqqXDffNNJjajsX7UtBYwsnULC` | `2c56320a7008d0594c62737d6b4b4fe4a80c0aa0ae7d5d69bb64f64be83e73c9` |
+| 10 | 2025-12-16 to 2025-12-31 Gmail Batch 008 Filtered Audit.md | `1Qmig1GZCGFMujhISJXth22zMi12ZP8YN` | `7dc300dce156f9cc1ed963eea034b4556b3e080e7d6b444956828743c64359ab` |
+
+Resume checkpoint after this batch: order 11, `2025-12-31 to 2026-01-15 Gmail Batch 008 Filtered Audit.md`, Drive ID `1513x1ukOrUFd8FwVxTJAuUgcY-IoAwB2`.
