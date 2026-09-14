@@ -2,6 +2,10 @@
 
 ## New captures
 
+project: [Project1] Local writer setup guide for Obsidian vault `Ben` delivered (`Obsidian-Local-Writer-and-Sweep-Setup.md`), laptop verified (Node.js, authenticated `Obsidian - Ben` connection, AMS3 drawing linked). Access key was pasted into chat during setup and must be rotated, `OBSIDIAN_MCP_TOKEN` updated, and Obsidian/Codex restarted before the local writer is trusted for real vault writes. Full detail logged in `project1/notes.md`.
+
+---
+
 William will be going to Brunei around 28th September. When he is back in October, we are to discuss whether I want to take up Brunei.
 
 ---

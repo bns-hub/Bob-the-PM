@@ -2,6 +2,27 @@
 
 ---
 
+## 2026-09-14 Local writer setup guide delivered; access key rotation required before use
+
+**What we already know, confirmed, not guessed:**
+- A setup guide, `Obsidian-Local-Writer-and-Sweep-Setup.md`, was produced covering the local-writer role named in `OBSIDIAN-DELIVERY-ARCHITECTURE.md`: `Bob/Claude capture -> GitHub queue -> one local Codex writer -> Obsidian connection -> local Ben vault -> Google Drive sync`. It specifies one active writer at a time (desktop preferred, laptop as fallback) coordinated by a shared GitHub lock, and gives the exact per-computer setup steps (Obsidian + MCP connector plug-in, Node.js check, `OBSIDIAN_MCP_TOKEN` Windows user variable, Codex Desktop endpoint config, authenticated vault-identity check, heartbeat registration under `obsidian-local-writers/`).
+- On the laptop specifically: Node.js `v24.19.0` confirmed installed, Codex's Obsidian connection to `http://127.0.0.1:27200/mcp` authenticated and identified the server as `Obsidian - Ben`, and the new Excalidraw drawing `Drawing NEA AMS3, 2026-09-14 17.11.28.excalidraw.md` was linked to the verified AMS3 HubSpot deal owner (link confirmed working).
+- **Security issue, action required:** the Obsidian connector access key was pasted directly into a chat during setup. The key must be rotated in the Obsidian connector, the private Windows `OBSIDIAN_MCP_TOKEN` variable updated on each local-writer computer, then Obsidian and Codex fully restarted, before the local-writer flow is trusted for real writes. This is a task only doable on the actual Windows machines, not from this cloud session.
+- Claude's role in this flow stays capture/project-context only: never connect to, amend, or take the processor lock on the local `Ben` vault or its Drive-synced copy.
+
+**What we are choosing to leave open, or unsure of, for now:**
+- Whether the desktop has completed the same setup and rotation, or only the laptop has been verified so far.
+- One older missing AMS3 evidence link was found during setup and logged as an unresolved repair, not yet fixed.
+
+**The one goal for this phase:**
+- Same as the prior entry below: get a real local writer running end-to-end (now largely specified and partly verified on the laptop), with the access-key rotation completed first.
+
+**Anything the next session should NOT re-ask, because it is already settled:**
+- Do not re-ask whether Claude needs the Obsidian connector — it does not; local Codex is the only final vault writer.
+- Do not treat the pre-rotation key as still valid; assume it must be rotated before relying on the local writer for real deliveries.
+
+---
+
 ## 2026-09-14 Obsidian delivery architecture corrected; local writer still missing
 
 **What we already know, confirmed, not guessed:**
