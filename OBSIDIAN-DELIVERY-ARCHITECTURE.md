@@ -4,7 +4,7 @@ This file is the authoritative device-and-delivery model for Bob-the-PM captures
 
 ## Canonical flow
 
-You -> Bob capture -> GitHub source queue -> local vault writer -> local `Ben` vault filesystem -> Obsidian indexes the file -> Google Drive syncs the same local file -> cloud verification -> only then clear the transient GitHub capture.
+You -> Bob capture -> GitHub source queue -> one locked local Codex processor -> Obsidian Model Context Protocol -> local `Ben` vault -> local verification -> clear the matching transient GitHub capture -> normal vault sync.
 
 GitHub source queues include:
 - `obsidian-temp-notes/01. Inbox/Capture Here.md` and other staged files under `obsidian-temp-notes/`;
@@ -15,64 +15,107 @@ GitHub source queues include:
 
 ## Authoritative write surface
 
-The authoritative destination for new Obsidian notes is the actual local filesystem of the Obsidian vault named `Ben`.
+The authoritative destination for new Obsidian notes is the actual local Obsidian vault named `Ben`. The only approved write route for this ingestion workflow is an authenticated local Obsidian Model Context Protocol connection.
 
 A new `.md` file created only through the cloud Google Drive connector is not proof of Obsidian delivery, even if its parent folder is inside the Drive view of the vault. A cloud-created file can be owned by the work Google account and fail to materialize in the personal-account local filesystem that Obsidian is watching.
 
 Therefore:
 - cloud ChatGPT/Codex/Claude must not claim a new capture reached Obsidian merely because a Drive file exists;
-- for a new vault note, the final write should be made by a local writer with direct filesystem access to the actual `Ben` vault;
-- local verification must re-open the exact written `.md` and confirm the expected stable capture/source ID, content hash, and intended content;
+- for a new vault note, the final write must be made by local Codex through Obsidian Model Context Protocol while that device holds the shared GitHub processor lock;
+- a visible folder, saved connection setting, or open port is not proof of access. Local Codex must complete an authenticated Model Context Protocol round trip and confirm that the active vault is `Ben`;
+- local verification must re-open the exact written `.md` through Obsidian Model Context Protocol and confirm the expected stable capture/source ID, content hash, and intended content;
 - Google Drive then synchronizes that same local file to the cloud;
-- the cloud `Obsidian Export` task may use the Drive view for context, deduplication, and post-sync verification, but not as the authoritative new-note writer;
+- the cloud `Obsidian Export` task may use the Drive view for read-only context and optional post-sync confirmation, but not for final deduplication or writing;
 - the transient GitHub handoff remains authoritative until delivery is verified.
+
+## Approved local processor and writer
+
+### Local Codex
+
+Local Codex running on a desktop or laptop is the sole approved processor and writer for this workflow. It must use Obsidian Model Context Protocol for both the write and the verification read.
+
+### Bob, Claude, and cloud tasks
+
+Bob, Claude, ChatGPT cloud, and Codex cloud may stage or coordinate captures through GitHub. They are not vault writers. Claude must never write directly to Google Drive or to the Obsidian vault, whether it runs locally or in the cloud.
+
+### Writer claim / race-prevention rule
+
+Desktop and laptop local Codex may both be available, but only one may process the queue at a time. Before inspecting routable content for a write, local Codex must obtain the repository-wide lease defined in `OBSIDIAN-INGESTION-CONTRACT.md`. A rejected GitHub push means that device did not obtain the lock and must stop without writing to Obsidian.
+
+Before the lock owner writes a routable capture/source item, it must also create and push a deterministic GitHub claim keyed by the item's stable capture/source ID plus content hash. The claim identifies the writer, device, source identity, and start time. Another writer that sees a current valid claim must skip that item. A stale claim may be recovered only while holding the repository-wide lock and after re-reading the source.
+
+After a successful local write and local verification, the writer records completion for that capture/source ID and hash and releases/completes the claim. The transient GitHub source itself is still not cleared until the synced-vault verification rule below passes.
 
 ## Device roles
 
-### PC / laptop
+### PC / laptop / desktop
 
-PC/laptop local Codex is the preferred authoritative writer.
+Local Codex is the only approved processor and writer for this workflow.
 
 Before writing, local Codex must:
-1. resolve the actual local path of the `Ben` vault;
-2. verify the expected vault structure is present and the target is writable;
+1. complete an authenticated Obsidian Model Context Protocol round trip and confirm the active vault is exactly `Ben`;
+2. confirm the expected vault structure through Obsidian Model Context Protocol and that the required write tools are available;
 3. never touch `.obsidian/`, lock/cache/workspace/plugin-state files, or hidden Obsidian application state;
 4. read the current Bob instructions and GitHub source queue;
-5. deduplicate by stable capture/source ID and content hash;
-6. write or minimally patch the appropriate `.md` inside the local vault;
-7. re-read and verify the local file;
-8. allow the normal sync layer to propagate it.
+5. obtain the deterministic GitHub claim for the capture/source item;
+6. deduplicate by stable capture/source ID and content hash;
+7. write or minimally patch the appropriate `.md` through Obsidian Model Context Protocol;
+8. re-read through Obsidian Model Context Protocol and verify the note contains the expected ID, hash, and content;
+9. record writer completion/heartbeat status in the shared GitHub writer-status area when available;
+10. allow the normal sync layer to propagate the file.
 
 ### Android
 
-Android Obsidian is a consumer of a local vault and may also be a writer only when an approved on-device automation has direct filesystem access to the same local `Ben` vault and can perform the same verification rules as PC/laptop local Codex.
-
-Do not assume the ChatGPT mobile cloud session itself has arbitrary local filesystem write access. If no approved local writer exists on Android, leave the GitHub handoff queued and let the PC/laptop local writer process it.
+Android Obsidian is a synced vault consumer for this workflow. Bob may capture from Android into GitHub. Android must not claim or process the queue. Leave the handoff queued for a desktop or laptop local Codex processor.
 
 ### iPhone / iPad
 
-Treat iPhone/iPad as a synced vault consumer unless an explicitly approved local filesystem automation exists that can satisfy the same local-write and verification rules.
+Treat iPhone and iPad as capture devices and synced vault consumers. Bob may capture from them into GitHub. A mobile ChatGPT or Claude session must not write directly into the iOS Obsidian vault or Google Drive.
 
-Do not assume a ChatGPT mobile cloud session can write directly into the iOS Obsidian vault. With the current Google Drive-backed architecture, PC/laptop remains the preferred authoritative writer.
+## Local writer discovery / status
+
+Desktop and laptop local Codex processors publish a small status or heartbeat file under `obsidian-local-writers/` so cloud orchestration can distinguish an available processor from an unavailable one.
+
+A writer status should include at least:
+- `device_id`
+- `device_type`
+- `writer` (`codex`)
+- `writer_enabled`
+- `last_seen`
+- `vault_validation_status`
+- `resolved_local_vault_path` or a privacy-safe path fingerprint
+- `last_successful_capture_id`
+- `last_successful_content_hash`
+- `last_error`
+- `sync_status` when known
+
+The cloud task cannot discover local paths by itself. It can only observe these status records and later verify the synchronized vault result.
 
 ## Cloud `Obsidian Export` role
 
 `Obsidian Export` runs daily and orchestrates the queue. Every run must inspect:
 - all staged content under `obsidian-temp-notes/`, including `01. Inbox/Capture Here.md`;
-- `daily-agenda/notes.md` when present; and
-- every project folder's `notes.md`.
+- `daily-agenda/notes.md` when present;
+- every project folder's `notes.md`; and
+- `obsidian-local-writers/` status/heartbeat records when present.
 
-The cloud task may classify, route, enrich, deduplicate, assign stable IDs/hashes, compare against existing vault/checkpoint state, and verify a synced result. It must not create a replacement work-owned `.md` inside the live `Ben` vault just to complete a capture.
+The cloud task may classify, route, assign stable IDs and hashes, inspect GitHub coordination state, and report queue status. It must not create or edit a `.md` inside the live `Ben` vault. Final deduplication, enrichment, writing, and verification belong to the locked local Codex processor because those steps depend on an authenticated Obsidian Model Context Protocol round trip.
 
-If a new local note is required and no verified local result is visible yet, status is `awaiting local vault write`. That is not success and not failure.
+If a new local note is required and no valid local writer is available, status is `awaiting local writer`.
+
+If a writer exists but cannot find or validate its local `Ben` vault, status is `local vault not found`.
+
+If local write and local verification succeeded but the synchronized destination is not yet visible/verified to cloud, status is `awaiting sync verification`.
+
+None of those states count as successful Obsidian delivery.
 
 ## Verification and cleanup
 
 A transient GitHub capture may be removed only after all of these are true:
-1. the intended destination note exists as part of the synced `Ben` vault workflow;
+1. the intended destination note exists in the local `Ben` vault and was re-read through Obsidian Model Context Protocol;
 2. the destination contains the expected stable capture/source ID and content hash;
 3. the content matches the intended capture/export;
-4. the result is not merely a cloud-created work-owned Drive file masquerading as a local-vault result;
+4. the result is not merely a cloud-created work-owned Drive file or a direct filesystem write masquerading as an Obsidian Model Context Protocol result;
 5. the current GitHub staging file is re-read immediately before removal so concurrent edits are preserved.
 
 If any condition fails, leave the GitHub handoff intact.
@@ -84,9 +127,11 @@ For `daily-agenda/notes.md` and project `notes.md`, never delete source entries 
 Obsidian itself indexes files already present in its local vault. The sync layer is responsible for moving those local files between devices/cloud storage.
 
 Under the current architecture:
-- local writer creates/updates the `.md` in `Ben`;
+- the one locked local Codex processor creates or updates the `.md` in `Ben` through Obsidian Model Context Protocol;
+- local Codex re-opens and verifies the note through Obsidian Model Context Protocol;
 - Obsidian notices/indexes the local file;
 - Google Drive for desktop or the approved device sync mechanism uploads/synchronizes it;
-- cloud verification observes the synchronized copy afterward.
+- optional cloud verification may observe the synchronized copy afterward;
+- the transient GitHub capture is cleared only after the local Model Context Protocol verification and safe source re-read defined in `OBSIDIAN-INGESTION-CONTRACT.md`.
 
 Do not invert this into `cloud Drive API creates file -> assume Obsidian received it`.

@@ -2,20 +2,39 @@
 
 ---
 
+## 2026-09-14 Bob to local Obsidian ingestion contract implemented
+
+**What is now settled:**
+- Bob captures from phone or chat into the existing GitHub `obsidian-temp-notes/01. Inbox/Capture Here.md` queue.
+- Every new capture receives a stable capture ID, capture time, classification, and SHA-256 content hash at staging time.
+- Only one desktop or laptop local Codex processor may hold the repository-wide 15-minute lease at a time. Every item also receives a durable claim before any vault write.
+- Local Codex must prefer a verified existing owning note over creating a duplicate, write only through Obsidian Model Context Protocol, then re-read and verify the exact destination before clearing the matching staging entry.
+- Bob and Claude may stage in GitHub. Claude must not write directly to Google Drive or the Obsidian vault.
+
+**Checked against reality in this session:**
+- The local `Ben` vault path and its `01. Inbox` folder exist.
+- The configured Obsidian Model Context Protocol connection failed its authenticated initialisation with HTTP 401 Unauthorized. The local writer is therefore disabled and the William capture remains safely queued.
+
+**The one remaining blocker:**
+- Repair the Obsidian Model Context Protocol authentication, then obtain the shared lock and process the queued William capture through the new contract.
+
+---
+
 ## 2026-09-14 Local writer setup guide delivered; access key rotation required before use
 
 **What we already know, confirmed, not guessed:**
 - A setup guide, `Obsidian-Local-Writer-and-Sweep-Setup.md`, was produced covering the local-writer role named in `OBSIDIAN-DELIVERY-ARCHITECTURE.md`: `Bob/Claude capture -> GitHub queue -> one local Codex writer -> Obsidian connection -> local Ben vault -> Google Drive sync`. It specifies one active writer at a time (desktop preferred, laptop as fallback) coordinated by a shared GitHub lock, and gives the exact per-computer setup steps (Obsidian + MCP connector plug-in, Node.js check, `OBSIDIAN_MCP_TOKEN` Windows user variable, Codex Desktop endpoint config, authenticated vault-identity check, heartbeat registration under `obsidian-local-writers/`).
 - On the laptop specifically: Node.js `v24.19.0` confirmed installed, Codex's Obsidian connection to `http://127.0.0.1:27200/mcp` authenticated and identified the server as `Obsidian - Ben`, and the new Excalidraw drawing `Drawing NEA AMS3, 2026-09-14 17.11.28.excalidraw.md` was linked to the verified AMS3 HubSpot deal owner (link confirmed working).
-- **Security issue, action required:** the Obsidian connector access key was pasted directly into a chat during setup. The key must be rotated in the Obsidian connector, the private Windows `OBSIDIAN_MCP_TOKEN` variable updated on each local-writer computer, then Obsidian and Codex fully restarted, before the local-writer flow is trusted for real writes. This is a task only doable on the actual Windows machines, not from this cloud session.
+- **Likely explains the 401 above:** the Obsidian connector access key was pasted directly into a chat during setup. The key must be rotated in the Obsidian connector, the private Windows `OBSIDIAN_MCP_TOKEN` variable updated on each local-writer computer, then Obsidian and Codex fully restarted, before the local-writer flow is trusted for real writes. This is a task only doable on the actual Windows machines, not from this cloud session.
 - Claude's role in this flow stays capture/project-context only: never connect to, amend, or take the processor lock on the local `Ben` vault or its Drive-synced copy.
 
 **What we are choosing to leave open, or unsure of, for now:**
 - Whether the desktop has completed the same setup and rotation, or only the laptop has been verified so far.
 - One older missing AMS3 evidence link was found during setup and logged as an unresolved repair, not yet fixed.
+- Whether rotating the key actually clears the HTTP 401 Unauthorized seen above; not yet confirmed.
 
 **The one goal for this phase:**
-- Same as the prior entry below: get a real local writer running end-to-end (now largely specified and partly verified on the laptop), with the access-key rotation completed first.
+- Same as the prior entry above: get a real local writer running end-to-end (now largely specified and partly verified on the laptop), with the access-key rotation completed first, then re-attempt the blocked William capture through the new ingestion contract.
 
 **Anything the next session should NOT re-ask, because it is already settled:**
 - Do not re-ask whether Claude needs the Obsidian connector — it does not; local Codex is the only final vault writer.

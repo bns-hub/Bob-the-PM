@@ -1,13 +1,15 @@
-<!-- Newest entry at the top. Codex checks this on every run and moves new content into the real vault at 01. Inbox/Capture Here, deleting each entry here once filed. -->
+<!-- Newest entry at the top. Bob stages captures here. A locked local Codex processor files each routable entry through Obsidian MCP and removes only the entry that it has re-read and verified. -->
 
 ## New captures
 
-project: [Project1] Local writer setup guide for Obsidian vault `Ben` delivered (`Obsidian-Local-Writer-and-Sweep-Setup.md`), laptop verified (Node.js, authenticated `Obsidian - Ben` connection, AMS3 drawing linked). Access key was pasted into chat during setup and must be rotated, `OBSIDIAN_MCP_TOKEN` updated, and Obsidian/Codex restarted before the local writer is trusted for real vault writes. Full detail logged in `project1/notes.md`.
+project: [Project1] Local writer setup guide for Obsidian vault `Ben` delivered (`Obsidian-Local-Writer-and-Sweep-Setup.md`), laptop verified (Node.js, authenticated `Obsidian - Ben` connection, AMS3 drawing linked). Access key was pasted into chat during setup and must be rotated, `OBSIDIAN_MCP_TOKEN` updated, and Obsidian/Codex restarted before the local writer is trusted for real vault writes; this may also explain the HTTP 401 seen on the current MCP connection. Full detail logged in `project1/notes.md`.
 
 ---
 
+<!-- bob-capture:v1
+capture_id: bob-20260914-william-brunei-01
+captured_at: unknown
+classification: pa
+content_sha256: sha256:631f66d6bdbfc03e9c4ab9806350fb878deb6a26ec86b5bc3ab69a68331a89c3
+-->
 William will be going to Brunei around 28th September. When he is back in October, we are to discuss whether I want to take up Brunei.
-
----
-
-project: [WRMS] Roy Li has left the company for Dolphlink. Exact departure date not known, only that it happened a few months before this was logged (2026-09-13). RETRY: a prior handoff of this same capture was removed from this inbox on 2026-09-14 (commit ceaa0c1, "File verified Bob handoff captures into Obsidian vault") but no corresponding note was actually found in the Drive-backed vault on search for "Roy Li" or "Dolphlink" as of 2026-09-14. Please verify the vault write this time before removing this entry, and confirm the destination note/path in the commit message or notification.
