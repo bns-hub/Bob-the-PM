@@ -25,3 +25,19 @@ Every new entry also carries the stable version 1 metadata comment defined in [`
 
 - **PA captures**, meeting notes, tasks, ideas, anything, plain prose or an existing accepted prefix (`meeting:`, `task:`, `idea:`, `source:`), whichever fits. Filed using Codex's normal categorisation rules.
 - **PM decisions**, project scope or phase outcomes that also live in that project's own `notes.md` elsewhere in this repository. These carry a `project: [<project name>]` prefix here, so Codex files them under that project rather than Unresolved Routing.
+
+## Vault repair jobs
+
+The cloud `Obsidian Export` task may identify graph-quality problems while reading the synced Drive view, but it must not patch the live vault through Google Drive. It stages deterministic repair manifests under `../obsidian-local-writers/repairs/` instead.
+
+A local Codex processor that holds the repository-wide processor lock must also inspect pending repair manifests after processing normal capture entries. For every repair job it must:
+
+1. Read [`../OBSIDIAN-GRAPH-HYGIENE.md`](../OBSIDIAN-GRAPH-HYGIENE.md) and the repair manifest.
+2. Re-read every target note through Obsidian MCP before changing it; the repair manifest is a hint, not a stale patch to apply blindly.
+3. Resolve canonical project/tender/account/deal owners from exact evidence, stable IDs, existing verified links, and explicit project names. Never route by title similarity alone.
+4. Prefer small metadata/link patches or consolidation into an existing owning note. Preserve source evidence and stable IDs. Do not mass rename, move, delete, or rewrite notes merely to make the graph look prettier.
+5. Re-read each changed destination through Obsidian MCP and verify the expected canonical links/metadata.
+6. Mark the repair manifest `completed` with the destination paths and verification time. Do not delete completed repair history.
+7. If a target cannot be resolved safely, leave the job pending or mark it `unresolved_routing` with the ambiguity instead of guessing.
+
+Normal captures have priority over repair jobs. Repair work is bounded and resumable so a cleanup run cannot monopolize the writer.
