@@ -2,6 +2,8 @@
 
 This is a standing operating spec for the Codex/ChatGPT cloud activity-audit task. On the Codex/ChatGPT side this recurring job is named **"Obsidian Export"** — that is the schedule this file governs. It runs entirely in ChatGPT cloud, not here. The one part that involves a Claude cloud session is called out explicitly below: Claude hands off notes only through the GitHub `obsidian-temp-notes` folder in this repository, and never writes to Google Drive or Gmail directly.
 
+**"Obsidian Export" must run daily.** Every run reads Bob-the-PM's GitHub inbox (`obsidian-temp-notes/01. Inbox/Capture Here.md`) and the `daily-agenda/notes.md` and per-project `notes.md` content queued there, and files anything new into the real Drive-backed vault, verifying the write actually landed before removing the source entry from GitHub (see the note added 2026-09-14 after a capture was marked filed but was not actually found in the vault). A less-than-daily schedule lets daily-agenda items go stale before they ever reach Obsidian.
+
 Recorded here verbatim, as supplied by the user, for reference by Codex and any future session.
 
 ---
