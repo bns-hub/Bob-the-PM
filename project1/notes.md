@@ -2,6 +2,25 @@
 
 ---
 
+## 2026-09-14 User reports access-key rotation done
+
+**What we already know, confirmed, not guessed:**
+- The user reported ("zdone") that the Obsidian connector access-key rotation is complete: new key generated in the connector, `OBSIDIAN_MCP_TOKEN` updated, Obsidian and Codex restarted. This is self-reported from the local machine; this cloud session has no way to independently verify it.
+- A second copy of a key value was pasted into this chat after the first exposure. It was not stored, written to any file, or committed anywhere in this repository. If that pasted value is the same key just rotated, it is now superseded; if it was meant as the *new* key, it should be treated as exposed too and rotated again rather than kept as the working key.
+
+**What we are choosing to leave open, or unsure of, for now:**
+- Whether the HTTP 401 Unauthorized seen in the ingestion-contract session actually clears with the new key — not yet confirmed by an authenticated `get_server_info` round trip against vault `Ben`.
+- Whether the desktop has the same rotated key and restart, or only the laptop.
+
+**The one goal for this phase:**
+- Same as prior entries: confirm the local writer actually completes an authenticated round trip against `Ben` with the new key, then process the queued William capture through the ingestion contract.
+
+**Anything the next session should NOT re-ask, because it is already settled:**
+- Do not re-ask the user to rotate the key again on the strength of this entry alone; rotation is reported done. Re-rotate only if a fresh exposure happens or the 401 persists after this.
+- Do not treat "rotation reported done" as equivalent to "401 confirmed fixed" — those are two different checks.
+
+---
+
 ## 2026-09-14 Bob to local Obsidian ingestion contract implemented
 
 **What is now settled:**
