@@ -2,7 +2,7 @@
 
 This file is the device-independent entry point for ChatGPT and Codex sessions that can access GitHub. The shared source of truth is the `bns-hub/Bob-the-PM` repository. Do not create a separate local notebook or a second copy in Google Drive.
 
-`bns-hub/Bob-the-PM` is a shared notebook, not code: one folder per project, each holding a `notes.md` running log, newest entry at the top, nothing deleted. A few shared, project-independent files live loose in the main folder: this file, `README.md`, `CODEX-ACTIVITY-AUDIT-RULES.md`, `OBSIDIAN-DELIVERY-ARCHITECTURE.md`, `PROJECT-TEMPLATE.md`, and the `obsidian-temp-notes/` folder. Its purpose: whichever tool picks up a piece of work next, Claude or Codex, reads what was already decided instead of asking the same questions again.
+`bns-hub/Bob-the-PM` is a shared notebook, not code: one folder per project, each holding a `notes.md` running log, newest entry at the top, nothing deleted. A few shared, project-independent files live loose in the main folder: this file, `README.md`, `CODEX-ACTIVITY-AUDIT-RULES.md`, `OBSIDIAN-DELIVERY-ARCHITECTURE.md`, `OBSIDIAN-INGESTION-CONTRACT.md`, `PROJECT-TEMPLATE.md`, the `obsidian-temp-notes/` folder, and the `obsidian-local-writers/` coordination folder. Its purpose: whichever tool picks up a piece of work next, Claude or Codex, reads what was already decided instead of asking the same questions again.
 
 These instructions apply only when the current ChatGPT or Codex surface has permission to read and write this GitHub repository. If access is unavailable, say so plainly. Do not pretend that cached, copied, or local content is current.
 
@@ -18,7 +18,7 @@ Before asking questions or proposing work for a project:
 
 For Gmail, Google Drive, HubSpot, activity-audit, or Obsidian work, also read [`CODEX-ACTIVITY-AUDIT-RULES.md`](CODEX-ACTIVITY-AUDIT-RULES.md) before touching those services, records, or files. Follow its identity verification, access, routing, deduplication, and sync-safety rules exactly.
 
-For any Obsidian capture, export, sync, delivery, or vault-write question, also read [`OBSIDIAN-DELIVERY-ARCHITECTURE.md`](OBSIDIAN-DELIVERY-ARCHITECTURE.md). That file is authoritative for the device roles, final write surface, verification standard, and GitHub cleanup rules, and it overrides older conflicting wording elsewhere in this repository about cloud Drive writes counting as successful Obsidian delivery.
+For any Obsidian capture, export, sync, delivery, or vault-write question, also read [`OBSIDIAN-DELIVERY-ARCHITECTURE.md`](OBSIDIAN-DELIVERY-ARCHITECTURE.md) and [`OBSIDIAN-INGESTION-CONTRACT.md`](OBSIDIAN-INGESTION-CONTRACT.md). They are authoritative for device roles, stable capture identity, the single-processor lock, the Obsidian Model Context Protocol write, verification, and GitHub cleanup. They override older conflicting wording elsewhere in this repository about cloud Drive writes counting as successful Obsidian delivery.
 
 ## Working rules
 
@@ -31,7 +31,7 @@ For any Obsidian capture, export, sync, delivery, or vault-write question, also 
 
 ## Captures and project decisions
 
-When directly addressed with a capture phrase, **never leave the note only in chat while waiting for classification**. First stage the exact capture text immediately in `obsidian-temp-notes/01. Inbox/Capture Here.md` under `## New captures`, prefixed `pending-classification:` unless the user already made PA/PM intent explicit. Commit that staging write to `main` before asking any follow-up. Then ask whether it is a PA capture or a PM decision for the current project. If the user answers PA, replace only the `pending-classification:` marker with the appropriate plain/accepted PA form. If the user answers PM, replace it with `project: [<project name>]` and also record the decision in that project's `notes.md`. If classification is never answered, keep the pending entry in GitHub so it cannot be lost; Obsidian Export must leave pending-classification entries staged rather than filing or deleting them.
+When directly addressed with a capture phrase, **never leave the note only in chat while waiting for classification**. First stage the exact capture text immediately in `obsidian-temp-notes/01. Inbox/Capture Here.md` under `## New captures`. Add the version 1 metadata defined in `OBSIDIAN-INGESTION-CONTRACT.md`, including the stable capture ID and content hash. Prefix the visible entry `pending-classification:` unless the user already made PA or PM intent explicit. Commit that staging write to `main` before asking any follow-up. Then ask whether it is a PA capture or a PM decision for the current project. If the user answers PA, change the metadata classification to `pa` and replace only the `pending-classification:` marker with the appropriate plain or accepted PA form. If the user answers PM, change the metadata classification to `pm`, replace the marker with `project: [<project name>]`, and also record the decision in that project's `notes.md`. Never change the capture ID, timestamp, hash, or exact user words during classification. If classification is never answered, keep the pending entry in GitHub so it cannot be lost.
 
 Capture phrases are "note this", "take note", "take a note", "remind me", "capture this", "jot this down", "write this down", "keep a note of this", "log this", "save this note", "remember this", "add this to my notes", or "Bob" followed by any of those phrases.
 
@@ -39,6 +39,7 @@ Capture phrases are "note this", "take note", "take a note", "remind me", "captu
 - For a PM decision, write the decision into the matching project's `notes.md` and also into the same `Capture Here.md`, prefixed exactly `project: [<project name>]`.
 - Do not write a normal Obsidian capture directly to Google Drive. Use the GitHub `obsidian-temp-notes` route. Final delivery must follow `OBSIDIAN-DELIVERY-ARCHITECTURE.md`; a cloud-created Drive file alone is not proof that Obsidian received the note.
 - Selecting, invoking, or being routed through a Google Drive add-on does not change the capture destination. A PA capture must still be written to the GitHub `obsidian-temp-notes` handoff. If a normal PA capture was mistakenly written directly to Drive, do not create another Drive note; repair the handoff by staging the exact original capture text in GitHub so the local-vault workflow can deduplicate it and complete delivery safely.
+- Bob and Claude may stage captures in this GitHub repository. Claude must never write directly to Google Drive or the Obsidian vault. Only a local Codex processor holding the shared processor lock may write the final note, and it must write and verify through Obsidian Model Context Protocol.
 
 ## Permanent account boundary
 

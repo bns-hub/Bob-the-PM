@@ -6,7 +6,7 @@ This is a shared notebook for AI coding helpers, Claude and Codex, working acros
 
 - Each project gets its own folder, named after the project, for example `project1/`.
 - Inside a project folder there is one file, `notes.md`, that holds a running log for that project. Newest entry goes at the top, older entries stay below it, nothing gets deleted.
-- Only shared, project-independent files live loose in this main folder, for example `PROJECT-TEMPLATE.md`, which is the blank template a helper copies when starting notes for a brand new project.
+- Only shared, project-independent files live loose in this main folder, including the Obsidian delivery and ingestion contracts, and `PROJECT-TEMPLATE.md`, which is the blank template a helper copies when starting notes for a brand new project.
 
 ## Why this exists
 

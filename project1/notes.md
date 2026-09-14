@@ -2,6 +2,24 @@
 
 ---
 
+## 2026-09-14 Bob to local Obsidian ingestion contract implemented
+
+**What is now settled:**
+- Bob captures from phone or chat into the existing GitHub `obsidian-temp-notes/01. Inbox/Capture Here.md` queue.
+- Every new capture receives a stable capture ID, capture time, classification, and SHA-256 content hash at staging time.
+- Only one desktop or laptop local Codex processor may hold the repository-wide 15-minute lease at a time. Every item also receives a durable claim before any vault write.
+- Local Codex must prefer a verified existing owning note over creating a duplicate, write only through Obsidian Model Context Protocol, then re-read and verify the exact destination before clearing the matching staging entry.
+- Bob and Claude may stage in GitHub. Claude must not write directly to Google Drive or the Obsidian vault.
+
+**Checked against reality in this session:**
+- The local `Ben` vault path and its `01. Inbox` folder exist.
+- The configured Obsidian Model Context Protocol connection failed its authenticated initialisation with HTTP 401 Unauthorized. The local writer is therefore disabled and the William capture remains safely queued.
+
+**The one remaining blocker:**
+- Repair the Obsidian Model Context Protocol authentication, then obtain the shared lock and process the queued William capture through the new contract.
+
+---
+
 ## 2026-09-14 Obsidian delivery architecture corrected; local writer still missing
 
 **What we already know, confirmed, not guessed:**

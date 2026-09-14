@@ -12,12 +12,14 @@ Google Drive was tried instead of this and dropped, direct-write file sharing di
 ## Convention
 
 - Folder and file names under this directory match the vault's own path exactly, folder for folder, so `01. Inbox/Capture Here.md` here is meant for `01. Inbox/Capture Here` in the vault.
-- Codex checks this folder on every run and is responsible for filing new content into the real vault, since it can reach the local device and Drive-backed vault directly, a cloud session like Claude's cannot.
-- Once an entry has been filed successfully into the real vault, Codex deletes it from here and pushes the change, it does not stay as a record. If filing fails, the entry stays here for retry on the next run.
+- A desktop or laptop local Codex processor checks this folder and files routable content through the local Obsidian Model Context Protocol connector. It must hold the shared processor lock first.
+- Once an entry has been written and re-read successfully through Obsidian Model Context Protocol, local Codex deletes only that matching entry here and pushes the change. If filing or verification fails, the entry stays here for retry.
 
 ## Lossless capture rule
 
 Every Bob capture is written here immediately before any PA/PM classification follow-up. If classification is not yet known, prefix the exact text with `pending-classification:`. Pending entries stay in GitHub and must not be filed or deleted by Obsidian Export until they are classified. This makes GitHub the durable handoff queue instead of relying on chat history.
+
+Every new entry also carries the stable version 1 metadata comment defined in [`../OBSIDIAN-INGESTION-CONTRACT.md`](../OBSIDIAN-INGESTION-CONTRACT.md). Older plain entries are kept valid and receive metadata before a local processor claims them.
 
 ## Two kinds of entries land here
 
