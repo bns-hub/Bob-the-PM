@@ -1,6 +1,6 @@
 # Codex activity-audit rules (permanent)
 
-This is a standing operating spec for the Codex/ChatGPT cloud activity-audit task. It runs entirely in ChatGPT cloud, not here. The one part that involves a Claude cloud session is called out explicitly below: Claude hands off notes only through the GitHub `obsidian-temp-notes` folder in this repository, and never writes to Google Drive or Gmail directly.
+This is a standing operating spec for the Codex/ChatGPT cloud activity-audit task. On the Codex/ChatGPT side this recurring job is named **"Obsidian Export"** — that is the schedule this file governs. It runs entirely in ChatGPT cloud, not here. The one part that involves a Claude cloud session is called out explicitly below: Claude hands off notes only through the GitHub `obsidian-temp-notes` folder in this repository, and never writes to Google Drive or Gmail directly.
 
 Recorded here verbatim, as supplied by the user, for reference by Codex and any future session.
 
