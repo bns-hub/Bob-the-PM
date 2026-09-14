@@ -6,6 +6,6 @@ A running to-do log for day-to-day tasks that are not tied to one single project
 
 ## 2026-09-14
 
-- Copper outreach email sending session, expected today.
+- Corporate outreach email sending session, expected today.
 - Finish AMS3 management summary.
 - Finish Bhutan ACC ICT roadmap management summary.
