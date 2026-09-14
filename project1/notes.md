@@ -2,16 +2,17 @@
 
 ---
 
-## 2026-09-14 Documented Bob's existing access; flagged a Drive-ownership mismatch; Bob going into Codex next
+## 2026-09-14 Documented Bob's existing access; Drive-ownership question resolved; Bob going into Codex next
 
 **What we already know, confirmed, not guessed:**
 - Bob already has full access to: work Gmail (connection "Work", bensonfoo@ecquaria.com / bensonfoo@toppanecquaria.com), Google Drive (shared into the work account, including the Obsidian vault folder), the local drive (Codex reaches this directly), and HubSpot (same work account's portal). None of this needed setting up, it was already in place.
 - A separate Claude session had already written the full account-boundary rules into `CODEX-ACTIVITY-AUDIT-RULES.md` in the main Bob-the-PM folder, before this session got to it. This session added a short "Bob's existing access" section to the main `README.md` that points to that file, instead of writing the rules a second time in a different place.
 - The personal Gmail account, bnsn4ull@gmail.com, is unchanged, still off-limits, no Gmail connection to it at all. The user did not ask to remove that wall, only confirmed the other four systems.
 - The user's next step: get Codex to test the GitHub interaction, then install Bob into Codex.
+- Resolved: Drive listing the vault's owner as `bnsn4ull@gmail.com` is correct, not a mismatch. The user owns the vault on their personal account and shared it into the work account (bensonfoo@ecquaria.com / bensonfoo@toppanecquaria.com) specifically so Claude and Codex can read it there. `obsidian-temp-notes/README.md` updated to reflect this, no longer flagged as open.
 
 **What we are choosing to leave open, or unsure of, for now:**
-- `obsidian-temp-notes/README.md` flags an unresolved mismatch: Google Drive lists the owner of the vault files as `bnsn4ull@gmail.com` (the personal account), which contradicts `CODEX-ACTIVITY-AUDIT-RULES.md`'s description of Drive access running through the work account with the personal folder merely shared in. Not resolved, worth checking which is actually true before relying on the account-boundary rule as written.
+- Nothing outstanding from this entry.
 
 **The one goal for this phase:**
 - Get Codex actually running with the current Bob-the-PM setup, GitHub interaction tested first, then Bob installed into Codex properly.
