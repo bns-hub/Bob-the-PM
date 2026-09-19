@@ -1,3 +1,39 @@
+## 2026-09-20 Correction to active-table match audit
+
+**This entry supersedes the 367-decision match counts in the entry immediately below.**
+
+**Confirmed correction:**
+- The earlier claim that all 367 decisions matched the active canonical tracker was wrong.
+- The cause was an over-broad read of EPU/CMP/10 through row 1000. That included old populated cells below the active table and incorrectly treated them as current tracker rows.
+- Repeating the match against the current active bounds gives exactly 108 matched and 259 unmatched: 69 matches in EPU/CMP/10, 39 in EPU/SER/34, and none in Closed Tenders.
+- The reproduced active bounds are 164 EPU/CMP/10 data rows, spreadsheet rows 2 to 165, 80 EPU/SER/34 data rows, spreadsheet rows 2 to 81, and 205 Closed Tenders data rows, spreadsheet rows 2 to 206.
+- Of the 259 unmatched decisions, 243 are Not relevant, 12 are Possible, and 5 are Look at.
+- Therefore 17 relevant tenders are absent from the active tracker.
+- The 273 and 94 figures previously reported were the decision file's own split between rows with and without a reference number. They were not verified match counts.
+
+**Important additional finding:**
+- All 17 relevant missing tenders still survive as old cells below the active EPU/CMP/10 table, at spreadsheet rows 170 to 498. Their review fields are blank.
+- They are therefore absent operationally from the active tracker, but their source row data has not vanished from the raw sheet grid.
+- This points to an active-table rebuild or retention failure. The refresh retained only the top current block and excluded still-open older tenders while leaving the old cells below the active range.
+- The exact writer logic still needs inspection before stating the software cause as settled.
+
+**Time-sensitive items:**
+- Three Possible tenders close on 21 September 2026: Adobe Acrobat Standard subscription, Delinea Privileged Access Management renewal, and MPA fuel-data collection licence.
+- Four Possible tenders close on 23 September 2026: IT outsource support, Veeam renewal, Microsoft Office LTSC licences, and NYP Deep Freeze Cloud renewal.
+- This corrects the supplied summary, which mentioned three on 23 September.
+
+**Revised recovery design, not yet authorised for writing:**
+1. Matched active rows: fill only the review-owned fields.
+2. Unmatched Not relevant rows: keep a screening record and do not add them to the active tracker.
+3. Unmatched relevant rows: restore or recreate an active tracker row from the surviving source data, then apply the saved verdict.
+4. Before writing, report exact counts, conflicts, deadlines, and the handling of the stale lower grid.
+5. Do not treat the three recovery-copy verdicts as separate inputs because they are already part of the 367-decision file.
+
+**No production changes:**
+- No Google Drive file, spreadsheet, Apps Script, trigger, or scheduled task was changed during this correction.
+
+---
+
 ## 2026-09-20 Completed 367-decision lineage audit
 
 **What we now know, confirmed from the files and revision history:**
