@@ -1,3 +1,28 @@
+## 2026-09-20 Corrected root cause from revision evidence
+
+**What we already know, confirmed, not guessed:**
+- The earlier loss premise was incorrect because it compared two different spreadsheet file IDs after the workflow forked.
+- Long-lived file 1UpmDSHvuZ8IZ9VOMCOvIAizdzv6T9fDgPF9tippwZhU revision 1627, modified 2026-09-19 03:04:08 UTC, already had blank TECQ Review, Why, Reviewed On, and Review Fingerprint cells for MOESCHETQ26003993, MOESCHETQ26003900, and WSG000ETT26000002.
+- Separate file 1b8PEr3Rq1jqgbMQS65Una0Jjht5pZemfY4UeBp4nbMU was created about 40 minutes later and contains the three reviews.
+- The three reviews were therefore written only to the new file. They were not later cleared from the long-lived file.
+- Comparing the two current file states shows all 163 CMP/10 row keys and every source-owned value are identical. Only the four review-owned fields on those three rows differ.
+- The live spreadsheet uses the same 15-column header for EPU/CMP/10 and EPU/SER/34.
+- EPU/SER/34 preserved 40 reviews because those reviews pre-dated the file fork and were already present on both branches. There is no evidenced CMP/10-specific writer difference.
+- The scheduled-task specification caused the fork at Phase 1 Step 12 by creating a new Current spreadsheet, then Phase 2 and Phase 3 wrote reviews into that newly created file. The older long-lived file continued to be updated separately and later appeared as Current again.
+- Apps Script execution history confirms runDailyTracker completed at 2026-09-19 23:01 Singapore time. No Apps Script code or trigger was changed during this investigation.
+
+**What we are choosing to leave open, or unsure of, for now:**
+- Which exact rename or title-selection event made the long-lived file appear as the authoritative Current after the fork. This does not affect the proven fact that the three reviews never existed in that file.
+- Production changes remain out of scope until the user approves implementation.
+
+**The one goal for the next phase:**
+- Prevent split-brain tracker files by locking every collection, review, and refresh step to one verified spreadsheet ID, preserving review-owned fields by normalised Tender/Ref No., and rejecting any write that would reduce review counts without an explicit authorised reason.
+
+**Anything the next session should NOT re-ask, because it is already settled:**
+- Do not describe the incident as CMP/10 clearing three reviews. The correct description is that the three new reviews were written to a separate forked spreadsheet and never reached the long-lived file.
+- Do not restore historical verdicts or perform new reviews until the single-file fix and regression checks are verified.
+
+---
 # GeBIZ Tender Tracker
 
 ## 2026-09-20 Narrowed forensic investigation
