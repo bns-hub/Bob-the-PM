@@ -1,3 +1,35 @@
+## 2026-09-20 Completed 367-decision lineage audit
+
+**What we now know, confirmed from the files and revision history:**
+- TECQ_REVIEWS_2026-09-18.csv contains exactly 367 completed decisions, all stamped 2026-09-18 17:00 Singapore time: 343 Not relevant, 18 Possible, and 6 Look at.
+- All 367 match rows in the canonical tracker 1UpmDSHvuZ8IZ9VOMCOvIAizdzv6T9fDgPF9tippwZhU. Matching used Tender/Ref No. for 273 rows and normalised Title plus Agency for the 94 TenderBoard rows with no reference number.
+- The 367 split across 328 EPU/CMP/10 rows and 39 EPU/SER/34 rows.
+- Canonical revision 1494 at 2026-09-18 16:34 Singapore time, before the decision file was created, had all 367 matching tracker rows with blank review fields.
+- Canonical revision 1546 at 2026-09-18 17:12 Singapore time, immediately after the decision file was created, still had all 367 review fields blank. Revisions 1598, 1601, 1627, 1653, and the current state also have all 367 blank.
+- Therefore the 367 were created in the CSV handoff file and never merged into the canonical tracker. None were later erased from that tracker.
+- The recovery spreadsheet 1b8PEr3Rq1jqgbMQS65Una0Jjht5pZemfY4UeBp4nbMU contains only three of the 367 decisions. The other 364 remain only in the CSV handoff file.
+- TECQ_REVIEWS_2026-09-18_supplement.csv adds one further completed decision for ACR000ETQ26000005 at 17:35. It also remains unmerged. The correct combined totals are 368 decisions: 344 Not relevant, 18 Possible, and 6 Look at.
+- The run note's statement that the combined total was 343 Not relevant, 18 Possible, and 7 Look at is an arithmetic and category error. The supplement row itself says Not relevant.
+- The run note explicitly says the live tracker was not updated because the intended full workbook upload exceeded the available tool size limit. This agrees with the revision evidence.
+- The approximately 97 newer blanks are a separate set and were not examined or changed.
+- No spreadsheet, Apps Script, trigger, scheduled task, or Drive file was changed during this audit.
+
+**Correct classification of the original 367:**
+- Previously present in the canonical tracker and later lost: 0.
+- Completed elsewhere but never merged into the canonical tracker: 367.
+- Genuinely never reviewed: 0.
+
+**Open point:**
+- The Apps Script attribution for the 19 September 23:01 event remains unresolved. The source visible now was saved later and cannot prove which code ran at that earlier time.
+
+**Next safe step, not yet authorised:**
+- Merge the 367 original decisions and the one supplement decision into the canonical tracker by stable row key, after taking a backup and running a dry-run that confirms 368 matches, zero missing rows, zero ambiguous matches, zero conflicts, and no changes to source-owned fields.
+- Separately merge the three 19 September decisions from the recovery copy only if the merge input does not already include them. They are already among the 367, so a correct deduplicating merge must not apply them twice.
+- Keep 1b8PEr3 as a recovery source and do not delete it.
+- Add a hard read-ID versus write-ID guard before any future automation writes.
+
+---
+
 ## 2026-09-20 Corrected root cause from revision evidence
 
 **What we already know, confirmed, not guessed:**
