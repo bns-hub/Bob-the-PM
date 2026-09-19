@@ -1,3 +1,37 @@
+## 2026-09-20 Retraction of the truncated-export match correction
+
+**This entry supersedes both match-count entries immediately below.**
+
+**Confirmed from direct live Google Sheets range reads:**
+- EPU/CMP/10 currently contains 617 data rows, not 164.
+- EPU/SER/34 currently contains 81 data rows.
+- Closed Tenders currently contains 411 data rows.
+- The earlier 108 matched and 259 unmatched result came from treating a truncated export ending near row 165 as the whole tracker.
+- Rows below that point are part of the live populated sheet. They were not proven to be stale or outside an active table.
+- Matching TECQ_REVIEWS_2026-09-18.csv plus its supplement against the complete live ranges gives 368 matches, zero missing rows, zero ambiguous matches, and zero conflicting verdicts.
+- The 368 matches comprise 328 EPU/CMP/10 rows and 40 EPU/SER/34 rows.
+- Matching uses reference number for 274 rows and normalised title for 94 rows.
+- All 368 target TECQ Review cells are currently blank, so applying the batch is additive and overwrites no verdict.
+- Current non-blank TECQ Review counts are 194 in EPU/CMP/10 and 40 in EPU/SER/34, totalling 234 reviewed open rows.
+- Therefore the claim that 17 relevant tenders are missing from the tracker is withdrawn. Those tenders are present in the complete live range.
+- The corrected CSV file remains 367 rows, with the one-row supplement producing 368 decisions in total.
+
+**Expected post-merge arithmetic:**
+- 234 existing reviewed open rows plus 368 new verdicts equals 602 reviewed rows.
+- With 698 open rows, that leaves 96 awaiting review.
+- The current Coverage & Method text says 234 of 698 reviewed but 530 awaiting review. That displayed awaiting count is arithmetically inconsistent and should not be used as the verification source. Recount the cells directly after the run.
+
+**Remaining engineering work:**
+- Fix the decision-file generator to use a proper CSV writer so quotation marks cannot break a future file.
+- Make the merge reject or report an individual malformed row instead of discarding the entire batch.
+- The merged pull request 11 in bns-hub/Projects contains a disproved explanation about the old Apps Script. Its four-line header change is inert, but the permanent pull request record should receive a correction comment if the user authorises it.
+- The dead Apps Script trigger may be removed separately. It is unrelated to applying the 368 decisions.
+
+**No production changes:**
+- No Google Drive file, spreadsheet, Apps Script, trigger, or scheduled task was changed during this verification.
+
+---
+
 ## 2026-09-20 Correction to active-table match audit
 
 **This entry supersedes the 367-decision match counts in the entry immediately below.**
