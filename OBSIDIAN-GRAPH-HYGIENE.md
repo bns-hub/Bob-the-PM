@@ -158,6 +158,39 @@ For existing WRMS calendar/email/activity notes, add the canonical WRMS project 
 
 The current `WRMS Personnel Update` capture is an example of a note that should not remain with only the plain text `Project: WRMS`. It must be linked to the canonical WRMS owner, or its content should be minimally incorporated into that owner if that is the cleaner representation.
 
+## Personal vs work domain routing
+
+`Personal` and `Work` are domains, not replacements for the ACES note types. Keep the established ACES structure and express the domain inside it instead of creating a second parallel vault architecture.
+
+Preferred personal structure:
+
+- `A Atlas/Personal/Personal MOC.md` — personal homepage / map of content;
+- `A Atlas/Personal/Games/` — durable game/reference notes such as Honkai: Star Rail, Reverse: 1999, and Chaos Zero Nightmare;
+- `C Calendar/Personal/` — personal schedules and calendar-like notes, including banner/event schedules when they are primarily temporal;
+- `E Efforts/Personal/` — active personal projects and decision efforts such as the Gacha Calendar, iPhone migration, or Apple Watch selection;
+- `S Sources/Personal/` — personal reference/source material;
+- `Z System/Personal Automations.md` — personal recurring AI/automation workflows and their links.
+
+Use a controlled frontmatter field such as `domain: personal` or `domain: work` when the note's purpose is clear and the vault's current metadata conventions allow it. The domain is determined by what the note/task is for, not by which AI, application, account, or automation created it.
+
+Examples that should normally be treated as `domain: personal` when the content matches:
+- Gacha Calendar and related schedule-checking work;
+- Reverse: 1999 notes and banner/event tracking;
+- Honkai: Star Rail and Chaos Zero Nightmare personal game notes;
+- Apple Watch / personal-device purchase research;
+- personal phone migration, travel, household, and lifestyle planning.
+
+Examples that remain `domain: work`:
+- GeBIZ tender pipeline and tender-review work;
+- Activity Audit / knowledge sweep work;
+- ACC ICT Roadmap;
+- NEA AMS3 and other customer/project work;
+- TOPPAN Ecquaria work skills and source refreshes.
+
+An AI task does not become work merely because ChatGPT, Codex, Claude, or an automation created it. Personal recurring tasks belong under the Personal domain and should link back to `Personal MOC` and the relevant personal project/game note.
+
+For existing legacy notes, do not mass-move or rename the vault. First re-read the note, verify its actual purpose, add the smallest useful `domain` metadata and Personal MOC/project links, and move it only when the destination is clear and the change is verified through Obsidian MCP. Ambiguous notes remain in place and are marked for `unresolved_routing` rather than guessed.
+
 ## Safety and verification
 
 All graph repairs and live-vault removals are performed only by the approved local Codex writer through Obsidian MCP while holding the shared processor lock.
