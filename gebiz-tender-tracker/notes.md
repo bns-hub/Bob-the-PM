@@ -1,3 +1,39 @@
+## 2026-09-20 Recovery and automation repair completed
+
+**Outcome confirmed from the live canonical Google Sheet after the run:**
+- Canonical tracker ID remains `1UpmDSHvuZ8IZ9VOMCOvIAizdzv6T9fDgPF9tippwZhU`. Its current title is `GeBIZ Tender Tracker — Current (20/09/26, 6:28 AM)`.
+- EPU/CMP/10 has 615 data rows and all 615 have a TECQ Review.
+- EPU/SER/34 has 81 data rows and all 81 have a TECQ Review.
+- The two open tabs therefore contain 696 reviewed rows and zero blank review decisions.
+- Closed Tenders has 413 data rows, confirming that two expired rows moved there during this run.
+- All 368 saved decisions were rechecked against the source CSV files and the live tracker. The result is 368 matched, zero missing, zero ambiguous, and 368 exact matches across TECQ Review, Why, and Reviewed On.
+- Of the 368 restored decisions, 367 remain on the open tabs and one is now in Closed Tenders. Their fingerprints are 367 from `TECQ_REVIEWS_2026-09-18.csv` and one from its supplement.
+- The fresh second-phase review added 95 decisions, comprising 94 in EPU/CMP/10 and one in EPU/SER/34.
+- Tender HDB000ETT26000166 is present in EPU/CMP/10 with the exact title `MAINTENANCE OF THE ESTATE MANAGEMENT SYSTEM` and verdict `Look at`.
+- The canonical file was updated in place. Forecasted Tenders was left untouched.
+
+**Live scheduled task changes completed:**
+- The active `GeBIZ Tender Pipeline — Full Run` task remains scheduled daily at 11:45 AM.
+- It now uses the Work Google Drive connection only and locks every read and write to the canonical tracker ID.
+- It aborts if its read and write spreadsheet IDs differ.
+- It must not create or rotate another Current spreadsheet.
+- It now requires RFC 4180-compatible CSV parsing, row-by-row validation, reporting of malformed rows without discarding the valid batch, and a pre-write match/conflict report.
+- The recovery spreadsheet `1b8PEr3Rq1jqgbMQS65Una0Jjht5pZemfY4UeBp4nbMU` remains a read-only recovery source.
+- A manual Run now completed successfully.
+
+**Other checks and record correction:**
+- Apps Script currently has one trigger only: `runWeeklyForecast`. There is no `runDailyTracker` trigger to delete, so nothing was removed.
+- Pull request 11 received a correction comment explaining that its old root-cause account was false and that the actual fault was the failed CSV handoff. Comment: https://github.com/bns-hub/Projects/pull/11#issuecomment-5745774329
+- No Projects repository code change was needed because the live generator and merge instructions are held in the scheduled task, not in the dormant old Apps Script copy.
+
+**Remaining non-blocking housekeeping:**
+- GeBIZ RSS was unavailable in this runner, but the richer 320-row GeBIZ crawl and the 160-row TenderBoard handoff completed.
+- The run did not create a backup or TenderBoard raw archive because the task required an exact folder named Archive, while Drive contains only Archived. It correctly refused to guess or create a duplicate folder.
+- Coverage & Method has the correct new 20 September run block, but older 19 September status lines remain above it. The Run Ledger still stops at 19 September. Future prompt maintenance should make these two status areas replace or append consistently.
+- The scheduled task text contains a harmless duplicated sentence about `runWeeklyForecast`. This does not affect execution but can be cleaned up with the ledger wording.
+
+---
+
 ## 2026-09-20 Retraction of the truncated-export match correction
 
 **This entry supersedes both match-count entries immediately below.**
