@@ -425,3 +425,9 @@ Before assigning a work person's relationship as customer, partner, subcontracto
 6. do not infer that someone belongs to the customer merely because they attend or contribute to that customer's project.
 
 Known correction: **Kok Tiong Goh** is a TOPPAN Ecquaria internal presales participant. HubSpot currently resolves him as active owner `163267515` and an internal user on the Ecquaria corporate domain; the CRM job-title field reads `Technical Consultant`. Preserve Benson's explicitly supplied functional role as `presales`, while keeping the CRM job title separately as source data. Do not classify him as an NEA/customer contact merely because he works on NEA AMS3.
+
+### Immediate priority override — 2026-09-21
+
+Until completed or blocked by the absence of a valid local writer, process `obsidian-local-writers/repairs/2026-09-21-inbox-kanban-root-sweep.md` **before** the older source-batch compaction and WRMS maintenance backlogs. This is a direct user-requested repair covering the visible Inbox, Kanban/Base creation, accidental root duplicates/stray files, iPhone personal-project routing, canonical deal/project naming, and Kok Tiong identity correction.
+
+Normal safety rules still apply: no cloud Drive writes to the live vault, no deletion before local MCP verification, preserve all user knowledge, and run the specified broken-link checks.
