@@ -326,3 +326,89 @@ The Live Deals Kanban uses HubSpot deal stages as its columns, preserving the us
 Deal cards must expose at least: deal name, deal owner, deal type, and account/customer when available. Preserve HubSpot as the source of truth for CRM-owned fields; local Obsidian annotations remain user-owned.
 
 Views may hide terminal or low-interest stages via per-view filters. Preserve a separate full-pipeline view so hidden stages are never mistaken for deleted data. Where the current Obsidian Kanban implementation supports manual view/group ordering or collapsing, preserve Benson's chosen ordering; otherwise use filtered views to achieve the same practical result without rewriting CRM stage values.
+
+## Inbox file roles and canonical naming — 2026-09-21
+
+### `01 Inbox/Capture Here.md` versus `01 Inbox/Inbox.md`
+
+These two files have different permanent roles and must not be treated as disposable notes.
+
+- **`Capture Here.md` is the user input buffer.** Benson may type free-form capture text there. Bob/ChatGPT may also stage captures into the GitHub handoff equivalent. The processor reads each capture, assigns/retains stable capture identity, resolves scope and owner, then routes the information to its canonical destination.
+- **`Inbox.md` is the read/triage dashboard.** It is for Benson to read. It shows unresolved routing, `Needs Your Decision`, recent processing status, and links to items still waiting for action. It is not the normal place Benson must type raw captures.
+- Neither `Capture Here.md` nor `Inbox.md` is ever deleted as part of normal processing.
+- After a capture is verified in its destination, remove only that processed capture block from `Capture Here.md`; preserve the file itself and every concurrent/unprocessed entry.
+- After an Inbox decision is resolved, remove/update only the corresponding dashboard row/section in `Inbox.md`; preserve the file itself.
+- Any other note/file placed in `01 Inbox/` is a transient inbox item. Read its content, preserve source identity, and route it. If the note itself is a durable meeting/CR/SR/source/decision child, move it under the canonical owner. If its content is merged into an existing owner, remove the transient source note only after the destination has been locally re-read and verified. Never delete information merely because the Inbox sweep completed.
+- If Benson accidentally types substantive content directly into `Inbox.md`, do not discard it. Treat that user-authored content as a routable Inbox item, preserve it, and then restore `Inbox.md` to its dashboard role after verified filing.
+
+### Canonical naming for Work projects and deals
+
+Every **work** project and every **work** deal must have one canonical human-readable name in this exact pattern:
+
+`<Company Name> - <Project Name>`
+
+Examples:
+- `NEA - AMS3`
+- `NEA - WRMS App Maintenance & Support Renewal`
+- `ACC - ICT Roadmap`
+
+The canonical organisation name comes from the verified organisation/account owner (prefer the existing canonical organisation note or HubSpot account name, including an established short name/acronym when that is the vault's canonical display name). Do not create a second organisation simply because Benson typed an acronym, abbreviation, spelling variant, or informal name.
+
+Benson may type a project/deal name in any reasonable form. The router must normalize the wording against:
+1. stable `project_id` or `deal_id`;
+2. HubSpot/provider IDs when applicable;
+3. the canonical organisation owner;
+4. existing aliases;
+5. verified context such as linked contacts, tender reference, or source record.
+
+Once matched, route to the canonical `Company Name - Project Name` owner. Do not create a duplicate because the capture used different capitalization, punctuation, spacing, acronym, or shorthand.
+
+Recommended canonical metadata:
+
+```yaml
+type: project # or deal
+scope: work
+project_id: project-...
+deal_id: hubspot:deal:...
+company: "[[NEA]]"
+project_name: "AMS3"
+canonical_name: "NEA - AMS3"
+aliases:
+  - "NEA AMS3"
+  - "AMS3"
+```
+
+The deal object and project object remain separate even when they share the same `canonical_name`; their `type` and stable IDs distinguish them.
+
+For **personal** projects, do not fabricate a company. Keep them under `E Efforts/Personal/` with a stable `project_id` and a natural project name such as `iPhone Migration`.
+
+### Contact/person relationship model
+
+A person is a canonical entity independent of any single organisation or project. Do not put the project company into the person's filename merely to force grouping.
+
+Each person note should have one stable `contact_id`/provider identity when available, and controlled relationships such as:
+
+```yaml
+type: person
+contact_id: person-...
+organisations:
+  - "[[Partner Company]]"
+projects:
+  - "[[NEA - AMS3]]"
+relationship_types:
+  - partner
+tags:
+  - entity/person
+  - relationship/partner
+```
+
+Use controlled relationship values such as `customer`, `partner`, `subcontractor`, `vendor`, `internal`, `agency`, or another already-approved value. A person may relate to multiple organisations and multiple projects, and their organisation does **not** need to be the same as the project's company.
+
+Where the relationship is project-specific, also make it explicit in the body, for example:
+
+```markdown
+## Project relationships
+- [[NEA - AMS3]] — partner / subcontractor — via [[Partner Company]]
+```
+
+Use tags for broad retrieval and wikilinks/properties for the actual graph relationship. Never duplicate a person because they participate in more than one company/project.
