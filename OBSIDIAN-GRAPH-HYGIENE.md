@@ -207,3 +207,122 @@ Before every patch or removal:
 After every patch or removal, re-read the exact destination/owner through Obsidian MCP, verify preserved source identity, and run a broken-link check for the affected cluster.
 
 If the owner is ambiguous, use `unresolved_routing` and leave the evidence intact.
+
+## User-approved operating model — 2026-09-21
+
+This section records Benson's approved operating model and supersedes older wording in this file where there is a conflict.
+
+### Mandatory Personal / Work routing
+
+For every project, effort, capture, meeting, change request, service request, decision, task, source note, drawing, Canvas, or other substantive item that is routed into `E Efforts`, use an explicit controlled field:
+
+```yaml
+scope: personal # or work
+```
+
+Never infer `scope` from the fact that an item looks project-like, was created by an AI task, appears in a work-shaped folder, or has `classification: pa`. The existing PA/PM capture classification is independent of Personal/Work scope.
+
+The approved effort roots are:
+
+- `E Efforts/Personal/<canonical project>/...`
+- `E Efforts/Work/<canonical project>/...`
+
+Known personal examples include the Fold5 -> iPhone migration and Apple Watch / personal-device purchase work. Known work examples include customer projects, tenders, HubSpot sales work, ACC ICT Roadmap, NEA AMS3, and other TOPPAN Ecquaria work.
+
+If the scope cannot be proved from the capture, an existing canonical owner, or explicit user wording, set/record `scope: unresolved` in the routing manifest, leave the item in `01 Inbox`, and do not guess.
+
+### Inbox must be exhaustively processed
+
+The Inbox is a queue, not a permanent filing area.
+
+On every routing sweep, enumerate **every file and routable item under the live vault folder `01 Inbox/`**, not only `Capture Here.md`. Also enumerate every staged file under `obsidian-temp-notes/01. Inbox/` in GitHub.
+
+This includes Markdown notes, Excalidraw drawings, Canvas files, and supported attachment companion notes. Binary/source attachments may remain in an attachment/source location when moving them would be unsafe, but they must be linked from the canonical owner or a companion source note.
+
+For every Inbox item:
+
+1. Preserve the original text/content and any stable source/capture identity.
+2. Resolve `scope` first.
+3. Resolve the most specific verified canonical owner.
+4. If it belongs to an existing project, tender, deal, service request, change request, person, account, or subject, file it under or link it to that owner.
+5. Add only controlled properties/tags and verified wikilinks; never invent near-duplicate tags.
+6. Meetings, CRs, SRs, decisions, and other durable sub-items may remain separate child notes, but they must live under or link to the canonical project rather than becoming unrelated top-level notes.
+7. Simple updates that do not deserve a separate lifecycle should minimally patch the canonical owner instead of creating a duplicate note.
+8. Re-read and verify the destination through Obsidian MCP, then run the affected-cluster broken-link check.
+9. Only after successful local verification may the original transient Inbox item be moved/cleared. Unresolved items stay in Inbox.
+
+A routing sweep is not complete while a routable file remains silently stranded in `01 Inbox`.
+
+### Unresolved routing / user decision
+
+Do not interrupt Benson every day for ambiguous routing. Maintain a visible `## Needs Your Decision` section in the Inbox index (or the vault's equivalent Inbox decision note) that lists unresolved items with the minimum question required, for example:
+
+- `Personal or Work?`
+- `Existing project or new project?`
+- `Which canonical project/deal does this belong to?`
+
+The weekly ownership/link pass must surface these unresolved decisions to Benson. If no unresolved items exist, do not prompt.
+
+A genuinely new project/deal must **not** be created merely because a capture looks new. Create it only when Benson explicitly says/implies that it is a new project/deal. Otherwise keep the item in Inbox as `unresolved_routing`.
+
+### Canonical project identity and rename rule
+
+Every canonical project should have a stable, non-name identity such as `project_id`. Human-readable names and file paths may change; the stable ID must not.
+
+A project rename is initiated at the **canonical project hub**, not by renaming child notes individually. When Benson renames the canonical project hub (or changes its canonical project-name property), the locked local writer must propagate the rename safely:
+
+1. preserve the same `project_id`;
+2. update the canonical hub name/path through Obsidian MCP;
+3. preserve the old name as an alias when useful;
+4. update child-note project links/properties that reference the old canonical name;
+5. rely on Obsidian link updates where available, then verify the links explicitly;
+6. update relevant views/MOCs;
+7. run a broken-link check.
+
+Child notes are related to the project by stable owner identity + verified wikilink, not by a duplicated free-text project name.
+
+### Date-oriented retrieval
+
+Routing content into canonical owners must not destroy the ability to answer "what did I write last Tuesday?"
+
+Preserve the source/capture timestamp for each ingested item. Use explicit date/time properties when appropriate (for example `captured_at`, `activity_date`, `created_at`, and `updated_at`) rather than relying only on filesystem creation time, which can change during sync/move operations.
+
+Maintain a lightweight daily activity index under `C Calendar/Personal/` or `C Calendar/Work/` (or the vault's established daily-note location) for each day that has routed activity. The daily index should contain concise entries linking to the final canonical destination, not duplicate the full note. Example:
+
+```markdown
+- 14:32 [[NEA AMS3]] — Section 7 discussion routed to [[2026-09-17 Meeting with Kok Tiong]]
+- 21:10 [[iPhone Migration]] — migration checklist updated
+```
+
+This gives two valid retrieval paths:
+- by project/deal: open the canonical owner to see all related material;
+- by date: open the daily index / date view to see what was captured or changed that day and jump to its canonical destination.
+
+### Kanban / Base operating model
+
+Do not use the Kanban itself as the source of truth. Cards represent canonical notes or CRM-backed deal notes.
+
+Create one Active Projects Base with multiple views. The first/default view is **Work**; also provide **Personal** and **All** views. Work and Personal projects remain physically separated under `E Efforts/Work/` and `E Efforts/Personal/`.
+
+Keep **Live Deals** as a separate HubSpot-derived Base/Kanban from delivery projects. A closed/won deal may later create or relate to a project with the same human-readable name, but the deal object and project object remain separate and use separate stable IDs.
+
+The Live Deals Kanban uses HubSpot deal stages as its columns, preserving the user's chosen business ordering:
+
+1. Tender Published
+2. CAT 7 - Oppty Identified
+3. CAT 6 - BQ Submitted
+4. CAT 5 - Submission in Progress
+5. CAT 4 - Submitted
+6. CAT 3 - Completed Presentation / On-going Clarifications / Negotiation
+7. CAT 2 - Negotiation / Pending LOA
+8. CAT 1 - Won
+9. Lost / Potential Lost
+10. Dropped
+11. Blocked
+12. No Award
+13. Customer Engagement
+14. Lead Identified
+
+Deal cards must expose at least: deal name, deal owner, deal type, and account/customer when available. Preserve HubSpot as the source of truth for CRM-owned fields; local Obsidian annotations remain user-owned.
+
+Views may hide terminal or low-interest stages via per-view filters. Preserve a separate full-pipeline view so hidden stages are never mistaken for deleted data. Where the current Obsidian Kanban implementation supports manual view/group ordering or collapsing, preserve Benson's chosen ordering; otherwise use filtered views to achieve the same practical result without rewriting CRM stage values.
