@@ -260,14 +260,12 @@ The three iPhone files are supported as one personal project. The Inbox migratio
 
 Status remains `awaiting_local_writer`.
 
-### Weekly ownership questions to surface
+### Routing decisions resolved by Benson — 2026-09-21
 
-These are the minimum unresolved questions; do not guess:
+1. `Corporate Outreach` belongs to the existing `Lead Generation and Outreach` effort. Reuse that canonical owner; do not create a separate project.
+2. The William/Brunei discussion belongs to the existing Brunei campaign. Reuse and verify that canonical campaign owner; do not route it to Benson's internal responsibility/career area and do not create a duplicate campaign.
 
-1. Is `Corporate Outreach` the existing `Lead Generation and Outreach` effort, or a separate work project?
-2. Should the William/Brunei discussion be owned by an existing Brunei account/campaign, or by Benson's internal TOPPAN Ecquaria responsibility/career area?
-
-The local writer should add these under `01 Inbox/Inbox.md -> Needs Your Decision` only after obtaining the lock and re-reading the live dashboard.
+These questions are resolved and must not be added to `01 Inbox/Inbox.md -> Needs Your Decision`. If matching canonical owners cannot be verified locally by stable ID/current note evidence, leave the captures pending and record an implementation blocker rather than reopening the business decision.
 
 ### Maintenance order
 
