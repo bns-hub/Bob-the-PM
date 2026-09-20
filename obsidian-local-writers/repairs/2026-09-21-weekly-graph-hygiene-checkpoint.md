@@ -57,3 +57,16 @@ Therefore:
 - this does not count as a successful weekly completion.
 
 Resume the urgent `2026-09-21-inbox-kanban-root-sweep.md` first when a valid locked local writer becomes available. Then re-read every changed target through Obsidian MCP and run the affected-cluster broken-link checks before marking this weekly cycle successful.
+
+
+## Activity-audit delta integrity
+
+- Gmail connection: `Work`
+- authenticated identity: `bensonfoo@ecquaria.com`
+- private Gmail accessed: no
+- new metadata records since the overlap window: 2
+- substantive records: 0
+- classification: routine event newsletters; audit-only
+- message bodies hydrated: 0
+- prior successful delivery cursor advanced: no
+- Gmail/Drive state changes: 0
