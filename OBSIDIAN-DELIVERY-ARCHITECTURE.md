@@ -143,3 +143,16 @@ In addition to the GitHub source queues above, the daily/weekly organization wor
 Do not equate "read Capture Here.md" with "Inbox processed." A complete sweep enumerates all live Inbox files plus all staged GitHub Inbox files, resolves Personal/Work scope and the canonical owner, applies controlled links/properties/tags, verifies the destination locally, and leaves unresolved items in Inbox for Benson's decision.
 
 Ambiguous scope/ownership is surfaced in the Inbox's `Needs Your Decision` section and in the weekly review; it is never guessed.
+
+## Persistent Inbox control files — 2026-09-21
+
+Treat the live-vault files `01 Inbox/Capture Here.md` and `01 Inbox/Inbox.md` as persistent control surfaces:
+
+- `Capture Here.md` = capture/input buffer;
+- `Inbox.md` = read/triage dashboard and `Needs Your Decision` surface.
+
+Do not delete either file during processing. Clear only an individually verified capture block from `Capture Here.md`, and only an individually resolved dashboard entry from `Inbox.md`.
+
+Other files in `01 Inbox/` are transient until routed. After reading and preserving their content, either move the durable note under its verified canonical owner or merge its information into the correct owner. Remove the transient source only after Obsidian MCP re-read verifies that the destination preserves the intended content and relationships.
+
+For work routing, use the canonical owner naming pattern `<Company Name> - <Project Name>`. User-entered shorthand is input, not identity. Resolve it to the existing canonical project/deal by stable IDs, organisation owner, aliases, and verified context.
