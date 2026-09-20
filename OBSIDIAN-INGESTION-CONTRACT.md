@@ -114,3 +114,23 @@ Use these plain states and keep the queue entry intact unless the claim was alre
 - `github_conflict`
 
 No failure state counts as delivery. Never clear a capture merely because a claim exists, a local file path exists, or a Drive copy exists.
+
+## Scope, Inbox-file, and new-project rules — 2026-09-21
+
+The capture classification field (`pending|pa|pm`) does not encode Personal/Work scope.
+
+For each routable item, resolve an independent controlled scope:
+
+- `personal`
+- `work`
+- `unresolved`
+
+Never guess this value from PA/PM classification. Route effort-owned content to `E Efforts/Personal/` or `E Efforts/Work/` only after scope is supported.
+
+The processor must also enumerate every file in the live `01 Inbox/` folder, not only block captures inside `Capture Here.md`. Each file receives the same canonical-owner, deduplication, link/tag/property, verification, and cleanup protections as a block capture.
+
+If an Inbox item clearly belongs to an existing canonical project, all durable child objects (including meetings, CRs, SRs, decisions, tasks, and source notes) must be linked to that project and normally live under its project structure. Do not create an unrelated standalone owner.
+
+If an item appears to describe a new project/deal but the user has not explicitly created/implied one, leave it in Inbox as `unresolved_routing`. Add the minimal question to the Inbox `Needs Your Decision` section and surface it during the weekly review.
+
+When a project is renamed, preserve its stable `project_id`; rename the canonical project hub and propagate references through the approved local Obsidian MCP workflow rather than renaming children independently.
