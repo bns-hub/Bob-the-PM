@@ -90,3 +90,7 @@ Contacts/people are independent entities. They may belong to an organisation dif
 Before Bob/Codex classifies a work contact's organisation or project relationship, consult the available work CRM identity data when resolvable. Check HubSpot CONTACT plus USER/owner status for likely TECQ staff, and use verified corporate identity before inferring customer/partner affiliation from a project.
 
 Kok Tiong Goh is a confirmed TOPPAN Ecquaria internal presales participant. HubSpot's formal job-title field may say `Technical Consultant`; keep that source field distinct from the user-confirmed functional role `presales`.
+
+### Mandatory contact verification gate
+
+Every work contact/person that is encountered during a run must pass identity verification before organisation or relationship metadata is written or changed. Check the canonical person note, HubSpot CONTACT, and (when the person may be TECQ staff) HubSpot USER/owner identity. Keep CRM job title separate from functional/project role. If identity or relationship remains ambiguous, record it as unresolved and surface the question in the Inbox decision queue; never infer employer from the project.
