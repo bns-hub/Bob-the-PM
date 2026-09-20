@@ -412,3 +412,16 @@ Where the relationship is project-specific, also make it explicit in the body, f
 ```
 
 Use tags for broad retrieval and wikilinks/properties for the actual graph relationship. Never duplicate a person because they participate in more than one company/project.
+
+### CRM identity verification before person classification
+
+Before assigning a work person's relationship as customer, partner, subcontractor, vendor, agency, or internal, check the available authoritative work identity sources first when the person can be resolved there. At minimum:
+
+1. search HubSpot CONTACT for matching provider records;
+2. search HubSpot USER / owner identity when the person may be a TECQ employee;
+3. prefer verified corporate email/domain, active owner/user identity, organisation association, and current role/function over assumptions from the project they appear in;
+4. if the person is an active TECQ user/owner, classify the organisation relationship as `internal` unless stronger evidence proves otherwise;
+5. functional role (for example `presales`) is separate from formal CRM job title and may be stored as a controlled function/role field when explicitly provided by Benson or verified from source material;
+6. do not infer that someone belongs to the customer merely because they attend or contribute to that customer's project.
+
+Known correction: **Kok Tiong Goh** is a TOPPAN Ecquaria internal presales participant. HubSpot currently resolves him as active owner `163267515` and an internal user on the Ecquaria corporate domain; the CRM job-title field reads `Technical Consultant`. Preserve Benson's explicitly supplied functional role as `presales`, while keeping the CRM job title separately as source data. Do not classify him as an NEA/customer contact merely because he works on NEA AMS3.
