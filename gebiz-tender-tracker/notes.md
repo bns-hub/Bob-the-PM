@@ -1,3 +1,95 @@
+## 2026-09-20 Missing TenderBoard tenders: cause confirmed, tracker repaired, and coverage workflow corrected
+
+**One goal:** explain why three user-found TenderBoard tenders were absent, restore them safely, and change the collection workflow so the same gaps are detected or covered.
+
+### Confirmed findings
+
+- All three tenders were absent from the canonical tracker `1UpmDSHvuZ8IZ9VOMCOvIAizdzv6T9fDgPF9tippwZhU`. Searches covered EPU/CMP/10, EPU/SER/34, and Closed Tenders.
+- They were not filtered out by the tracker. A search of every committed `TenderBoard_Raw_latest.csv` snapshot from 29 August through 20 September found none of the three. The tracker never received them from its TenderBoard handoff.
+- The previous public TenderBoard crawler had `maxAgeDays = 14`. It stopped after encountering older publication dates. On 20 September the public Open Deals page advertised 187 live tenders, but the crawler exported only 160. It therefore discarded 27 older-published tenders even though they were still open.
+- Removing the publication-age rule and walking every public page produced 187 of 187 advertised live tenders across four pages. This recovered the Singapore Institute of Technology cloud data platform tender.
+- The public TenderBoard Open Deals page is not the full TenderBoard catalogue. The page describes public, TenderBoard-exclusive open deals, while TenderBoard's paid service offers browsing of all currently live deals. An unauthenticated public crawler therefore cannot reproduce everything a signed-in user can find.
+- This second limitation explains why the two Singapore University of Technology and Design items were not on the public TenderBoard page, even after all 187 public rows were scanned.
+- The official Singapore University of Technology and Design procurement page currently lists the IT outsource support tender. It does not currently list the Generative Artificial Intelligence optical character recognition tender. Exact searches also found no reliable public source for that second item, so its reference, closing date, and public link remain unconfirmed.
+
+### The three tenders and what was done
+
+1. **TO2026014, cloud data platform for Singapore Institute of Technology**
+   - First-party source: https://www.singaporetech.edu.sg/procurement-opportunities/to2026014
+   - Published 14 August 2026.
+   - Closes 5 October 2026 at 4 PM.
+   - Added to EPU/CMP/10 with `Look at`.
+   - Reason: direct cloud data platform design, development, implementation, and maintenance is a strong match for TECQ's application, integration, cloud, and data capabilities.
+
+2. **Provision of SaaS solution for a Generative Artificial Intelligence optical character recognition system for Singapore University of Technology and Design**
+   - The user confirmed this was found in TenderBoard.
+   - No reference number, closing date, or public link could be independently verified.
+   - Added to EPU/CMP/10 with source `TenderBoard (user confirmed)`, status `Live`, closing date `Unknown`, and verdict `Look at`.
+   - The Unknown closing date is deliberate. The daily workflow must never auto-close it.
+   - Reason: SaaS, Generative Artificial Intelligence, optical character recognition, design, implementation, and support are a strong capability match.
+
+3. **Doc3312966712, IT outsource support services for Singapore University of Technology and Design**
+   - First-party source: https://www.sutd.edu.sg/about/partnering-with-sutd/suppliers/opportunities/
+   - Opens 15 September 2026 and closes 2 October 2026.
+   - Mandatory Zoom briefing is 25 September at 10 AM.
+   - Registration with the signed non-disclosure agreement is due 22 September before 5 PM.
+   - Added to EPU/CMP/10 with `Possible`.
+   - Reason: IT support is relevant, but the public notice does not expose enough scope detail to confirm a strong fit.
+
+The live tracker write was re-read after saving. All three rows, verdicts, dates, reasons, and verified links persisted. The canonical EPU/CMP/10 tab now has 618 data rows. The repair and diagnosis are also recorded in Run Ledger row 49 and Coverage & Method rows 43 to 52.
+
+### Code and handoff changes
+
+- Draft pull request 12: https://github.com/bns-hub/Projects/pull/12
+- Branch: `fix/tender-source-coverage`
+- Commit: `650a18b2093fd4fca51f6a4a2a9b5b01cbe10f96`
+- Pull request checks completed cleanly. The unrelated Netlify jobs skipped or passed as expected.
+- The TenderBoard crawler no longer applies a publication-age cut-off. It scans all public live pages.
+- It now reads TenderBoard's advertised public total and fails instead of publishing if the exported unique-row count differs.
+- A new first-party institution crawler reads current Singapore University of Technology and Design opportunities and publishes `Institution_Raw_latest.csv` plus `Institution_Raw_status.json`.
+- The known IT outsource support tender is a required regression check through its 2 October closing date. The check expires after the tender closes so it will not break future runs permanently.
+- The GitHub workflow publishes both the TenderBoard and institution handoffs on the `tenderboard-data` branch.
+- Local tests passed with 187 of 187 TenderBoard public rows across four pages and six current Singapore University of Technology and Design rows.
+- GitHub Actions run 35484778586 also passed and published the corrected handoffs at 10:45 SGT. The live status files report 187 TenderBoard rows with coverage passed and six institution rows with the known tender present.
+- Pull request 12 remains a draft. The corrected data is live now because the feature-branch workflow was run manually. Pull request 12 must be merged before the next normal scheduled crawl so that the correction remains part of the daily workflow.
+
+### Live scheduled task changes
+
+The active daily task `GeBIZ Tender Pipeline — Full Run`, scheduled for 11:45 AM Singapore time, was updated in place.
+
+- It still reads and writes only the canonical spreadsheet ID.
+- It now reads the institution status and CSV handoffs in addition to GeBIZ and TenderBoard.
+- First-party institution fields take priority over TenderBoard fields when both describe the same tender.
+- GeBIZ remains the highest-priority source when it has an official matching record.
+- The final report now includes the institutional-source count and failures.
+- Run Ledger Notes and Coverage & Method must record institutional totals and new rows.
+- An existing open tracker row must not be deleted merely because it is absent from a later daily handoff. It remains until a confirmed closing date passes, or a reliable source explicitly says it is closed or cancelled.
+- Unknown closing dates must never be auto-closed.
+- Source failures remain non-fatal and must be reported plainly.
+
+### Final daily workflow for future runs
+
+1. Verify the Work Google Drive account, the canonical tracker ID, and the fixed archive folder ID.
+2. Read the canonical tracker once and cache the active state.
+3. Collect the official GeBIZ sources and the richer GitHub GeBIZ handoff.
+4. Read the TenderBoard status first. Accept the TenderBoard CSV only when it is current and the status says the exported count matched TenderBoard's advertised public count.
+5. Read the institution status first, then the institution CSV. This currently covers the official Singapore University of Technology and Design opportunity page.
+6. Apply optional `MANUAL_TENDERS` corrections last. This remains the safe route for tenders visible only inside signed-in TenderBoard, including items with an Unknown closing date.
+7. Deduplicate by normalised reference, or by normalised title plus agency or closing date. Source priority is GeBIZ, then first-party institution, then TenderBoard. Nonblank manual corrections remain authoritative.
+8. Keep existing open rows even when a current source omits them. Close only after a known closing time passes or a reliable source confirms closure or cancellation.
+9. Review every new retained row. Keep uncertain but plausible work as `Possible` instead of excluding it.
+10. Back up before writing, write only to the canonical file, then re-read the changed ranges to confirm persistence.
+11. Record source counts, coverage checks, new rows, failures, manual corrections, and direct post-write counts in Run Ledger and Coverage & Method.
+12. Report new `Look at` and `Possible` tenders, urgent deadlines, source gaps, backup result, and the canonical tracker link.
+
+### Remaining limitation and next extension
+
+- The public TenderBoard crawler can prove completeness only for TenderBoard's public Open Deals page. It cannot prove completeness against TenderBoard's full signed-in catalogue.
+- The Generative Artificial Intelligence optical character recognition tender demonstrates that gap. Its tracker row is safe, but its missing reference and deadline still need a signed-in TenderBoard detail or a first-party source.
+- The durable coverage approach is to add first-party institution feeds for important repeat buyers and keep `MANUAL_TENDERS` for signed-in-only discoveries. Do not describe the public TenderBoard crawl as full TenderBoard coverage.
+
+---
+
 ## 2026-09-20 Recovery and automation repair completed
 
 **Outcome confirmed from the live canonical Google Sheet after the run:**
