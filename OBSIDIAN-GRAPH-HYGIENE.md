@@ -431,3 +431,20 @@ Known correction: **Kok Tiong Goh** is a TOPPAN Ecquaria internal presales parti
 Until completed or blocked by the absence of a valid local writer, process `obsidian-local-writers/repairs/2026-09-21-inbox-kanban-root-sweep.md` **before** the older source-batch compaction and WRMS maintenance backlogs. This is a direct user-requested repair covering the visible Inbox, Kanban/Base creation, accidental root duplicates/stray files, iPhone personal-project routing, canonical deal/project naming, and Kok Tiong identity correction.
 
 Normal safety rules still apply: no cloud Drive writes to the live vault, no deletion before local MCP verification, preserve all user knowledge, and run the specified broken-link checks.
+
+### Mandatory per-contact verification gate
+
+For **every work person/contact encountered during capture routing, project/deal enrichment, meeting processing, or graph cleanup**, verify identity before writing organisation or relationship metadata.
+
+Minimum gate:
+1. search the canonical person entity first;
+2. search HubSpot CONTACT for matching provider records;
+3. if the person could be internal TECQ staff, also search HubSpot USER / owner identity;
+4. compare corporate email/domain, provider IDs, organisation associations, existing aliases, and project context;
+5. preserve formal CRM job title separately from functional/project role;
+6. only after those checks write controlled organisation/relationship values such as `internal`, `customer`, `partner`, `vendor`, or `subcontractor`;
+7. if records conflict or identity is ambiguous, leave `relationship_status: unresolved` and surface it in `01 Inbox/Inbox.md -> Needs Your Decision` instead of guessing.
+
+This gate applies even when a person's organisation appears obvious from the project name. Project participation is never sufficient evidence of employer/organisation.
+
+For already-existing person notes touched by a sweep, re-verify the relationship before preserving or changing it. Do not mass-reclassify untouched historical contacts without a reason to process them.
