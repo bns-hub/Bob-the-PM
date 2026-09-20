@@ -40,9 +40,10 @@ The live tracker write was re-read after saving. All three rows, verdicts, dates
 
 ### Code and handoff changes
 
-- Draft pull request 12: https://github.com/bns-hub/Projects/pull/12
+- Pull request 12: https://github.com/bns-hub/Projects/pull/12
 - Branch: `fix/tender-source-coverage`
 - Commit: `650a18b2093fd4fca51f6a4a2a9b5b01cbe10f96`
+- Merged to Projects main as `be7e7a751298ae8276dbec8e16530840661889b4` after all checks completed.
 - Pull request checks completed cleanly. The unrelated Netlify jobs skipped or passed as expected.
 - The TenderBoard crawler no longer applies a publication-age cut-off. It scans all public live pages.
 - It now reads TenderBoard's advertised public total and fails instead of publishing if the exported unique-row count differs.
@@ -51,7 +52,7 @@ The live tracker write was re-read after saving. All three rows, verdicts, dates
 - The GitHub workflow publishes both the TenderBoard and institution handoffs on the `tenderboard-data` branch.
 - Local tests passed with 187 of 187 TenderBoard public rows across four pages and six current Singapore University of Technology and Design rows.
 - GitHub Actions run 35484778586 also passed and published the corrected handoffs at 10:45 SGT. The live status files report 187 TenderBoard rows with coverage passed and six institution rows with the known tender present.
-- Pull request 12 remains a draft. The corrected data is live now because the feature-branch workflow was run manually. Pull request 12 must be merged before the next normal scheduled crawl so that the correction remains part of the daily workflow.
+- Pull request 12 is merged. The corrected data is live from the successful manual workflow run, and the next normal scheduled crawl will use the same corrected code from Projects main.
 
 ### Live scheduled task changes
 
