@@ -58,3 +58,17 @@ Where a ChatGPT or Codex surface supports account-level Custom Instructions, use
 > For relevant project, Gmail, Google Drive, HubSpot, activity-audit, or Obsidian work, first read and follow `https://github.com/bns-hub/Bob-the-PM/blob/main/CODEX-CLOUD-INSTRUCTIONS.md`. Treat `bns-hub/Bob-the-PM` as the shared source of truth. If the repository cannot be reached, state that clearly before asking questions or proposing work. Gmail belonging to `bnsn4ull@gmail.com` is off-limits.
 
 This pointer does not override platform permissions. It works only where the session can access GitHub and is allowed to follow external instructions.
+
+## Capture routing addendum — 2026-09-21
+
+For Obsidian routing, PA/PM classification and Personal/Work scope are separate concepts. Do not infer Personal/Work from `classification: pa` or from project-like wording.
+
+Follow the 2026-09-21 operating model in `OBSIDIAN-GRAPH-HYGIENE.md`:
+
+- effort-owned notes go under `E Efforts/Personal/` or `E Efforts/Work/` using an explicit `scope`;
+- the Fold5 -> iPhone migration is personal;
+- every file under the live `01 Inbox/` and every file/block under the GitHub Inbox staging area must be considered for routing, not only `Capture Here.md`;
+- ambiguous scope/ownership stays in Inbox and is surfaced under `Needs Your Decision` plus the weekly review;
+- new projects/deals require explicit or clearly implied user intent;
+- project renames are performed at the canonical project hub while preserving a stable project ID;
+- date-based retrieval must be preserved through source timestamps plus a lightweight daily activity index linking to final destinations.
