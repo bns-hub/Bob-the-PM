@@ -54,7 +54,7 @@ The existing ChatGPT scheduled task `GeBIZ Tender Pipeline — Full Run` was upd
 - Missing reference numbers are allowed. Unknown closing dates never auto-close.
 - Unmatched `Not relevant` tenders are recorded as screened out and are not inserted.
 - Unmatched `Look at` and `Possible` tenders are inserted into the correct EPU tab with their verdict. The task must never insert every unmatched email tender blindly.
-- After deduplication, every distinct currently open deal captured from public TenderBoard, TenderBoard Email or a first-party source receives a full TECQ relevance decision. The task must not stop at keyword screening. Closed historical email deals are not repeatedly re-reviewed unless they are needed for an existing tracker row or reliable award intelligence.
+- After deduplication, every distinct currently open deal captured from public TenderBoard, TenderBoard Email or a first-party source receives a full TECQ relevance decision. The task must not stop at keyword screening. A closed deal must never receive a TECQ relevance review. Closed email may supply closing dates or reliable award evidence only.
 - A Work Gmail failure is non-fatal. It is logged and the other sources continue.
 - The final report includes the Gmail checkpoint, message counts, digests, amendments, clarification alerts, parse failures, screened-out rows, inserted relevant rows and urgent deadlines.
 
