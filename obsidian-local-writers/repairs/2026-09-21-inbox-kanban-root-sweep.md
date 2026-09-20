@@ -199,3 +199,76 @@ The local processor must:
 9. update this manifest with exact changed paths and unresolved items;
 10. only then mark `status: completed`.
 
+
+
+## Cloud revalidation — 2026-09-21 06:02 SGT
+
+Authoritative files were refreshed from the default branch before this sweep:
+
+- CODEX-CLOUD-INSTRUCTIONS.md: `56d30805badeebf8f2b3cd1d95f23a4fd58d66f1`
+- CODEX-ACTIVITY-AUDIT-RULES.md: `694bdb80a3711730efb206abcea5bce721fe37e9`
+- OBSIDIAN-DELIVERY-ARCHITECTURE.md: `74e6c8c79dfdea560e88c34057b138671f60e911`
+- OBSIDIAN-INGESTION-CONTRACT.md: `0f5e733556c0b415339fb99b96d014a6a2fa3f64`
+- OBSIDIAN-GRAPH-HYGIENE.md: `6fef53098fad39ea18b4c9bc0b94c28b9445e257`
+
+### Full Inbox enumeration
+
+GitHub staging under `obsidian-temp-notes/01. Inbox/`:
+
+- files: 1
+- `Capture Here.md` blob SHA: `53a682a58eb1e43713bce27b4ba2b6e605931ece`
+- staged capture blocks/items: 4
+- version-1 captures with stable ID/hash: 2
+- legacy captures requiring deterministic metadata migration before claim: 2
+- staged entries removed: 0
+
+Read-only synced live Inbox `01 Inbox/`:
+
+- files: 5
+- permanent controls: `Capture Here.md`, `Inbox.md`
+- transient durable candidates: `Fold5 to iPhone CHECKLIST.md`, `Fold5 to iPhone Migration Plan.md`, `Fold5 to iPhone Runbook.md`
+- live `Capture Here.md` routable capture lines/items observed: 14
+- live `Inbox.md -> Needs Your Decision`: section currently absent
+- files routed/moved/deleted by cloud: 0
+
+The three iPhone files are supported as one personal project. The Inbox migration plan and root migration plan are not duplicates by content: the read-only comparison found 127 nonblank lines unique to the Inbox plan and 163 unique to the root plan, with only 7 common nonblank lines. The local writer must merge unique content under the canonical personal owner before removing either source.
+
+### Root and Home revalidation
+
+- duplicate `01. Inbox/`: empty
+- duplicate `02. Excalidraw/`: empty
+- duplicate `Excalidraw/`: empty
+- root `Untitled.md`: 0 bytes
+- root scratch-like deadlinks JSON: still present
+- canonical `00 Home/`: no Active Projects or Live Deals Base found
+- duplicate `00. Home/`: contains one newer One-Click Note Guide
+- guide comparison: 50 common nonblank lines and 4 unique lines in each copy; merge the corrected links into the canonical guide before removing the duplicate
+- `Home.md` still lacks links to the required Active Projects and Live Deals Base files
+
+### Writer and verification state
+
+- LAPTOP-96G8839H last_seen: `2026-09-14T10:23:43Z` — stale
+- PC1 last_seen: `2026-09-14T12:39:30Z` — stale
+- `obsidian-local-writers/processor-lock.md`: absent
+- current authenticated Obsidian MCP session: not established
+- active-vault validation for exactly `Ben`: not established
+- locally verified writes: 0
+- daily-index updates: 0
+- Kanban/Base files created: 0
+- broken-link checks completed: 0
+- Drive writes: 0
+
+Status remains `awaiting_local_writer`.
+
+### Weekly ownership questions to surface
+
+These are the minimum unresolved questions; do not guess:
+
+1. Is `Corporate Outreach` the existing `Lead Generation and Outreach` effort, or a separate work project?
+2. Should the William/Brunei discussion be owned by an existing Brunei account/campaign, or by Benson's internal TOPPAN Ecquaria responsibility/career area?
+
+The local writer should add these under `01 Inbox/Inbox.md -> Needs Your Decision` only after obtaining the lock and re-reading the live dashboard.
+
+### Maintenance order
+
+This urgent Inbox/Kanban/root repair remains first. Gmail source-batch compaction stays paused at exact resume order 1. WRMS normalization remains pending behind it. No evidence batch was archived or removed.
