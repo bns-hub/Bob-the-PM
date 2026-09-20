@@ -1,3 +1,79 @@
+## 2026-09-21 TenderBoard Work Gmail source added and mailbox evidence reconciled
+
+**One goal:** close the coverage gap between TenderBoard's public Open Deals page and the tenders delivered to the TECQ TenderBoard mailing group, without exposing personal or unrelated work email.
+
+### Account and privacy boundary
+
+- Gmail connection used: `Work`.
+- Verified account: `bensonfoo@ecquaria.com`.
+- Allowed scope: messages from `noreply@tenderboard.biz` addressed to the `TECQ_tenderboard` distribution group. Known group variants include `TECQ_tenderboard@ecquaria.com` and `TECQ_tenderboard@toppanecquaria.com`.
+- Personal Gmail `bnsn4ull@gmail.com` remains forbidden.
+- Unrelated work email remains forbidden.
+- The mailbox investigation was read-only. No message, label, archive state, draft, or reply was changed.
+
+### Mailbox evidence
+
+- A Drive-wide and tracker investigation had already shown that the public TenderBoard page is incomplete. Work Gmail now provides the missing second TenderBoard source.
+- Search scope covered all mail from `noreply@tenderboard.biz`. There were **1,779 messages**.
+- **192** were daily digest messages titled `Updated tenders notification for TECQ_tenderboard from TenderBoard`, covering 23 January to 19 September 2026.
+- The digests contained **7,989 tender appearances** and **7,431 distinct normalised title-and-buyer pairs**. Every digest's advertised count matched the parsed count, with zero count mismatches.
+- As at 20 September 2026, **599** digest tenders were still open: **270 GeBIZ** and **329 Non-GeBIZ**.
+- The other **1,587 messages** included **1,510** messages with structured tender fields and **422 amendment messages**, plus clarifications, competitive-data newsletters and one reminder.
+- Competitive-data newsletters are not tender rows. Clarifications must update or alert on an existing tender, not create duplicates. Reliable award messages may feed Awarded (Intel) only when the supplier and award fields are clear.
+
+### Evidence for the three tenders raised by Benson
+
+1. `TO2026014`, Singapore Institute of Technology cloud data platform: present in the 14 August daily digest and closes 5 October 2026. This agrees with the first-party source and the repaired tracker row.
+2. Singapore University of Technology and Design Generative Artificial Intelligence optical character recognition Software as a Service tender: present in the 15 August daily digest and closed 28 August 2026. This resolves the former Unknown closing date.
+3. Singapore University of Technology and Design IT outsource support: present in the 16 September daily digest and closes 2 October 2026. This agrees with the first-party Singapore University of Technology and Design opportunity.
+
+The optical character recognition row was corrected in the canonical tracker. It was removed from EPU/CMP/10 and added to Closed Tenders with source `TenderBoard Email`, closing date 28 August 2026, Move Date 20 September 2026 and its existing `Look at` verdict, reason, review date and fingerprint preserved. The write was re-read and verified. It is no longer incorrectly shown as Live.
+
+### Comparison with the canonical tracker
+
+- Canonical tracker ID remains `1UpmDSHvuZ8IZ9VOMCOvIAizdzv6T9fDgPF9tippwZhU`.
+- Of the 599 email tenders still open on 20 September, **226** exact-title matched a current or closed tracker row.
+- **373** did not exact-title match: **264 Non-GeBIZ** and **109 GeBIZ**.
+- A deliberately broad information and communications technology keyword screen identified **136** of those 373 for TECQ relevance review.
+- These 136 are a review queue, not 136 confirmed missing tracker rows. Many will be false positives. They must be judged against the actual primary deliverable before insertion.
+- The tracker Coverage & Method tab now records the mailbox counts, comparison limits, review queue and optical character recognition correction.
+
+### Scheduled task change
+
+The existing ChatGPT scheduled task `GeBIZ Tender Pipeline — Full Run` was updated in place and re-opened to verify the saved wording. Its schedule remains daily at 11:45 AM Singapore time.
+
+- The old blanket `Never read email` rule was removed.
+- Work Gmail is allowed only for the TenderBoard scope stated above.
+- The first email-enabled run performs one historical backfill and reconciles against the verified 1,779-message baseline.
+- Later runs use a seven-day overlapping search so delayed messages and amendments are caught.
+- The task stores the newest processed Gmail message ID and internal message date in Coverage & Method and Run Ledger Notes.
+- Messages are deduplicated by Gmail message ID.
+- Tenders are deduplicated by normalised reference number, or by normalised title plus buyer or closing date when the reference is absent.
+- The latest dated amendment overrides earlier digest or message fields.
+- Source is recorded as `TenderBoard Email`.
+- Missing reference numbers are allowed. Unknown closing dates never auto-close.
+- Unmatched `Not relevant` tenders are recorded as screened out and are not inserted.
+- Unmatched `Look at` and `Possible` tenders are inserted into the correct EPU tab with their verdict. The task must never insert every unmatched email tender blindly.
+- A Work Gmail failure is non-fatal. It is logged and the other sources continue.
+- The final report includes the Gmail checkpoint, message counts, digests, amendments, clarification alerts, parse failures, screened-out rows, inserted relevant rows and urgent deadlines.
+
+### Final source and merge workflow
+
+1. Verify the Work Google Drive identity, canonical tracker ID and archive folder. Abort tracker writes if the read and write file IDs differ.
+2. Read the canonical tracker once and cache the task-owned tabs.
+3. Collect GeBIZ Rich Site Summary feeds and the richer published GeBIZ crawl.
+4. Read the public TenderBoard crawl only when its status is fresh and its exported count matches the advertised public total.
+5. Read the first-party institution handoff and prefer its nonblank fields over TenderBoard sources.
+6. Read Work Gmail only within the TenderBoard boundary. Perform the one-off history backfill, then a seven-day overlap from the saved checkpoint.
+7. Parse daily digests, structured tender notices and amendments. Do not turn clarification or competitive-data messages into duplicate opportunities.
+8. Apply source priority to nonblank fields: `MANUAL_TENDERS`, GeBIZ, first-party institution, TenderBoard Email, then public TenderBoard. A later TenderBoard amendment overrides an earlier TenderBoard digest.
+9. Deduplicate by normalised reference, or by normalised title plus buyer, agency or closing date as available.
+10. Review the actual deliverable for TECQ fit. Screen out irrelevant mail without adding it. Add only relevant unmatched `Look at` or `Possible` rows.
+11. Keep an existing open row when a source later omits it. Close only after a confirmed closing time passes or a reliable source confirms closure or cancellation. Never auto-close Unknown dates.
+12. Back up when practical, update only the canonical spreadsheet, verify the changed ranges, update Run Ledger and Coverage & Method, and issue the short phone-readable report.
+
+This email source closes the main structural gap. The public page remains useful and independently count-checked, but Work Gmail now catches TenderBoard catalogue items and amendments that the public Open Deals page cannot expose.
+
 ## 2026-09-20 Missing TenderBoard tenders: cause confirmed, tracker repaired, and coverage workflow corrected
 
 **One goal:** explain why three user-found TenderBoard tenders were absent, restore them safely, and change the collection workflow so the same gaps are detected or covered.
