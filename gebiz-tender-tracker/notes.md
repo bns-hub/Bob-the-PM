@@ -29,8 +29,9 @@
 **Remaining non-blocking housekeeping:**
 - GeBIZ RSS was unavailable in this runner, but the richer 320-row GeBIZ crawl and the 160-row TenderBoard handoff completed.
 - The run did not create a backup or TenderBoard raw archive because the task required an exact folder named Archive, while Drive contains only Archived. It correctly refused to guess or create a duplicate folder.
-- Coverage & Method has the correct new 20 September run block, but older 19 September status lines remain above it. The Run Ledger still stops at 19 September. Future prompt maintenance should make these two status areas replace or append consistently.
-- The scheduled task text contains a harmless duplicated sentence about `runWeeklyForecast`. This does not affect execution but can be cleaned up with the ledger wording.
+- Coverage & Method has the correct new 20 September run block, but older 19 September status lines remain above it. The Run Ledger still stops at 19 September because the completed recovery run did not add today's row.
+- The scheduled task wording was repaired after verification. It now requires a clearly dated Coverage & Method block with final direct-read counts, and exactly one Run Ledger row for the current day before the final report.
+- The duplicated `runWeeklyForecast` sentence was removed.
 
 ---
 
