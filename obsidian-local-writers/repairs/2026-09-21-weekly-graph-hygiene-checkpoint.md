@@ -33,10 +33,12 @@ successful_weekly_checkpoint: false
 - Duplicate `01. Inbox`, `02. Excalidraw`, and `Excalidraw` folders: currently empty.
 - Kok Tiong Goh must remain one canonical internal TOPPAN Ecquaria person entity; formal CRM title `Technical Consultant` and functional role `presales` are separate fields.
 
-## Unresolved routing to surface
+## Routing decisions resolved by Benson
 
-1. Is `Corporate Outreach` the existing `Lead Generation and Outreach` effort, or a separate work project?
-2. Is the William/Brunei discussion owned by an existing Brunei account/campaign, or Benson's internal TOPPAN Ecquaria responsibility/career area?
+1. `Corporate Outreach` → existing `Lead Generation and Outreach` effort.
+2. William/Brunei discussion → existing Brunei campaign.
+
+No user decision remains for these two items. The local writer must reuse the verified canonical owners and stable IDs rather than create duplicates.
 
 ## Blocker
 
