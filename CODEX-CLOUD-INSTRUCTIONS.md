@@ -72,3 +72,15 @@ Follow the 2026-09-21 operating model in `OBSIDIAN-GRAPH-HYGIENE.md`:
 - new projects/deals require explicit or clearly implied user intent;
 - project renames are performed at the canonical project hub while preserving a stable project ID;
 - date-based retrieval must be preserved through source timestamps plus a lightweight daily activity index linking to final destinations.
+
+## Inbox and canonical-name addendum — 2026-09-21
+
+For the live Obsidian Inbox:
+- Benson types ordinary raw captures into `01 Inbox/Capture Here.md`.
+- Benson reads/triages `01 Inbox/Inbox.md`, including `Needs Your Decision`.
+- Never delete either control file. Remove only an individually processed capture block or resolved dashboard entry after verified local delivery.
+- Other files in `01 Inbox/` must be read and routed; move a durable child note under its canonical owner or merge it into that owner, then remove the transient Inbox source only after MCP verification.
+
+For work projects/deals, normalize free-form user wording to the canonical name `<Company Name> - <Project Name>`. Match by stable IDs, provider IDs, canonical organisation, aliases, and verified context. Do not create duplicates for shorthand or spelling/punctuation variants.
+
+Contacts/people are independent entities. They may belong to an organisation different from the project's customer (for example a partner or subcontractor). Maintain explicit organisation links, project links, and controlled relationship values/tags rather than inferring affiliation from the project.
