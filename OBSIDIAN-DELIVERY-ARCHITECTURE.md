@@ -135,3 +135,11 @@ Under the current architecture:
 - the transient GitHub capture is cleared only after the local Model Context Protocol verification and safe source re-read defined in `OBSIDIAN-INGESTION-CONTRACT.md`.
 
 Do not invert this into `cloud Drive API creates file -> assume Obsidian received it`.
+
+## Mandatory full-Inbox sweep — 2026-09-21
+
+In addition to the GitHub source queues above, the daily/weekly organization workflow must account for **every file under the live vault's `01 Inbox/` folder**. The cloud task may inspect the synchronized view read-only and create deterministic repair manifests, but only the locked local Codex writer may move, rename, patch, link, tag, or clear those live-vault files through authenticated Obsidian MCP.
+
+Do not equate "read Capture Here.md" with "Inbox processed." A complete sweep enumerates all live Inbox files plus all staged GitHub Inbox files, resolves Personal/Work scope and the canonical owner, applies controlled links/properties/tags, verifies the destination locally, and leaves unresolved items in Inbox for Benson's decision.
+
+Ambiguous scope/ownership is surfaced in the Inbox's `Needs Your Decision` section and in the weekly review; it is never guessed.
