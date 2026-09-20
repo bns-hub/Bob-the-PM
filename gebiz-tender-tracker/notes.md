@@ -28,7 +28,9 @@
 
 **Remaining non-blocking housekeeping:**
 - GeBIZ RSS was unavailable in this runner, but the richer 320-row GeBIZ crawl and the 160-row TenderBoard handoff completed.
-- The run did not create a backup or TenderBoard raw archive because the task required an exact folder named Archive, while Drive contains only Archived. It correctly refused to guess or create a duplicate folder.
+- Direct folder inspection confirmed that `Archived`, folder ID `1TPg44swiYi14FD3rciZx-WNCsFE8Qyve`, is the established archive. It already contains the dated TenderBoard raw CSV files and historical tracker copies.
+- A post-recovery backup was created there as `GeBIZ Tender Tracker — Archived Backup (20/09/26, 10:10 AM)`, file ID `1MMxykVBARK0BEW4O8lI_bi-pekphA-eba_hpLxqnmPU`.
+- The scheduled task now uses that exact Archived folder ID for future backups, raw TenderBoard CSV files, and manual tender lookup. It must not create another Archive or Archived folder.
 - Coverage & Method has the correct new 20 September run block, with older 19 September status lines retained above it as history.
 - The missing 20 September Run Ledger row was added manually and re-read successfully. It records the 320-row GeBIZ crawl, the 160-row TenderBoard handoff, zero new retained tenders, 368 restored reviews, 95 fresh reviews, and two rows moved to Closed Tenders.
 - The scheduled task wording was repaired after verification. It now requires a clearly dated Coverage & Method block with final direct-read counts, and exactly one Run Ledger row for the current day before the final report.
