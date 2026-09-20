@@ -134,3 +134,15 @@ If an Inbox item clearly belongs to an existing canonical project, all durable c
 If an item appears to describe a new project/deal but the user has not explicitly created/implied one, leave it in Inbox as `unresolved_routing`. Add the minimal question to the Inbox `Needs Your Decision` section and surface it during the weekly review.
 
 When a project is renamed, preserve its stable `project_id`; rename the canonical project hub and propagate references through the approved local Obsidian MCP workflow rather than renaming children independently.
+
+## Canonical name resolution and people relationships — 2026-09-21
+
+For work projects and work deals, the destination owner's canonical display name is `<Company Name> - <Project Name>`. Benson may type any reasonable shorthand. Do not rewrite the user's captured words; instead resolve the capture to the existing canonical owner using stable IDs, provider IDs, organisation/account identity, aliases, tender/reference context, and verified linked people.
+
+Do not create a duplicate project/deal solely because punctuation, capitalization, acronym, spacing, or word order differs.
+
+For person/contact routing, treat the person as an independent entity. A contact may belong to a partner, vendor, subcontractor, customer, internal organisation, or another organisation while still being related to the project. Maintain explicit organisation wikilinks plus project wikilinks and controlled relationship types. Do not assume that every project-related person belongs to the project's customer organisation.
+
+The two persistent Inbox control files are not queue items to delete:
+- `Capture Here.md` persists; only verified processed capture blocks are removed.
+- `Inbox.md` persists; only resolved dashboard/decision entries are removed or updated.
