@@ -84,3 +84,9 @@ For the live Obsidian Inbox:
 For work projects/deals, normalize free-form user wording to the canonical name `<Company Name> - <Project Name>`. Match by stable IDs, provider IDs, canonical organisation, aliases, and verified context. Do not create duplicates for shorthand or spelling/punctuation variants.
 
 Contacts/people are independent entities. They may belong to an organisation different from the project's customer (for example a partner or subcontractor). Maintain explicit organisation links, project links, and controlled relationship values/tags rather than inferring affiliation from the project.
+
+### Work-person identity check
+
+Before Bob/Codex classifies a work contact's organisation or project relationship, consult the available work CRM identity data when resolvable. Check HubSpot CONTACT plus USER/owner status for likely TECQ staff, and use verified corporate identity before inferring customer/partner affiliation from a project.
+
+Kok Tiong Goh is a confirmed TOPPAN Ecquaria internal presales participant. HubSpot's formal job-title field may say `Technical Consultant`; keep that source field distinct from the user-confirmed functional role `presales`.
