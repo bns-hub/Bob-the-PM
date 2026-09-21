@@ -448,3 +448,42 @@ Minimum gate:
 This gate applies even when a person's organisation appears obvious from the project name. Project participation is never sufficient evidence of employer/organisation.
 
 For already-existing person notes touched by a sweep, re-verify the relationship before preserving or changing it. Do not mass-reclassify untouched historical contacts without a reason to process them.
+
+### Hubspot Live Deals compatibility and public-version view — 2026-09-21
+
+Benson renamed the existing Live Deals folder to exactly `Hubspot Live Deals`. Detect and reuse that existing folder; do not recreate a parallel `Live Deals` folder.
+
+For each HubSpot-backed deal note, hydrate and preserve these view properties from HubSpot/provider data:
+
+```yaml
+hubspot_deal_id:
+deal_name:
+account_name:
+account:
+deal_owner_name:
+deal_owner_id:
+deal_type:
+hubspot_stage:
+show_in_live_deals: true
+```
+
+Rules:
+- `deal_name` comes from HubSpot `dealname`.
+- `deal_owner_name` must be resolved from HubSpot `hubspot_owner_id` through the owner/user data; never display only the numeric owner ID.
+- `account_name` must come from the associated HubSpot COMPANY when one exists. Also preserve an `account` wikilink to the canonical organisation note when it can be verified.
+- If HubSpot has no associated company, do not fabricate one from the deal title; leave account unresolved and queue it for enrichment/review.
+- Keep these CRM-owned fields read-only from Obsidian's perspective. A refresh may update them from HubSpot.
+- `show_in_live_deals` is a local Obsidian view-control property only and must never write back to HubSpot.
+
+The user's current Obsidian public build does not have access to the early-access native Kanban view. Do not require Obsidian 1.14/Catalyst for the operating dashboard. Use a compatible Base view now:
+
+1. `Pipeline` — Cards (or Table if Cards cannot group cleanly), grouped by `hubspot_stage`, sorted first by `account_name` A→Z and then `deal_name` A→Z.
+2. `By Account` — grouped/sorted by `account_name`, then `deal_name`.
+3. `My Active` — filter `show_in_live_deals != false` and exclude terminal stages (CAT 1 - Won, Lost / Potential Lost, Dropped, No Award) unless Benson explicitly wants them.
+4. `All Live Deals` — no local hide filter, for audit/recovery.
+
+Ensure the displayed property order starts with the deal identity (prefer `file.name` or `deal_name`) followed by Account / customer, Deal owner, Deal type, HubSpot stage. Do not allow blank card headers merely because a display property is missing.
+
+When Benson wants to hide a specific deal only from Obsidian, set `show_in_live_deals: false` on that deal note. This is view state, not CRM state.
+
+When a future public Obsidian release includes native Kanban, the same hydrated properties can be reused without restructuring the deal notes.
