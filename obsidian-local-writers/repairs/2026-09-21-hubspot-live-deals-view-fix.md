@@ -140,11 +140,11 @@ Before completion:
 - Obsidian MCP broken-link check scanned 688 affected Markdown notes and found 0 broken links.
 - HubSpot company associations were checked for 683 live deal records. 433 had at least one company, of which 14 had more than one. 250 had none. Separate verified local account fallbacks were used for NEA - AMS3 and SIT - SITAR only.
 - 263 refreshed deal notes still have a blank account label because no single verified account association was available. Three locally open notes had no retrievable HubSpot deal record. One retrievable deal has no Deal type value in HubSpot.
-- Local Obsidian sync was visibly in progress during verification. Cloud sync completion has not been confirmed.
+- Local Obsidian sync progressed from 91 to 97 percent, then its progress indicator cleared. No independent cloud read-back was performed, so synced arrival remains unconfirmed.
 
 ### Changed vault paths
 
-+- `00 Home/Active Projects.base`
+- `00 Home/Active Projects.base`
 - `00 Home/Home.md`
 - `00 Home/Hubspot Live Deals.base`
 - `E Efforts/HubSpot Deals/(BQ) Bhutan Royal Court of Justice (RCoJ) - Integrated Case Management System (iCMS).md`
