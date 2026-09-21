@@ -1,7 +1,7 @@
 ---
 repair_version: 1
 repair_id: obsidian-repair-20260921-inbox-kanban-root-sweep
-status: awaiting_local_writer
+status: completed_with_unresolved_items
 created_at: "2026-09-21T00:18:00+08:00"
 created_by: chatgpt-cloud
 live_vault: Ben
@@ -270,3 +270,97 @@ These questions are resolved and must not be added to `01 Inbox/Inbox.md -> Need
 ### Maintenance order
 
 This urgent Inbox/Kanban/root repair remains first. Gmail source-batch compaction stays paused at exact resume order 1. WRMS normalization remains pending behind it. No evidence batch was archived or removed.
+
+## Local execution report - 2026-09-21
+
+Writer: `LAPTOP-96G8839H-codex`
+
+The local Obsidian Model Context Protocol connection was authenticated. The active vault was verified as exactly `Ben`. The shared processor lock was acquired before any vault mutation.
+
+### Exact changed paths in the Ben vault
+
+Created:
+
+- `00 Home/Active Projects.base`
+- `00 Home/Live Deals.base`
+- `A Atlas/Personal/Personal MOC.md`
+- `A Atlas/Entities/People/Kok Tiong Goh.md`
+- `A Atlas/Entities/People/William Sng.md`
+- `C Calendar/Personal/2026-09-19.md`
+- `C Calendar/Personal/2026-09-20.md`
+- `C Calendar/Work/2026-09-14.md`
+- `C Calendar/Work/2026-09-15.md`
+- `C Calendar/Work/2026-09-17.md`
+- `C Calendar/Work/2026-09-18.md`
+- `C Calendar/Work/2026-09-21.md`
+- `C Calendar/HubSpot Meetings/2026-09-15 BreadTalk AI Introduction.md`
+- `E Efforts/Personal/Apple Watch/Apple Watch.md`
+- `E Efforts/Personal/iPhone Migration/iPhone Migration.md`
+- `E Efforts/Work/GeBIZ Tender Tracker/GeBIZ Tender Tracker.md`
+- `E Efforts/HubSpot Companies/Land Transport Authority.md`
+- `E Efforts/HubSpot Deals/LTA - LTA.PROMPT 2.0.md`
+- `E Efforts/HubSpot Deals/SIT - SITAR.md`
+- `S Sources/Inbox Captures/2026-09-14 to 2026-09-21 Capture Sweep.md`
+- `S Sources/NEA AMS3 Management Price Review Acceptance.md`
+- `Z System/Obsidian Local Writer Setup Status.md`
+
+Moved or renamed:
+
+- `01 Inbox/Fold5 to iPhone Checklist.md` to `E Efforts/Personal/iPhone Migration/Fold5 to iPhone Checklist.md`
+- `01 Inbox/Fold5 to iPhone Migration Plan.md` to `E Efforts/Personal/iPhone Migration/Fold5 to iPhone Migration Plan.md`
+- `01 Inbox/Fold5 to iPhone Migration Runbook.md` to `E Efforts/Personal/iPhone Migration/Fold5 to iPhone Migration Runbook.md`
+- `Fold5 to iPhone Migration Plan.md` to `E Efforts/Personal/iPhone Migration/iPhone Migration Architecture Plan.md`
+- `GeBIZ Tender Tracker Pipeline Workflow.md` to `E Efforts/Work/GeBIZ Tender Tracker/GeBIZ Tender Tracker - Pipeline Workflow.md`
+- the legacy `Lead Generation and Outreach` project note to `E Efforts/Work/Lead Generation and Outreach/Lead Generation and Outreach.md`
+- the root dead-links scratch report to `X Filtered Out/Debug/2026-09-21 Dead Links Scratch Report.json`
+
+Updated:
+
+- `00 Home/Home.md`
+- `01 Inbox/Capture Here.md`
+- `01 Inbox/Inbox.md`
+- `E Efforts/Personal/iPhone Migration/iPhone Migration.md` and its four child notes
+- `E Efforts/Work/Lead Generation and Outreach/Lead Generation and Outreach.md`
+- `E Efforts/Work/GeBIZ Tender Tracker/GeBIZ Tender Tracker.md`
+- `E Efforts/HubSpot Deals/NEA - Consolidated Application Maintenance Services (AMS3)(NEA000ETT26000073).md`
+- `E Efforts/HubSpot Deals/DSO - Supply of HPMS2 Application and System Integration Services (DSO CT 054 25).md`
+- the BreadTalk AI Initiative deal note
+- the Bhutan ACC ICT Roadmap deal note
+- `E Efforts/HubSpot Deals/LTA - LTA.PROMPT 2.0.md`
+- `E Efforts/HubSpot Deals/SIT - SITAR.md`
+
+Removed only after comparison and verification:
+
+- root `Untitled.md`, which was empty
+- `00. Home/One-Click Note Guide.md`, whose substantive content was already preserved in the canonical guide
+- empty directories `00. Home/`, `01. Inbox/`, `02. Excalidraw/`, and `Excalidraw/`
+
+### Routing and identity results
+
+- All live entries in `01 Inbox/Capture Here.md` were routed and their original text was preserved in `S Sources/Inbox Captures/2026-09-14 to 2026-09-21 Capture Sweep.md` before the processed blocks were cleared. The input buffer itself remains in place.
+- `01 Inbox/Inbox.md` remains the persistent triage dashboard.
+- The iPhone material is one Personal project with stable ID `project:personal:iphone-migration`. The separate root plan contained unique material, so it was retained as the Architecture Plan rather than deleted.
+- Kok Tiong Goh was resolved as a single TOPPAN Ecquaria internal person. His Customer Relationship Management job title remains `Technical Consultant`, while his functional role is stored separately as `presales`. Three matching contact records and the active owner record were recorded.
+- William Sng was verified as TOPPAN Ecquaria internal through both contact and active owner evidence.
+- Touched deals use stable HubSpot deal IDs, canonical `Company Name - Project Name` metadata, current stage values, and remain separate from delivery projects.
+
+### Kanban visibility
+
+- Open `00 Home/Home.md` to see the Work Projects Kanban embedded prominently.
+- Open `00 Home/Active Projects.base` for the default Work view, plus Personal and All views.
+- Open `00 Home/Live Deals.base` for Active Deals and Full Pipeline views in the approved HubSpot stage order.
+
+### Verification results
+
+- All changed notes and both Base files were re-read through Obsidian Model Context Protocol.
+- The affected scope contains zero broken internal links across 32 checked files.
+- Work and Personal project queries returned the intended project hubs.
+- Stable project, person, company, contact, owner, and deal identifiers were retained or added where verified.
+- The staged Apple Watch, iPhone Migration, and local writer status captures were cleared only after their destination IDs, hashes, and content were re-read successfully.
+- No Google Drive or HubSpot record was written during this repair. HubSpot was used read-only for identity and live deal verification.
+
+### Unresolved implementation items
+
+- `bob-20260914-william-brunei-01` remains staged. The business routing decision is settled as the existing Brunei campaign, but no single local canonical campaign note with a stable ID was verified. The capture must not be duplicated or guessed.
+- Local vault writes were verified through Obsidian. External sync completion was not independently confirmed.
+- The previously exposed Obsidian access key still requires rotation. Rotation cannot be verified from the available local evidence.
