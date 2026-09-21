@@ -94,3 +94,11 @@ Kok Tiong Goh is a confirmed TOPPAN Ecquaria internal presales participant. HubS
 ### Mandatory contact verification gate
 
 Every work contact/person that is encountered during a run must pass identity verification before organisation or relationship metadata is written or changed. Check the canonical person note, HubSpot CONTACT, and (when the person may be TECQ staff) HubSpot USER/owner identity. Keep CRM job title separate from functional/project role. If identity or relationship remains ambiguous, record it as unresolved and surface the question in the Inbox decision queue; never infer employer from the project.
+
+### Hubspot Live Deals public-build compatibility
+
+Benson renamed the Live Deals folder to exactly `Hubspot Live Deals`; reuse it and never create a second `Live Deals` folder.
+
+Hydrate each touched HubSpot deal note with `deal_name`, `account_name`, verified organisation link, `deal_owner_name`, `deal_owner_id`, `deal_type`, `hubspot_stage`, and local-only `show_in_live_deals`. Resolve owner IDs to names and company associations through HubSpot; never infer a missing account from the deal title alone.
+
+Because Benson is on the public/non-Catalyst Obsidian build, do not make the workflow depend on the Obsidian 1.14 early-access Kanban layout. Maintain compatible Bases views using Cards/Table, grouping/sorting by stage or account. Provide Pipeline, By Account, My Active, and All Live Deals views. `My Active` hides terminal stages and notes with `show_in_live_deals: false`. The first displayed value must identify the deal so cards never show a blank header.
