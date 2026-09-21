@@ -344,11 +344,19 @@ Removed only after comparison and verification:
 - William Sng was verified as TOPPAN Ecquaria internal through both contact and active owner evidence.
 - Touched deals use stable HubSpot deal IDs, canonical `Company Name - Project Name` metadata, current stage values, and remain separate from delivery projects.
 
-### Kanban visibility
+### Board visibility
 
-- Open `00 Home/Home.md` to see the Work Projects Kanban embedded prominently.
+- Open `00 Home/Home.md` to see the Work Projects board embedded prominently.
 - Open `00 Home/Active Projects.base` for the default Work view, plus Personal and All views.
 - Open `00 Home/Live Deals.base` for Active Deals and Full Pipeline views in the approved HubSpot stage order.
+
+### Base layout compatibility correction - 2026-09-21
+
+- The installed Obsidian desktop app is version `1.13.7`.
+- Native Bases Kanban requires Obsidian `1.14` or newer, so the original `type: kanban` views displayed `Unknown view type: kanban`.
+- All three Active Projects views and both Live Deals views were changed to the supported `type: cards` layout and re-read through Obsidian Model Context Protocol.
+- Active Projects was reopened successfully after the correction.
+- This is a working compatibility layout, not true movable Kanban columns. The views can be changed back to `type: kanban` after Obsidian is deliberately upgraded to version `1.14` or newer.
 
 ### Verification results
 
