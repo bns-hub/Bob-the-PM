@@ -487,3 +487,29 @@ Ensure the displayed property order starts with the deal identity (prefer `file.
 When Benson wants to hide a specific deal only from Obsidian, set `show_in_live_deals: false` on that deal note. This is view state, not CRM state.
 
 When a future public Obsidian release includes native Kanban, the same hydrated properties can be reused without restructuring the deal notes.
+
+### Active Work dashboard semantics — 2026-09-21
+
+Benson expects the default work dashboard to show **current work**, not only delivery/internal project notes. Therefore the existing `00 Home/Active Projects.base` must keep its filename for continuity but its first/default `Work` view should include:
+
+- active `type: project` notes under `E Efforts/Work/`; and
+- active `type: deal` notes from `Hubspot Live Deals`.
+
+Do not duplicate a HubSpot deal into a fake project note merely to make it visible. The same deal note should surface in the Work view. Show a visible `work_type` / Type field so users can distinguish `Deal` from `Project`.
+
+Maintain additional views:
+- `Projects Only`
+- `Personal`
+- `All`
+
+The default Work view should sort by canonical account/company when present, then canonical name. Internal projects without an account should still remain visible.
+
+Required current-work visibility (verified 2026-09-21):
+- `NEA - AMS3` — deal
+- `SIT - SITAR` — deal
+- `LTA - LTA.PROMPT 2.0` — deal
+- `BreadTalk - AI Initiative` — deal
+- `PUB - AMS` — deal (HubSpot deal ID 348946112222; full CRM title: `PUB - Provision of Software Update and Maintenance Services for PUB's Asset Management System (AMS) PUB000ETT26000110`)
+- `Lead Generation and Outreach` — project, with `Corporate Outreach` preserved as an alias when verified as the same effort.
+
+For live-deal visibility, terminal CRM stages are excluded from normal active views but remain available in `All Live Deals`. HubSpot stage changes remain source-of-truth updates; local notes must never silently rewrite CRM lifecycle state.
