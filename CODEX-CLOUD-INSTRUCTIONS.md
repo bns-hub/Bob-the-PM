@@ -111,35 +111,33 @@ On each cloud coordination run, inspect the status of `obsidian-local-writers/re
 
 This full-vault UX sweep is the current highest-priority presentation/organization maintenance item. New capture delivery, security issues, and unresolved routing safety remain higher priority than cosmetic reformatting.
 
-## Bob intelligent capture and approval — 2026-09-23
+## Bob intelligent capture — review by exception — 2026-09-23
 
-Read and follow `BOB-CAPTURE-INTELLIGENCE.md` before handling a new Bob capture or proposing an automatically detected note from conversation.
+Read and follow `BOB-CAPTURE-INTELLIGENCE.md` before handling a new Bob capture or automatically detected durable note from conversation.
 
-This supersedes older wording that could be read as allowing a refined capture to become routable before Benson sees it.
+This supersedes older preview-everything / approval-gated wording.
 
 Required behavior:
-- refine first;
-- show Benson the proposed human-facing note;
-- include high-confidence inferred canonical names/dates in the preview;
-- ask only for material ambiguity;
-- ask one final `Save this to Obsidian?`-style approval for the preview/batch;
-- route only after approval.
+- refine first while preserving Benson's original wording/provenance;
+- infer supported canonical names, dates, people, organisations, projects/deals, statuses, actions, decisions, and next steps;
+- auto-approve and stage routine high-confidence captures as `review_status: approved`;
+- ask only when ambiguity could materially change routing, ownership, scope, identity, date/chronology, task meaning, or creation/merging of a canonical entity;
+- stage only the affected uncertain item as `review_status: pending_user`;
+- one pending item must not block unrelated high-confidence captures.
 
-For explicit capture commands, exact raw text may still be staged immediately for durability, but mark it `review_status: pending_user` and do not make it routable until the preview is approved.
+During ordinary conversation, proactively identify important decisions/actions/status changes/meetings and other durable context. High-confidence low-risk candidates may be captured automatically when they clearly belong to an existing canonical owner and preserve Benson's meaning. Do not silently create new canonical entities or make consequential assumptions.
 
-During ordinary conversation, proactively identify important decisions/actions/status changes/meetings as possible captures and ask Benson. Do not silently persist ordinary-conversation candidates without approval.
+Canonical shorthand/date/person inference follows `BOB-CAPTURE-INTELLIGENCE.md`, including the user-approved `TP - JPEAE` mapping and deterministic Singapore-date resolution.
 
-Canonical shorthand/date/person inference follows `BOB-CAPTURE-INTELLIGENCE.md`, including the user-approved `TP - JPEAE` mapping and explicit-date preview rule.
-
-## Claude handoff review gate — 2026-09-23
+## Claude handoff — same review-by-exception rule — 2026-09-23
 
 Claude remains a staging-only source through GitHub and never writes the live vault.
 
-A new Claude-staged note/capture must follow the same user-review boundary as Bob:
-- if Benson explicitly reviewed/approved the refined note in the Claude interaction and the handoff records that approval unambiguously, it may be staged as `review_status: approved`;
-- otherwise stage it as `review_status: pending_user`;
-- local Codex must not route a pending-user refined note into the live vault;
-- Bob/ChatGPT may surface the pending preview to Benson for one compact approval/correction step.
+A Claude-staged note/capture follows the same rule as Bob:
+- routine high-confidence refined captures may be staged as `review_status: approved` without forcing Benson to review each one;
+- use `review_status: pending_user` only where a material unresolved question blocks safe routing;
+- local Codex must not route a `pending_user` refined note into the live vault;
+- Benson may request review of any note or batch at any time.
 
-Preserve Claude's source wording and provenance; do not treat Claude's own inference as Benson approval.
+Preserve Claude's source wording and provenance. Never treat a materially uncertain inference as confirmed.
 
