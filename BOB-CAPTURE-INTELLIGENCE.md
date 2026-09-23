@@ -4,49 +4,52 @@ This file defines how Bob detects, refines, previews, asks about, and approves n
 
 ## Core behavior
 
-Bob is allowed to be intelligent about structure, but not silent about meaning.
+Bob is allowed to be intelligent about structure and meaning when the evidence is strong. The default operating mode is **review by exception**, not approval of every routine capture.
 
 The required flow is:
 
-`conversation/raw note -> detect candidate -> refine/structure -> show Benson preview -> resolve material ambiguity -> Benson approves -> routable GitHub capture -> local Codex -> Obsidian MCP -> verified destination`
+`conversation/raw note -> detect candidate -> refine/structure -> resolve confidence -> auto-lock high-confidence routine capture OR ask only on material ambiguity -> routable GitHub capture -> local Codex -> Obsidian MCP -> verified destination`
 
-A refined note is **not approved merely because Bob generated it**.
+Bob may auto-approve and stage a refined capture when its meaning, owner, scope, identity, and date are high-confidence. A refined note still must not invent facts or silently convert material uncertainty into certainty.
 
-## 1. Preview before lock
+## 1. Review by exception
 
-For every new note that Bob is asked to capture, Bob must show Benson the refined version before marking that refined version approved for Obsidian routing.
+Benson does **not** need to review every note.
 
-The preview should be concise and human-readable. Include only fields that are useful:
+For explicit capture commands such as `Bob take notes`, `PA`, `capture this`, or equivalent:
+- preserve Benson's original wording/source evidence;
+- refine it into concise structured notes;
+- infer supported project/person/company/task relationships;
+- extract status, decisions, dates, actions, and next steps;
+- if the result is high-confidence and routine, mark it approved and stage it without asking Benson;
+- if a material ambiguity could change routing, ownership, scope, person/company identity, project classification, date, task meaning, or create a duplicate/new entity, pause only that affected item and ask the smallest useful question.
 
-- canonical/working title;
-- explicit activity date/time when relevant;
-- project/account/organisation;
-- people;
-- refined note/summary;
-- decisions;
-- actions;
-- meeting type or note type when relevant;
-- any materially inferred field.
+For automatically inferred capture candidates from ordinary conversation:
+- detect durable decisions, actions, meetings, status changes, commitments, deadlines, and useful ideas;
+- high-confidence low-risk captures may be refined and staged automatically when they clearly belong to an existing canonical owner and preserve the user's meaning;
+- do not silently create a new project/deal/person, change scope, or make a material assumption;
+- batch material questions rather than interrupting repeatedly.
 
-Use one approval question for the whole capture or batch, for example: `Save this to Obsidian?`
+### Optional preview
 
-If Benson corrects anything, regenerate the preview with the correction and obtain approval for the revised version.
+A preview is required only when:
+- Benson explicitly asks to review;
+- confidence is medium/low on a material field;
+- the capture would create a new canonical entity;
+- evidence conflicts;
+- a consequential interpretation would otherwise be guessed.
+
+When previewing, show only useful fields and clearly mark the assumption that needs confirmation.
 
 ### Raw preservation
 
-Never lose Benson's original wording.
+Never lose Benson's original wording. Preserve raw/source evidence even when the refined note is auto-approved.
 
-For an **explicit capture command** such as `Bob take notes`, `PA`, `capture this`, or equivalent:
-- Bob may durably stage the exact raw wording immediately so it cannot be lost;
-- that staged raw capture must carry `review_status: pending_user`;
-- it is not routable to the live vault while review is pending;
-- local Codex must skip it until `review_status: approved`;
-- the refined approved representation is stored alongside/pointer-linked to the raw capture, while the raw wording remains preserved for audit/recovery.
+Use:
+- `review_status: approved` for high-confidence routine captures;
+- `review_status: pending_user` only for captures blocked by a material unresolved question.
 
-For an **automatically inferred capture candidate** from ordinary conversation:
-- do not silently persist it merely because it looks important;
-- show the proposed capture and ask first;
-- only persist/route after Benson approves.
+Local Codex may route approved captures. It must skip only the pending item(s), not an entire unrelated batch.
 
 ## 2. Automatic capture-candidate detection
 
@@ -93,7 +96,7 @@ The approved destination note may use the refined representation. The original u
 
 Use three practical confidence levels.
 
-### High confidence — infer and include in preview
+### High confidence — infer and auto-lock
 Use when supported by:
 - an existing canonical vault entity or stable ID;
 - an existing verified alias;
@@ -102,13 +105,12 @@ Use when supported by:
 - direct wording in the current message;
 - deterministic relative-date resolution.
 
-Show the inferred value in the preview. The normal `Save this?` approval is enough.
+Refine, approve, and stage automatically. Do not ask merely to confirm something already well-supported.
 
-### Medium confidence — infer but flag
+### Medium confidence — ask only if the ambiguity is material
 Use when one interpretation is substantially more likely but alternatives exist.
 
-Show the proposed interpretation and ask one compact question in the same turn, for example:
-`I’ve mapped TP to Temasek Polytechnic and JPEAE to the existing JPEAE project. Is that the right one?`
+If choosing wrongly would materially change routing, identity, scope, dates, ownership, task meaning, or create/merge a canonical entity, show the proposed interpretation and ask one compact question. If the ambiguity is cosmetic or non-consequential, use the best-supported interpretation and proceed.
 
 ### Low confidence — ask before routing
 Use when:
@@ -198,9 +200,9 @@ For a voice/dictation-style note:
 2. remove obvious filler and dictation noise in the refined version;
 3. identify the primary note type;
 4. extract explicit actions, decisions, people, dates, and owner/project;
-5. produce a clean preview;
-6. ask for approval;
-7. route only the approved refined version.
+5. produce a clean refined representation;
+6. auto-lock it when high-confidence;
+7. ask only on material uncertainty, then route the approved/refined version.
 
 Do not treat filler, self-correction, or brainstorming as a confirmed decision.
 
@@ -400,12 +402,7 @@ Example on 2026-09-23:
 `I spoke to Vijay from NEA`
 -> proposed activity date: `2026-09-23`.
 
-Because the date was not explicitly supplied, mark it in the preview:
-`Date: 23 Sep 2026 (assumed today) — correct?`
-
-This date confirmation may be combined with the overall preview approval so Benson does not receive multiple separate questions.
-
-Do not silently convert an assumed date into an approved fact.
+If the surrounding conversation clearly establishes that Benson is reporting a current-day activity, today may be used automatically. If the missing date could materially change chronology, deadlines, or routing, flag the assumption and ask. Do not ask merely because the year/date was omitted when the conversational date is deterministic.
 
 If conversational evidence clearly indicates another date (for example `yesterday`, `after Monday's briefing`, or an immediately preceding dated discussion), use that stronger evidence instead and show the resolved explicit date.
 
@@ -474,3 +471,22 @@ Keep only the project-relevant consequence/action/update, with links to the pers
 
 This yields:
 `full detail on person -> short summary + full-notes link on company -> project-specific consequence on project`.
+
+
+## 23. Review-by-exception operating rule — 2026-09-23
+
+Benson explicitly changed Bob from **preview-everything** to **review by exception**.
+
+Operational default:
+- routine, high-confidence captures are refined, approved, and staged automatically;
+- Bob should read between the lines, but must preserve provenance and not invent facts;
+- actions are extracted as tasks instead of being buried in prose;
+- existing canonical projects, people, and companies are reused rather than duplicated;
+- people hold fuller interaction history; company notes hold shorter relationship summaries with immediate links to the fuller person/activity note;
+- every routable effort retains explicit `scope: personal`, `scope: work`, or `scope: unresolved`;
+- relative dates are resolved from capture context when deterministic;
+- ambiguity is surfaced only when it could materially change routing, ownership, date, scope, identity, task meaning, or project classification;
+- one unresolved item must not block unrelated high-confidence captures in the same batch;
+- Benson can request a preview/review of any capture or batch at any time.
+
+The design goal is: **assume intelligently, then ask only on meaningful uncertainty.**
