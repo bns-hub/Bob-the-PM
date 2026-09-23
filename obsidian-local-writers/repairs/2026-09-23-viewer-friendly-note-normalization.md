@@ -188,3 +188,28 @@ Track:
 ## User preference questions
 
 Do not block the first safe normalization batches on unanswered preference questions. Apply the universal defaults above. Where a preference would materially affect information loss, note structure, or whether a section should exist, preserve the current content and add the question to the repair report / Inbox decision surface for Benson.
+
+## Home and capture surfaces — user-approved 2026-09-23
+
+During the first safe full-vault batches, create/reuse and verify these human-facing surfaces through Obsidian MCP:
+
+- `00 Home/My Tasks.md` — generated navigation view of open `Next actions` across owning notes. Do not make dashboard copies authoritative.
+- `00 Home/Ideas.md` — sections `New / Unsorted`, `Worth exploring`, `Promoted`.
+- `00 Home/Maintenance.md` or an equivalent compatible Home/Base view — active maintenance obligations and projects with lifecycle `maintenance`.
+- update `00 Home/Home.md` so the primary launch order is:
+  1. Today
+  2. My Tasks
+  3. Active Projects
+  4. Live Deals
+  5. Inbox / Needs Your Decision
+  6. Ideas
+  7. Maintenance
+
+Also update active project/deal/person/organisation surfaces as defined in `BOB-CAPTURE-INTELLIGENCE.md`:
+- person `Recent interactions`;
+- organisation/account `Relationship pulse`;
+- source/evidence mostly excluded from ordinary Home/default navigation;
+- maintenance lifecycle remains visible and actionable rather than archived away.
+
+Do not depend on Obsidian 1.14-only Kanban behavior. Use the current public-build-compatible layout already established in this vault.
+
