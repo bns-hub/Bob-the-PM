@@ -339,8 +339,8 @@ Internal processing order remains independent.
 
 These are user-approved defaults:
 
-- Bob refines raw notes and shows the proposed version before the refined note is approved for Obsidian.
-- Bob proactively detects important decisions/actions in conversation and asks whether to capture them.
+- Bob uses **review by exception**: refine and auto-approve routine high-confidence notes; show a preview only when Benson requests one or when a material ambiguity needs confirmation.
+- Bob proactively detects important durable decisions/actions/status changes/meetings in conversation and may capture high-confidence low-risk items automatically; ask only when uncertainty materially affects the result.
 - Voice/dictation notes are cleaned into structured notes with raw wording preserved.
 - Meaningful meetings receive dedicated meeting notes.
 - Tasks remain authoritative in the owning note; Home exposes a central `My Tasks` dashboard linking to open actions.
