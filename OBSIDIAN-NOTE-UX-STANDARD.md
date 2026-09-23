@@ -335,3 +335,22 @@ Use the order that best supports the note's job:
 
 Internal processing order remains independent.
 
+## Benson capture and home preferences — 2026-09-23
+
+These are user-approved defaults:
+
+- Bob refines raw notes and shows the proposed version before the refined note is approved for Obsidian.
+- Bob proactively detects important decisions/actions in conversation and asks whether to capture them.
+- Voice/dictation notes are cleaned into structured notes with raw wording preserved.
+- Meaningful meetings receive dedicated meeting notes.
+- Tasks remain authoritative in the owning note; Home exposes a central `My Tasks` dashboard linking to open actions.
+- `00 Home/Ideas.md` is the low-friction home for unowned exploratory ideas.
+- Person notes show detailed `Recent interactions`; organisation/account notes show a concise `Relationship pulse` linking to people/projects/meetings.
+- Meaningful attachments get readable companion/source notes; ambiguity is surfaced to Benson.
+- Daily notes include `Today's priorities`, `Quick notes`, schedule/meetings when useful, and activity links.
+- Project lifecycle distinguishes `active`, `maintenance`, `dormant`, and `closed`. Delivery-complete projects with ongoing support are `maintenance`, not closed.
+- Source/evidence notes stay mostly invisible in normal browsing; their useful facts are promoted into the appropriate canonical notes.
+- Home priority is: Today, My Tasks, Active Projects, Live Deals, Inbox / Needs Your Decision, Ideas, Maintenance.
+
+For detailed capture/inference rules, use `BOB-CAPTURE-INTELLIGENCE.md`.
+
