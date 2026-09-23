@@ -259,3 +259,89 @@ At the next local writer execution, this repair is an explicit run request, not 
 
 If the local writer starts and cannot authenticate to `Ben`, update this repair with the exact failure state instead of changing the vault by another route.
 
+## Precomputed first batch — live Home + Inbox read-only inspection
+
+Cloud read-only inspection of the synchronized live vault confirmed the following current files:
+
+### `00 Home/`
+- `Active Projects.base`
+- `Default View filter.md`
+- `Hubspot Live Deals.base`
+- `Home.md`
+- `One-Click Note Guide.md`
+
+### `01 Inbox/`
+- `Capture Here.md`
+- `Inbox.md`
+
+### Exact first-batch UX corrections
+
+#### `00 Home/Home.md`
+
+Current visible copy is stale in two ways:
+- it says the **Monday 06:00 cloud sweep** will organise live notes;
+- its launch hierarchy still foregrounds old manual navigation and does not expose the newly approved Today / My Tasks / Ideas / Maintenance surfaces.
+
+Local MCP writer should preserve useful existing ACES/guide links, but restructure the top of Home to:
+
+1. Today
+2. My Tasks
+3. Active Projects
+4. Live Deals
+5. Inbox / Needs Your Decision
+6. Ideas
+7. Maintenance
+
+Keep lower-level guides/knowledge links available but move them below the main working launch area.
+
+Replace wording that implies the cloud sweep itself writes/organises the live vault. The accurate user-facing explanation is:
+`Capture naturally -> Bob refines/previews -> approved capture queues -> local Codex files/verifies through Obsidian MCP.`
+
+Do not expose lock/hash/claim machinery in Home.
+
+#### `01 Inbox/Capture Here.md`
+
+Current file still says:
+`The Monday cloud sweep will organise them.`
+
+Replace that with the approved Bob flow:
+- type naturally;
+- Bob/local workflow resolves/refines/asks where needed;
+- approved items are filed by the local Obsidian writer.
+
+The current file visibly contains:
+`## Processed captures`
+
+Remove that visible section entirely after confirming it contains no unique user content. Its explanatory text is implementation detail and contradicts the new rule that there is no visible processed-capture ledger.
+
+Keep:
+- the file itself;
+- the frontmatter/stable identity;
+- `## New captures`;
+- the marker comment;
+- short optional-prefix guidance if still useful.
+
+#### `01 Inbox/Inbox.md`
+
+Current file still reads partly like a manual filing tutorial (`What belongs here`, `Minimum useful capture`, `Processing checklist`, template list).
+
+Rework it primarily as Benson's **triage/decision dashboard**:
+- `Needs Your Decision` near the top;
+- pending review/ambiguous routing only;
+- concise processing/writer status;
+- links to Capture Here / Home;
+- optional guidance lower down or linked to the One-Click Guide.
+
+Do not require Benson to manually decide ACES routing for normal captures.
+
+Preserve the existing unresolved William/Brunei implementation blocker only if it is still unresolved at local read time. Re-evaluate against current canonical campaign evidence before carrying it forward.
+
+### Verification
+
+After these first-batch changes:
+- re-read `Home.md`, `Capture Here.md`, and `Inbox.md` through Obsidian MCP;
+- confirm there is no visible `Processed captures` section;
+- confirm Home exposes My Tasks, Ideas, Maintenance and the main working views;
+- confirm no stale text says a cloud sweep directly files live-vault notes;
+- verify all affected wikilinks resolve.
+
