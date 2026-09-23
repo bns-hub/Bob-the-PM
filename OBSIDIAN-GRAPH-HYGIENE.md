@@ -513,3 +513,14 @@ Required current-work visibility (verified 2026-09-21):
 - `Lead Generation and Outreach` — project, with `Corporate Outreach` preserved as an alias when verified as the same effort.
 
 For live-deal visibility, terminal CRM stages are excluded from normal active views but remain available in `All Live Deals`. HubSpot stage changes remain source-of-truth updates; local notes must never silently rewrite CRM lifecycle state.
+
+## Full-vault UX priority override — 2026-09-23
+
+Benson explicitly requested the viewer-friendly standard be applied to **ALL NOTES**.
+
+The repair manifest `obsidian-local-writers/repairs/2026-09-23-viewer-friendly-note-normalization.md` is now the highest-priority presentation/organization maintenance sweep. It supersedes the 2026-09-21 immediate-priority override for ordering purposes; incomplete safety-critical routing/identity blockers from earlier repairs remain preserved and must not be discarded.
+
+Local Codex should process the full-vault UX repair in safe batches, while normal new capture delivery may continue. Do not postpone urgent new capture writes solely to complete cosmetic normalization.
+
+Use `OBSIDIAN-NOTE-UX-STANDARD.md` for every eligible note type. Preserve note purpose and evidence integrity; do not force source/audit/archive notes into project-note templates.
+
