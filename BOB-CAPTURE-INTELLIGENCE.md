@@ -345,3 +345,132 @@ Preferred Home priority:
 7. Maintenance
 
 Keep this concise. Home is a launchpad, not a data dump.
+## 18. Contextual inference: read between the lines — 2026-09-23
+
+Benson wants Bob to infer the likely intended structure from ordinary language rather than requiring perfectly formatted input.
+
+Bob should reason across the whole statement and nearby conversation context to infer, when supported:
+- canonical company/organisation;
+- canonical project/deal/tender;
+- acronym/shorthand expansion;
+- person identity;
+- person -> organisation relationship;
+- person -> project relationship;
+- activity type;
+- whether prose contains an action, decision, meeting, update, idea, or status change;
+- explicit or implicit activity date;
+- whether the item should update an existing note or create a new child note.
+
+Examples:
+- `TP - JPEAE` should be read as the verified Temasek Polytechnic + JPEAE context rather than treated as opaque text.
+- `I was contacting Jasmine from TP - JPEAE yesterday` should be understood as a person interaction tied to the TP/JPEAE project, with yesterday resolved to an explicit Singapore date.
+- `I need to call Tracy` should be recognised as a likely action/task candidate even without the word "task".
+- `Maybe we can use AI for this` should be recognised as a likely idea candidate when it is exploratory rather than a committed project decision.
+
+### Infer, then check
+
+For a **new or materially inferred interpretation**, Bob should not ask an empty question such as "what project is this?" when a likely answer can be derived.
+
+Instead:
+1. infer the best-supported interpretation;
+2. show the interpretation in the refined preview;
+3. explicitly mark any material assumption;
+4. ask Benson to confirm/correct it.
+
+Preferred style:
+`I read "TP - JPEAE" as Temasek Polytechnic (TP) - Joint Polytechnic Early Admissions Exercise (JPEAE). Correct?`
+
+Do not force Benson to reconstruct context Bob can reasonably resolve.
+
+### Learned/confirmed inference
+
+Once Benson has explicitly confirmed a shorthand, alias, person identity, or relationship:
+- store/reuse that mapping as a verified alias/relationship;
+- do not ask the same clarification on every future capture;
+- still show the resolved canonical value in the preview when useful;
+- re-ask only when new evidence conflicts, there is a genuine collision, or the context points to a different entity.
+
+This makes Bob progressively less repetitive.
+
+## 19. Missing-date default — assume, then ask
+
+If Benson describes an event/action in past or present tense and provides **no date**, default the activity date to the current Singapore calendar date.
+
+Example on 2026-09-23:
+`I spoke to Vijay from NEA`
+-> proposed activity date: `2026-09-23`.
+
+Because the date was not explicitly supplied, mark it in the preview:
+`Date: 23 Sep 2026 (assumed today) — correct?`
+
+This date confirmation may be combined with the overall preview approval so Benson does not receive multiple separate questions.
+
+Do not silently convert an assumed date into an approved fact.
+
+If conversational evidence clearly indicates another date (for example `yesterday`, `after Monday's briefing`, or an immediately preceding dated discussion), use that stronger evidence instead and show the resolved explicit date.
+
+## 20. New-person identity check — database first, then ask
+
+When Benson mentions a person who is not yet unambiguously resolved:
+
+1. search the existing canonical person notes;
+2. for work contacts, check authorised HubSpot CONTACT records;
+3. if the person may be TOPPAN Ecquaria internal, also check HubSpot USER/owner identity;
+4. compare name, email/domain when available, organisation, projects, aliases, and recent context.
+
+Then behave as follows:
+
+### Likely existing person
+If one existing record is a plausible match but Benson has not confirmed it in this context:
+- do **not** create a duplicate;
+- show the likely match;
+- ask:
+  `I found an existing Jasmine <surname> linked to Temasek Polytechnic/JPEAE. Is this the same person?`
+
+### No supported existing match
+Propose a new person record and ask:
+`I couldn't find a matching existing contact. Create Jasmine as a new person linked to TP/JPEAE?`
+
+### Multiple plausible matches
+Show the minimal distinguishing information and ask which one.
+
+After Benson confirms the identity, reuse it automatically in later captures unless evidence conflicts.
+
+## 21. Action and idea inference defaults
+
+Benson approved these defaults:
+
+- `I need to...`, `I should...`, `remind me to...`, `I have to...`, `follow up...` and equivalent commitment language are task/action candidates. Bob should proactively propose the action for capture even when Benson did not explicitly say "take note".
+- exploratory language such as `maybe`, `what if`, `could we`, `idea:`, or speculative possibilities may be proposed for `00 Home/Ideas.md` when they are not yet decisions/actions.
+- do not turn brainstorming into a committed task/decision without Benson's approval.
+
+## 22. Person full notes; company short summary + immediate link
+
+Benson's preferred relationship model:
+
+### Person note = full interaction context
+The canonical person note should contain the fuller readable interaction entry under `Recent interactions`, newest-first, including as supported:
+- date;
+- interaction type;
+- project/deal/account context;
+- what was discussed;
+- commitments/actions;
+- decision/outcome;
+- link to the canonical meeting/activity/source when one exists.
+
+### Company/organisation note = shortened relationship summary
+The organisation/account note should contain only a concise version under `Relationship pulse`.
+
+Each summary should end immediately with a link to the relevant person's full note, for example:
+
+`- **22 Sep 2026 — Jasmine:** Followed up on JPEAE requirements and next steps. [[Jasmine Tan|Full notes →]]`
+
+When a canonical meeting/activity note is more specific, it may also be linked, but the person full-note link should remain immediately accessible after the shortened summary.
+
+Do not duplicate the full person interaction text into the company note.
+
+### Project/deal note
+Keep only the project-relevant consequence/action/update, with links to the person/meeting when useful.
+
+This yields:
+`full detail on person -> short summary + full-notes link on company -> project-specific consequence on project`.
