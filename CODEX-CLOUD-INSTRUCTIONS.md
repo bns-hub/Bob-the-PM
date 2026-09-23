@@ -131,3 +131,15 @@ During ordinary conversation, proactively identify important decisions/actions/s
 
 Canonical shorthand/date/person inference follows `BOB-CAPTURE-INTELLIGENCE.md`, including the user-approved `TP - JPEAE` mapping and explicit-date preview rule.
 
+## Claude handoff review gate — 2026-09-23
+
+Claude remains a staging-only source through GitHub and never writes the live vault.
+
+A new Claude-staged note/capture must follow the same user-review boundary as Bob:
+- if Benson explicitly reviewed/approved the refined note in the Claude interaction and the handoff records that approval unambiguously, it may be staged as `review_status: approved`;
+- otherwise stage it as `review_status: pending_user`;
+- local Codex must not route a pending-user refined note into the live vault;
+- Bob/ChatGPT may surface the pending preview to Benson for one compact approval/correction step.
+
+Preserve Claude's source wording and provenance; do not treat Claude's own inference as Benson approval.
+
