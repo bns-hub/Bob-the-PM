@@ -146,3 +146,20 @@ For person/contact routing, treat the person as an independent entity. A contact
 The two persistent Inbox control files are not queue items to delete:
 - `Capture Here.md` persists; only verified processed capture blocks are removed.
 - `Inbox.md` persists; only resolved dashboard/decision entries are removed or updated.
+## Human-facing note UX rule — 2026-09-23
+
+Human reading order is independent from queue processing order.
+
+The oldest-first rule in `Local Codex processing order` exists only so interrupted ingestion resumes deterministically. It must not cause project, deal, campaign, effort, or other working notes to display activity oldest-first.
+
+For human-facing working notes, follow `OBSIDIAN-NOTE-UX-STANDARD.md`:
+- keep `Latest updates`, `Decisions`, and meeting lists newest-first;
+- keep a compact `At a glance` near the top when useful;
+- keep actionable checkboxes in `Next actions`;
+- preserve `Working notes` as the user's free-form note-taking area and never auto-sort it;
+- store capture IDs, hashes, claims, sync state, and similar ingestion details in frontmatter or audit/source records rather than a prominent visible section;
+- do not add a visible `Inbox Activity`, `Processed Captures`, or equivalent ingestion ledger to normal working notes;
+- daily indexes and audit/source notes may remain chronological when chronology is their purpose.
+
+When inserting a dated update into `Latest updates`, merge with an existing matching date heading when present and position that date relative to other date headings so the newest visible date is first. Do not reorder unrelated user-authored prose.
+
