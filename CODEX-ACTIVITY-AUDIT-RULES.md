@@ -92,3 +92,18 @@ For each successfully processed capture, local Codex must:
 - Sales, campaign, account, or partnership activity not yet a formal tender (relationship-building, outreach, follow-up, partnership development): category Campaign / Account / Sales; file under the verified account, campaign, or sales record, do not force it into an unrelated tender or project.
 - Other project-specific delivery, support, billing, issues, milestones, handover, acceptance, or closure: category Project Activity; file under the corresponding project/deal. Use verified local-vault or authorized HubSpot evidence to resolve the owner. Preserve identifiers, dates, parties, status, decisions, actions/outcomes, and financial milestones. Update the owning record, not only an audit log; do not create a duplicate freestanding email note. Link supporting source/calendar evidence.
 - Every substantive item must be assigned to exactly one of: Tender, Service Request, Change Request, Project Activity, Campaign / Account / Sales, or Unresolved Routing. If ambiguous, mark Unresolved Routing, list candidate targets, and defer instead of guessing.
+## Human-facing working-note presentation — 2026-09-23
+
+Cloud collection order and local queue processing order are implementation details. They must not leak into the visible ordering of canonical project/deal/campaign/effort notes.
+
+For any newly created or materially changed human-facing working note, use `OBSIDIAN-NOTE-UX-STANDARD.md` as the presentation rule:
+- compact `At a glance` when useful;
+- `Next actions` for actionable checkboxes;
+- `Working notes` as a stable user-owned scratch area;
+- `Latest updates` newest-first;
+- `Decisions` newest-first when applicable;
+- meeting/reference links instead of duplicated source dumps;
+- no visible `Inbox Activity` or processed-capture ledger solely for audit purposes.
+
+Keep capture IDs, hashes, provider IDs, source identities, and verification state in YAML/frontmatter, manifests, claims, checkpoints, or source/audit records. Preserve source evidence and chronology in source/audit notes; optimize canonical working notes for fast reading and note taking.
+
