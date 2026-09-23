@@ -549,11 +549,11 @@ Do not promote unsupported interpretation from source evidence. Summaries must r
 During routing and graph enrichment, follow `BOB-CAPTURE-INTELLIGENCE.md`:
 
 - infer the most likely canonical entity/project/person/date from the complete context before asking;
-- for new/material inference, present the inferred interpretation to Benson for confirmation rather than asking him to supply information already recoverable from verified context;
+- for new/material inference, ask Benson only when the uncertainty could materially change routing, ownership, scope, identity, chronology, task meaning, or canonical-entity creation/merging;
 - reuse user-confirmed aliases and identity mappings without repetitive re-questioning;
-- when no date is supplied for an event/action, propose the current Singapore date and explicitly flag it as assumed;
-- before creating a new person, check canonical people plus authorised HubSpot identity sources; propose an existing match when one is found and ask Benson whether it is the same person;
-- automatically recognise likely task/action and idea candidates, but obtain capture approval before treating inference as durable meaning.
+- when no date is supplied for an event/action, use the current Singapore date automatically when same-day context is deterministic; ask only when chronology is materially ambiguous;
+- before creating a new person, check canonical people plus authorised HubSpot identity sources; reuse an unambiguous existing person automatically, and ask only when multiple plausible identities remain or a genuinely new person would be created;
+- automatically recognise and persist high-confidence task/action candidates in the owning note; keep exploratory ideas distinct from committed actions and do not silently promote an idea into a project/decision.
 
 For relationship presentation:
 - keep full interaction detail on the person note;
