@@ -1,7 +1,7 @@
 ---
 repair_version: 2
 repair_id: obsidian-repair-20260923-viewer-friendly-note-normalization
-status: queued_for_local_writer
+status: awaiting_local_writer
 created_at: "2026-09-23T15:57:00+08:00"
 expanded_at: "2026-09-23T16:10:00+08:00"
 created_by: chatgpt-cloud
@@ -10,6 +10,9 @@ drive_mode: read_only
 priority: user-request-all-notes
 ux_standard: OBSIDIAN-NOTE-UX-STANDARD.md
 scope: full-vault
+run_requested_at: "2026-09-23T17:03:00+08:00"
+run_requested_by: Benson Foo
+cloud_preflight: drive_root_verified_read_only_no_obsidian_mcp_write_surface
 ---
 
 # Full-vault viewer-friendly normalization — 2026-09-23
@@ -224,3 +227,35 @@ As the full-vault normalization touches person and organisation notes:
 6. do not create duplicate people: check canonical person identity and authorised HubSpot records first.
 
 For new captures, use the updated inference defaults in `BOB-CAPTURE-INTELLIGENCE.md`: infer first, flag assumptions, then ask/approve.
+
+## Execution request / cloud preflight — 2026-09-23 17:03 SGT
+
+Benson explicitly instructed: **process it all**.
+
+Cloud preflight completed:
+
+- authoritative live-vault read-only Drive root resolved successfully;
+- expected roots were present: `00 Home`, `01 Inbox`, `A Atlas`, `C Calendar`, `E Efforts`, `S Sources`, `X Filtered Out`, `Z System`;
+- `.obsidian` was visible and remains excluded from all modification;
+- no Obsidian MCP action/tool is exposed to this cloud chat session;
+- no compatible Obsidian ChatGPT plugin was available to replace the approved local MCP write path;
+- no repository-defined remote trigger for the local Codex writer was found;
+- latest laptop writer heartbeat observed: `2026-09-21T07:48:00Z` (15:48 SGT), previously authenticated to vault `Ben`;
+- latest PC1 writer heartbeat observed: `2026-09-14T12:39:30Z`;
+- therefore cloud did **not** perform prohibited Google Drive live-vault writes and did not claim the normalization was completed.
+
+### Required next writer action
+
+At the next local writer execution, this repair is an explicit run request, not merely a suggestion:
+
+1. refresh `BOB-CAPTURE-INTELLIGENCE.md`, `OBSIDIAN-NOTE-UX-STANDARD.md`, `OBSIDIAN-GRAPH-HYGIENE.md`, `OBSIDIAN-INGESTION-CONTRACT.md`, and `CODEX-CLOUD-INSTRUCTIONS.md`;
+2. acquire the processor lock;
+3. authenticate Obsidian MCP and confirm active vault exactly `Ben`;
+4. begin/continue the full-vault deterministic batches defined above;
+5. do not stop after Bob-created notes; inspect every eligible note;
+6. create/update Home surfaces, person full notes, company Relationship pulse summaries + immediate Full notes links, Ideas, My Tasks, Maintenance, daily note UX, source invisibility, newest-first human activity ordering, and removal of visible ingestion ledgers as specified;
+7. record batch metrics and resume cursor after each verified batch;
+8. continue on subsequent local writer runs until the completion criteria are met.
+
+If the local writer starts and cannot authenticate to `Ben`, update this repair with the exact failure state instead of changing the vault by another route.
+
