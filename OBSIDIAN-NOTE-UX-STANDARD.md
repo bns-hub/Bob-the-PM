@@ -353,4 +353,17 @@ These are user-approved defaults:
 - Home priority is: Today, My Tasks, Active Projects, Live Deals, Inbox / Needs Your Decision, Ideas, Maintenance.
 
 For detailed capture/inference rules, use `BOB-CAPTURE-INTELLIGENCE.md`.
+## Relationship-note display preference — 2026-09-23
 
+For people and organisations:
+
+- **Person note:** full `Recent interactions` detail.
+- **Organisation/company note:** short `Relationship pulse` summary only.
+- Put a `Full notes →` wikilink to the person's canonical note immediately after each shortened company interaction summary.
+- **Project/deal note:** only the project-relevant consequence/action/update.
+
+Example company entry:
+
+`- **22 Sep 2026 — Jasmine:** Followed up on JPEAE requirements and next steps. [[Jasmine Tan|Full notes →]]`
+
+Do not duplicate the person's full interaction prose into the company page.
