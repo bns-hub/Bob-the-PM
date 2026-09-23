@@ -156,3 +156,11 @@ Do not delete either file during processing. Clear only an individually verified
 Other files in `01 Inbox/` are transient until routed. After reading and preserving their content, either move the durable note under its verified canonical owner or merge its information into the correct owner. Remove the transient source only after Obsidian MCP re-read verifies that the destination preserves the intended content and relationships.
 
 For work routing, use the canonical owner naming pattern `<Company Name> - <Project Name>`. User-entered shorthand is input, not identity. Resolve it to the existing canonical project/deal by stable IDs, organisation owner, aliases, and verified context.
+## Human-facing presentation — 2026-09-23
+
+The delivery architecture separates machine safety from note presentation. Local Codex may process queued captures oldest-first, but canonical working notes must follow `OBSIDIAN-NOTE-UX-STANDARD.md` after a verified write.
+
+The local writer should preserve a clear user editing surface (`Working notes`) and keep machine provenance outside the primary reading flow. A successful delivery is not a successful presentation if ingestion bookkeeping such as `Inbox Activity`, capture ledgers, hashes, or provider IDs is left as a prominent body section without a reader-facing purpose.
+
+Normalize presentation only through the same authenticated Obsidian MCP write/verify path. Do not use Drive writes or direct filesystem edits to retrofit the layout.
+
