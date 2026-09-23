@@ -524,3 +524,24 @@ Local Codex should process the full-vault UX repair in safe batches, while norma
 
 Use `OBSIDIAN-NOTE-UX-STANDARD.md` for every eligible note type. Preserve note purpose and evidence integrity; do not force source/audit/archive notes into project-note templates.
 
+## Cross-note summaries and source invisibility — 2026-09-23
+
+Apply `BOB-CAPTURE-INTELLIGENCE.md` and `OBSIDIAN-NOTE-UX-STANDARD.md`.
+
+### Tasks
+Keep each ordinary action authoritative in its owning project's/account's/person's `Next actions`. Maintain `00 Home/My Tasks.md` as a generated navigation/dashboard surface linking to open actions. Do not create a second authoritative checkbox copy merely for the dashboard.
+
+### Ideas
+Maintain `00 Home/Ideas.md` with `New / Unsorted`, `Worth exploring`, and `Promoted`. Clearly exploratory ideas may go here without forcing an Inbox routing question. Ask before converting an idea into a new project/deal.
+
+### Person -> organisation summaries
+Represent an interaction once as its canonical meeting/activity/update. Person notes may show a richer recent-interaction summary. Organisation/account notes show only a compact `Relationship pulse` and link to the person/project/meeting. Project/deal notes show only the project-relevant fact/action/decision. Avoid three full copies.
+
+### Project lifecycle
+Use `active`, `maintenance`, `dormant`, `closed`. A delivery-complete project with support/maintenance obligations remains `maintenance`. Maintain a visible Maintenance Home view/list rather than hiding it in archives.
+
+### Source/evidence invisibility
+Useful facts from Gmail/HubSpot/imported sources should be promoted to the relevant canonical knowledge surfaces. Keep raw evidence mostly in `S Sources` or archive/evidence layers and exclude it from ordinary Home/default navigation/graph views when possible. Preserve links and audit retrieval.
+
+Do not promote unsupported interpretation from source evidence. Summaries must remain traceable to the underlying source.
+
