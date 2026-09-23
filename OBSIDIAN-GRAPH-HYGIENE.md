@@ -544,4 +544,19 @@ Use `active`, `maintenance`, `dormant`, `closed`. A delivery-complete project wi
 Useful facts from Gmail/HubSpot/imported sources should be promoted to the relevant canonical knowledge surfaces. Keep raw evidence mostly in `S Sources` or archive/evidence layers and exclude it from ordinary Home/default navigation/graph views when possible. Preserve links and audit retrieval.
 
 Do not promote unsupported interpretation from source evidence. Summaries must remain traceable to the underlying source.
+## Smart contextual inference defaults — 2026-09-23
 
+During routing and graph enrichment, follow `BOB-CAPTURE-INTELLIGENCE.md`:
+
+- infer the most likely canonical entity/project/person/date from the complete context before asking;
+- for new/material inference, present the inferred interpretation to Benson for confirmation rather than asking him to supply information already recoverable from verified context;
+- reuse user-confirmed aliases and identity mappings without repetitive re-questioning;
+- when no date is supplied for an event/action, propose the current Singapore date and explicitly flag it as assumed;
+- before creating a new person, check canonical people plus authorised HubSpot identity sources; propose an existing match when one is found and ask Benson whether it is the same person;
+- automatically recognise likely task/action and idea candidates, but obtain capture approval before treating inference as durable meaning.
+
+For relationship presentation:
+- keep full interaction detail on the person note;
+- keep only a shortened `Relationship pulse` entry on the organisation/company note;
+- append an immediate `Full notes →` wikilink to the person note after each shortened interaction;
+- keep project/deal notes limited to the project-specific consequence/action/update.
