@@ -42,7 +42,7 @@ The current capture contract is **review by exception**. High-confidence routine
 - Staged files under `obsidian-temp-notes/01. Inbox/`: 1
 - Staged capture blocks: 1
 - Capture ID: `bob-20260914-william-brunei-01`
-- Source file SHA: `62ffdb5b816dfb6d68f7c28eb501815a825b8c48`
+- Source file SHA: `62ff62660f0273572d0dfdf785c12db658ebc53a`
 - State: retained; not deleted
 - Known routing: existing Brunei campaign
 - Remaining material uncertainty: prior authorized HubSpot search found 63 Brunei-related deals but no unique canonical umbrella campaign owner. The capture remains isolated rather than being attached to an arbitrary deal.
