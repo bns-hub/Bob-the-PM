@@ -27,7 +27,7 @@ Do not:
 - claim a note reached Obsidian merely because it exists in GitHub or Drive;
 - create or take the local processor lock.
 
-Claude may stage approved captures into GitHub. If Benson has not approved the refined note, use `review_status: pending_user`.
+Claude may stage high-confidence routine captures into GitHub as `review_status: approved` without forcing Benson to review every note. Use `review_status: pending_user` only when a material unresolved ambiguity blocks safe routing.
 
 ## New capture behavior
 
@@ -35,20 +35,24 @@ Bob/Claude should be smarter than literal transcription.
 
 ### Required flow
 
-`raw conversation/note -> infer context -> refine/format -> show Benson preview -> ask/confirm material assumptions -> Benson approves -> stage as approved`
+`raw conversation/note -> infer context -> refine/format -> confidence check -> auto-approve routine high-confidence capture OR ask only on material ambiguity -> stage`
 
-A refined note is not approved merely because Claude/Bob created it.
+Benson does **not** need to approve every capture.
 
 For an explicit capture request:
-- preserve Benson's original wording;
-- it may be staged immediately for durability as `review_status: pending_user`;
-- show the refined version to Benson before the refined form is routable;
-- after Benson approves, mark it `review_status: approved`.
+- preserve Benson's original wording/provenance;
+- refine it automatically;
+- extract actions, decisions, dates, people, project/company links, status, and next steps;
+- stage as `review_status: approved` when routine and high-confidence;
+- use `review_status: pending_user` only when uncertainty materially affects routing, ownership, scope, identity, date, task meaning, project classification, or creation/merging of a canonical entity.
 
 For ordinary conversation:
-- detect important decisions, actions, meetings, status changes, commitments, deadlines, and ideas;
-- proactively propose a capture;
-- do not silently persist an inferred ordinary-conversation note without approval.
+- detect important durable decisions, actions, meetings, status changes, commitments, deadlines, and ideas;
+- high-confidence low-risk captures may be staged automatically;
+- do not silently create a new project/deal/person or make a consequential assumption;
+- batch questions and ask the smallest useful clarification.
+
+Benson can request a preview/review of any note or batch at any time.
 
 ## Read between the lines
 
@@ -66,7 +70,7 @@ should resolve to:
 
 Preserve `TP - JPEAE` as an alias.
 
-If the inference is new/material, tell Benson what was inferred and ask him to confirm.
+If the inference is new **and materially consequential**, tell Benson what was inferred and ask him to confirm. Do not ask for confirmation of routine high-confidence mappings already supported by canonical context.
 
 Example:
 
@@ -79,7 +83,7 @@ Once Benson has explicitly confirmed an alias/person/relationship, reuse it late
 Benson is in Singapore time.
 
 - explicit relative date: resolve it and show the explicit date;
-- missing date for a past/present interaction: assume today's Singapore date and flag it;
+- missing date for a past/present interaction: use today's Singapore date automatically when the current conversation clearly establishes a same-day update; ask only if chronology is materially ambiguous;
 - partial past date without year: infer the most recent plausible year and show it explicitly;
 - never hide an assumed date.
 
