@@ -113,3 +113,225 @@ Do not rewrite a whole note merely to enforce this standard. Normalize increment
 - prefer the smallest readable patch.
 
 This standard is for ease of viewing and note taking, not cosmetic churn.
+
+## Vault-wide coverage — 2026-09-23
+
+This standard applies to **all human-readable notes in the live `Ben` vault**, not only projects and deals. Apply the appropriate note-type pattern below. The goal is consistency without forcing every note into the same template.
+
+### Universal rules for every note
+
+1. Put what Benson most needs to see near the top.
+2. Prefer meaningful human language over machine fields in the visible body.
+3. Preserve stable IDs and machine metadata in YAML/frontmatter.
+4. Preserve all user-authored content.
+5. Do not create empty decorative headings.
+6. Prefer links over duplicated content.
+7. When a note is time-oriented, make the most useful time order explicit.
+8. Never let ingestion/audit mechanics become the main reading experience.
+9. Every note must remain easy to append to manually without breaking automation.
+10. A note may opt out of a standard section when its existing structure is clearly more useful.
+
+### Note-type patterns
+
+#### Project / deal / campaign / active effort
+Use:
+- `At a glance`
+- `Next actions`
+- `Working notes`
+- `Latest updates` newest-first
+- `Decisions`
+- `Meetings & notes`
+- `References`
+
+The default working-note layout earlier in this file applies.
+
+#### Meeting note
+Optimize for what happened and what follows.
+
+Preferred order:
+```markdown
+# YYYY-MM-DD — <Meeting title>
+
+> [!summary] Outcome
+> <1-3 sentence outcome>
+
+## Actions
+- [ ] <action> — <owner/date when known>
+
+## Decisions
+- <decision>
+
+## Discussion notes
+<User notes; preserve wording>
+
+## Attendees
+- [[Person]]
+
+## Related
+- [[Canonical project/deal/account]]
+- [[Source]]
+```
+
+Do not bury actions below a transcript. If raw transcript/evidence exists, keep it below the readable note or in a linked source note.
+
+#### Person / contact
+Optimize for recognition and relationship context.
+
+Preferred visible order:
+- short identity/role summary;
+- current organisation(s);
+- relationship to Benson/TOPPAN Ecquaria when verified;
+- active projects/deals;
+- recent interactions newest-first;
+- notes;
+- references.
+
+Do not expose CRM/provider IDs prominently in the body. Keep formal CRM title separate from project/function role.
+
+#### Organisation / account
+Optimize for account context.
+
+Preferred visible order:
+- what the organisation is / relationship;
+- active deals/projects;
+- key people;
+- recent activity newest-first;
+- working/account notes;
+- references.
+
+Do not turn the organisation page into a dump of every email or CRM record.
+
+#### Daily / calendar note
+Optimize for date retrieval.
+
+Preferred order:
+- date/title;
+- open items or important events for that day;
+- activity entries in time order when timestamps matter;
+- links to canonical destinations.
+
+Daily indexes may remain chronological because chronology is their function. They should link rather than duplicate full project content.
+
+#### Task / action note
+When a task deserves a standalone note, put:
+- task/status/due date at the top;
+- context/project link;
+- next step;
+- notes/history newest-first where useful.
+
+Do not create a standalone task note for every checkbox. Prefer `Next actions` in the owning note unless the task has its own lifecycle or substantial context.
+
+#### Decision note
+Put:
+- decision statement;
+- date/status;
+- rationale/evidence;
+- consequences / follow-up;
+- related project/meeting/source.
+
+Do not rewrite uncertainty as a decision. A proposed choice is not a confirmed decision.
+
+#### Tender / bid note
+Treat as an active work note with tender-specific fields near the top when useful:
+- agency/customer;
+- tender/reference number;
+- submission deadline;
+- current stage;
+- current focus;
+- next milestone/action.
+
+Then use the normal working-note pattern with latest activity newest-first.
+
+#### Service Request / Change Request
+Put:
+- identifier/status;
+- owner/project;
+- impact/summary;
+- next action;
+- latest updates newest-first;
+- decisions/approvals;
+- evidence/references.
+
+#### Personal project / purchase / planning note
+Use the same working-note pattern as work projects, but do not add corporate/account fields. Keep practical next steps and comparison/decision context near the top.
+
+#### Reference / evergreen knowledge note
+Optimize for understanding, not activity tracking.
+
+Preferred order:
+- concise summary/definition;
+- key points;
+- details;
+- examples/how-to;
+- related notes;
+- sources.
+
+Do not add `Latest updates`, `Next actions`, or `Working notes` unless they are genuinely useful.
+
+#### Source / evidence / imported email / CRM record
+Optimize for readable evidence while preserving provenance.
+
+Preferred order:
+- human-readable subject/title;
+- date/source/participants;
+- concise summary;
+- decisions/actions/outcomes if explicitly present;
+- related canonical owner links;
+- readable content;
+- collapsed raw source/audit evidence when required.
+
+Chronology and exact evidence take priority over dashboard styling. Do not fabricate an `At a glance` status for evidence-only notes.
+
+#### MOC / index / dashboard
+Optimize for navigation.
+
+Preferred order:
+- purpose/scope;
+- most-used or active links first;
+- grouped navigation;
+- unresolved/attention items when relevant;
+- lower-priority/reference links later.
+
+Do not fill MOCs with duplicated prose from child notes.
+
+#### Inbox control notes
+- `Capture Here.md`: input first; newest raw captures at top; minimal instructions; no processed ledger.
+- `Inbox.md`: decision/triage dashboard; unresolved items and `Needs Your Decision` near the top; recent processing status concise; no raw archive dump.
+
+#### System / automation / runbook note
+Optimize for operation:
+- purpose;
+- current status;
+- how to use/run;
+- inputs/outputs;
+- failure/recovery;
+- change log newest-first when useful;
+- references.
+
+Machine configuration may remain detailed when it is the point of the note, but still keep a readable operational summary first.
+
+#### Archive / historical record
+Preserve historical integrity. Add only minimal navigation/summary if needed. Do not reorder original user-authored chronology merely to match current working-note style.
+
+### Automatic note-type detection
+
+Use verified frontmatter, canonical folder/owner, stable IDs, and note purpose together. Do not decide note type from title alone.
+
+If a note fits multiple roles, choose the primary role and preserve useful secondary sections. For example:
+- a tender can also be a deal, but its primary working view may be tender;
+- a meeting belongs to a project but remains a meeting note;
+- a source email may contain actions, but remains evidence linked to the working owner.
+
+If the primary note type is genuinely ambiguous, preserve the note and record `ux_type: unresolved` in the repair manifest rather than guessing.
+
+### Global date-order rule
+
+Use the order that best supports the note's job:
+- active updates, recent interactions, decisions, meeting lists, change logs: **newest first**;
+- raw captures: **newest first**;
+- daily timestamped activity: **time order within that date** unless an existing deliberate reverse chronology is clearer;
+- instructions/how-to/reference: logical order, not date order;
+- immutable historical/source records: preserve source order unless a separate readable summary/index is added.
+
+Internal processing order remains independent.
+
