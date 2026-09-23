@@ -22,4 +22,4 @@ Full rules, including the account-boundary and identity-verification detail, are
 
 Claude must read [`CLAUDE-HANDOFF.md`](CLAUDE-HANDOFF.md) before handling Benson's Bob/Obsidian captures, note refinement, routing, or handoff work.
 
-The handoff summarises the current user-approved capture intelligence, preview/approval gate, note UX, person/company linking model, and full-vault normalization status. Canonical safety and routing rules remain in the referenced contract files.
+The handoff summarises the current user-approved capture intelligence, **review-by-exception** behavior, note UX, person/company linking model, and full-vault normalization status. Canonical safety and routing rules remain in the referenced contract files.
