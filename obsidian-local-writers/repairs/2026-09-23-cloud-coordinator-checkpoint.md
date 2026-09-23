@@ -104,3 +104,99 @@ Authorized ChatGPT activity also records pending work follow-up for two Temasek 
 - weekly graph hygiene: previous checkpoint remains blocked; do not mark complete without current MCP verification and broken-link checks
 - unresolved routing: 1 staged Brunei campaign capture
 - failed writes this run: 0
+
+
+## Evening coordination addendum — 2026-09-23
+
+### Refreshed authority
+
+All five required controls changed after the earlier checkpoint and were re-read from the default branch before source inspection:
+
+- `CODEX-CLOUD-INSTRUCTIONS.md`: `340255e485b392ae5cec65668fc77aca435e9d43`
+- `CODEX-ACTIVITY-AUDIT-RULES.md`: `e6b8bf98d3aac1406347e6c3eaa67ee37f35a319`
+- `OBSIDIAN-DELIVERY-ARCHITECTURE.md`: `e5b6904cbc9175fe7af23fe83d84e9bc80439d0d`
+- `OBSIDIAN-INGESTION-CONTRACT.md`: `c9c3f155387989398a6cf895f7fa6ef75a7a1f75`
+- `OBSIDIAN-GRAPH-HYGIENE.md`: `c834ae1cde98c3e423f3a0b81e2d1910936d9aef`
+
+New referenced controls were also read:
+
+- `BOB-CAPTURE-INTELLIGENCE.md`: `7b80f72ef31e03ed3bc54472d7f14df2047365df`
+- `OBSIDIAN-NOTE-UX-STANDARD.md`: `fab7f3d959a8ef28fb7d98050a49de35149aa91a`
+- `CLAUDE-HANDOFF.md`: `207d8f020b6e945eb116d1336d6d8f7fca2bf4e5`
+
+The Bob/Claude review gate is now authoritative: refined notes require explicit Benson approval before routing, while exact raw wording from an explicit capture command may be retained only as `review_status: pending_user` until approved.
+
+### New highest-priority maintenance job
+
+`obsidian-local-writers/repairs/2026-09-23-viewer-friendly-note-normalization.md` is `awaiting_local_writer`.
+
+Required first batch:
+
+- normalize `00 Home/Home.md`, `01 Inbox/Capture Here.md`, and `01 Inbox/Inbox.md`;
+- add/reuse Today, My Tasks, Ideas, and Maintenance launch surfaces;
+- remove visible processed-capture/ingestion ledger sections only after unique content is preserved;
+- retain detailed person interactions, shortened organisation Relationship pulse summaries, and immediate Full notes links;
+- re-read through Obsidian MCP and run affected-link checks.
+
+Drive confirms this batch has not started: `00 Home` still has no `My Tasks.md`, `Ideas.md`, or `Maintenance.md`; Capture Here still says the cloud sweep will organise notes and still shows `## Processed captures`; Inbox still presents manual filing instructions.
+
+### Full Inbox sweep
+
+- GitHub staged Inbox files: 1
+- staged captures: 1 (`bob-20260914-william-brunei-01`)
+- live Drive Inbox files: 2 permanent controls only
+- live capture blocks: 0
+- other transient live Inbox files: 0
+- staging deletions: 0
+- Drive writes: 0
+
+The laptop heartbeat remains `2026-09-21T07:48:00Z`; PC1 remains `2026-09-14T12:39:30Z`. No active processor lock exists.
+
+### Brunei owner verification
+
+HubSpot identity resolved to Benson Foo, `bensonfoo@ecquaria.com`, owner/user ID `86653749`, portal `244504196`. Deal reads are available, although portal onboarding remains incomplete.
+
+A read-only DEAL search for `Brunei` returned **63 records**, including multiple live initial-engagement, non-tender, tender, KAIZEN, maintenance, CR, university, OneBiz, EGNC, Imagine, tourism, and government records. No unique umbrella campaign record was returned. This confirms the William capture must remain staged against the user-approved **existing Brunei campaign** until a local writer identifies or creates one stable canonical campaign owner without conflating it with a specific deal.
+
+### Work Gmail delta since the morning checkpoint
+
+Connection `Work` independently verified as `bensonfoo@ecquaria.com`.
+
+- new metadata records: 25
+- candidate substantive: 5
+- routine/calendar/audit-only: 17
+- credential/security messages excluded: 3
+- bodies hydrated: 0
+- attachments read: 0
+- delivery cursor advanced: no
+- private Gmail accessed: no
+
+Candidate substantive items retained for later owner-aware processing:
+
+- SIT - SITAR Clarifications Set 1 sent — `gmail:1a0cdc0b736f96f8`
+- Temasek Polytechnic JPEAE handover / next steps — `gmail:1a0cce840d539e44`
+- BreadTalk AI Initiative follow-up and proposed meeting — `gmail:1a0cce137c2541d5`
+- DSO HPMS2 clarification acknowledgement — `gmail:1a0ccbba0984a249`
+- timesheet submission reminder — `gmail:1a0cc6ce27a217b7`
+
+Latest calendar-response traffic for SIT - SITAR and LTA - LTA.PROMPT 2.0 remains audit-only pending owner-aware consolidation.
+
+### Authorized conversation candidates
+
+Recent explicit Bob note-taking activity contains these pending user-review candidates:
+
+- NEA - AMS3 submission completed around 3 PM on 23 September 2026;
+- BreadTalk - AI Initiative follow-up email sent proposing 4 November 2026 at 4 PM;
+- LTA - LTA.PROMPT 2.0 tender briefing attended.
+
+They are preserved here for coordination only. Do not file them as approved facts until the Bob preview/approval gate is satisfied, and do not create duplicate owner notes.
+
+### Resume state
+
+1. Normal approved captures, if any.
+2. Viewer-friendly full-vault normalization, first batch `00 Home` then `01 Inbox`, at most 50 notes.
+3. Source-batch compaction from Gmail family order 1.
+4. WRMS normalization.
+5. Personal-domain normalization.
+
+Current actionable blocker: a valid local writer must refresh the new controls, acquire the processor lock, authenticate Obsidian MCP to vault exactly `Ben`, perform the batch, re-read every change, and pass broken-link checks.
