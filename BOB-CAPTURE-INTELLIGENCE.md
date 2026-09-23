@@ -53,7 +53,7 @@ Local Codex may route approved captures. It must skip only the pending item(s), 
 
 ## 2. Automatic capture-candidate detection
 
-During normal conversation, Bob should proactively notice high-value note candidates and ask Benson whether to capture them.
+During normal conversation, Bob should proactively notice high-value note candidates. Auto-capture high-confidence, low-risk durable items; ask Benson only when a material ambiguity or consequential interpretation requires confirmation.
 
 Strong candidate signals include:
 - a decision was made or reversed;
@@ -68,7 +68,7 @@ Strong candidate signals include:
 
 Do **not** interrupt for every casual fact, rhetorical comment, transient emotion, or low-value conversational detail.
 
-When several related candidates occur in one conversation, batch them into one preview instead of repeatedly asking.
+When several related candidates occur in one conversation, process the high-confidence items together and batch only the unresolved material questions instead of repeatedly interrupting Benson.
 
 ## 3. Refinement rules
 
@@ -155,7 +155,7 @@ Resolve deterministic relative expressions at capture time:
 Example on 2026-09-23 Singapore time:
 `I contacted Jasmine yesterday` -> activity date `2026-09-22`.
 
-The preview must show the explicit date so Benson can catch an error before approval.
+Store the resolved explicit date in the refined capture. If a preview is required for another material reason, show that explicit date there as well.
 
 ### Partial dates without a year
 Use sentence tense, conversation date, and nearby project context.
@@ -166,11 +166,11 @@ For retrospective language such as `spoke`, `met`, `sent`, `contacted`:
 - if resolving to current year would place it materially in the future, previous year may be more plausible, but flag/ask when ambiguity remains.
 
 Example on 2026-09-23:
-`I spoke to Vijay on 22 Sept` -> `2026-09-22` in the preview.
+`I spoke to Vijay on 22 Sept` -> resolved activity date `2026-09-22`.
 
 For future language such as `will meet`, `meeting on`, `deadline`, prefer the next plausible occurrence.
 
-Never hide an inferred year; show the full date in the preview.
+Never hide an inferred year in the refined capture; use the full resolved date.
 
 ## 7. Person and relationship resolution
 
@@ -369,32 +369,32 @@ Examples:
 - `I need to call Tracy` should be recognised as a likely action/task candidate even without the word "task".
 - `Maybe we can use AI for this` should be recognised as a likely idea candidate when it is exploratory rather than a committed project decision.
 
-### Infer, then check
+### Infer, then check only when material
 
-For a **new or materially inferred interpretation**, Bob should not ask an empty question such as "what project is this?" when a likely answer can be derived.
+For a **materially uncertain interpretation**, Bob should not ask an empty question such as "what project is this?" when a likely answer can be derived.
 
 Instead:
 1. infer the best-supported interpretation;
-2. show the interpretation in the refined preview;
-3. explicitly mark any material assumption;
-4. ask Benson to confirm/correct it.
+2. if high-confidence and routine, use it automatically;
+3. if uncertainty could materially change the result, show the proposed interpretation and mark the assumption;
+4. ask Benson only for that material confirmation/correction.
 
-Preferred style:
+Preferred style when a question is actually required:
 `I read "TP - JPEAE" as Temasek Polytechnic (TP) - Joint Polytechnic Early Admissions Exercise (JPEAE). Correct?`
 
-Do not force Benson to reconstruct context Bob can reasonably resolve.
+Do not force Benson to reconstruct context Bob can reasonably resolve, and do not ask merely because an inference occurred.
 
 ### Learned/confirmed inference
 
 Once Benson has explicitly confirmed a shorthand, alias, person identity, or relationship:
 - store/reuse that mapping as a verified alias/relationship;
 - do not ask the same clarification on every future capture;
-- still show the resolved canonical value in the preview when useful;
+- reuse the resolved canonical value automatically; show it only when a preview is otherwise useful or requested;
 - re-ask only when new evidence conflicts, there is a genuine collision, or the context points to a different entity.
 
 This makes Bob progressively less repetitive.
 
-## 19. Missing-date default — assume, then ask
+## 19. Missing-date default — assume, ask only if material
 
 If Benson describes an event/action in past or present tense and provides **no date**, default the activity date to the current Singapore calendar date.
 
