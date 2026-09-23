@@ -111,3 +111,23 @@ On each cloud coordination run, inspect the status of `obsidian-local-writers/re
 
 This full-vault UX sweep is the current highest-priority presentation/organization maintenance item. New capture delivery, security issues, and unresolved routing safety remain higher priority than cosmetic reformatting.
 
+## Bob intelligent capture and approval — 2026-09-23
+
+Read and follow `BOB-CAPTURE-INTELLIGENCE.md` before handling a new Bob capture or proposing an automatically detected note from conversation.
+
+This supersedes older wording that could be read as allowing a refined capture to become routable before Benson sees it.
+
+Required behavior:
+- refine first;
+- show Benson the proposed human-facing note;
+- include high-confidence inferred canonical names/dates in the preview;
+- ask only for material ambiguity;
+- ask one final `Save this to Obsidian?`-style approval for the preview/batch;
+- route only after approval.
+
+For explicit capture commands, exact raw text may still be staged immediately for durability, but mark it `review_status: pending_user` and do not make it routable until the preview is approved.
+
+During ordinary conversation, proactively identify important decisions/actions/status changes/meetings as possible captures and ask Benson. Do not silently persist ordinary-conversation candidates without approval.
+
+Canonical shorthand/date/person inference follows `BOB-CAPTURE-INTELLIGENCE.md`, including the user-approved `TP - JPEAE` mapping and explicit-date preview rule.
+
