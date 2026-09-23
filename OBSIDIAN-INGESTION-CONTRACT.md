@@ -163,3 +163,31 @@ For human-facing working notes, follow `OBSIDIAN-NOTE-UX-STANDARD.md`:
 
 When inserting a dated update into `Latest updates`, merge with an existing matching date heading when present and position that date relative to other date headings so the newest visible date is first. Do not reorder unrelated user-authored prose.
 
+## User-review gate for refined captures — 2026-09-23
+
+`BOB-CAPTURE-INTELLIGENCE.md` is authoritative for capture detection, refinement, preview, inference, and user approval.
+
+A refined Bob capture must carry a review state:
+- `pending_user`
+- `approved`
+
+Local Codex must not route/write a Bob capture whose refined representation has `review_status: pending_user` or lacks an approval record when the capture was created under the review-gated workflow.
+
+For explicit capture commands, the exact raw wording may be staged immediately with `review_status: pending_user` so it cannot be lost. This is durable staging only; it is not approval and is not permission to write the refined representation into Obsidian.
+
+For automatically detected note candidates from ordinary conversation, Bob must first show the proposed refined capture and ask. Do not silently stage/route inferred ordinary-conversation content solely because it appears important.
+
+After Benson approves the preview:
+- set `review_status: approved`;
+- preserve the original raw wording and raw content hash;
+- preserve the approved refined representation and its own stable hash/identity when implemented;
+- only then does the local processor treat the capture as routable.
+
+The user-review gate is independent of PA/PM classification and Personal/Work scope.
+
+When processing the queue, skip:
+1. `classification: pending` / legacy `pending-classification:`;
+2. any review-gated capture whose `review_status` is not `approved`.
+
+Do not treat a GitHub pending-review entry as an Obsidian delivery.
+
