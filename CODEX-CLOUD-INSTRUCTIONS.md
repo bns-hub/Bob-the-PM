@@ -102,3 +102,12 @@ Benson renamed the Live Deals folder to exactly `Hubspot Live Deals`; reuse it a
 Hydrate each touched HubSpot deal note with `deal_name`, `account_name`, verified organisation link, `deal_owner_name`, `deal_owner_id`, `deal_type`, `hubspot_stage`, and local-only `show_in_live_deals`. Resolve owner IDs to names and company associations through HubSpot; never infer a missing account from the deal title alone.
 
 Because Benson is on the public/non-Catalyst Obsidian build, do not make the workflow depend on the Obsidian 1.14 early-access Kanban layout. Maintain compatible Bases views using Cards/Table, grouping/sorting by stage or account. Provide Pipeline, By Account, My Active, and All Live Deals views. `My Active` hides terminal stages and notes with `show_in_live_deals: false`. The first displayed value must identify the deal so cards never show a blank header.
+
+## Full-vault UX normalization priority — 2026-09-23
+
+Benson requested the viewer-friendly note standard be applied to **ALL NOTES** in the live `Ben` vault.
+
+On each cloud coordination run, inspect the status of `obsidian-local-writers/repairs/2026-09-23-viewer-friendly-note-normalization.md` and surface actionable blockers. The cloud coordinator remains read-only for the live vault. The locked local Codex writer must perform the actual full-vault normalization through authenticated Obsidian MCP in bounded resumable batches.
+
+This full-vault UX sweep is the current highest-priority presentation/organization maintenance item. New capture delivery, security issues, and unresolved routing safety remain higher priority than cosmetic reformatting.
+
