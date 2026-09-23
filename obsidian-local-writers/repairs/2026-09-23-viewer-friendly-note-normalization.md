@@ -212,4 +212,15 @@ Also update active project/deal/person/organisation surfaces as defined in `BOB-
 - maintenance lifecycle remains visible and actionable rather than archived away.
 
 Do not depend on Obsidian 1.14-only Kanban behavior. Use the current public-build-compatible layout already established in this vault.
+## Smart inference and relationship-display migration — 2026-09-23
 
+As the full-vault normalization touches person and organisation notes:
+
+1. person pages should retain/create full `Recent interactions` entries when supported;
+2. organisation/company pages should use shortened `Relationship pulse` entries;
+3. each shortened organisation interaction should end with an immediate `[[Person|Full notes →]]` link;
+4. remove duplicated long-form interaction prose from organisation pages only after verifying it remains preserved in the person/meeting/activity/source record;
+5. preserve project-specific updates separately on the project/deal owner;
+6. do not create duplicate people: check canonical person identity and authorised HubSpot records first.
+
+For new captures, use the updated inference defaults in `BOB-CAPTURE-INTELLIGENCE.md`: infer first, flag assumptions, then ask/approve.
