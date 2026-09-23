@@ -17,3 +17,9 @@ Before an AI helper starts real work, or starts a new phase or sprint of work, i
 This is settled, already in place, not something a new session needs to ask about or set up again: work Gmail (connection "Work", bensonfoo@ecquaria.com / bensonfoo@toppanecquaria.com), Google Drive (via the work account, shared into the user's private Drive folder including the Obsidian vault), local drive (Codex only, reaches the device directly), and HubSpot (the authorized work portal for the same work account).
 
 Full rules, including the account-boundary and identity-verification detail, are recorded in `CODEX-ACTIVITY-AUDIT-RULES.md` in this folder — read that before touching Gmail, Drive, or HubSpot, do not re-derive these rules from scratch. One boundary in there stays in place regardless of anything above: bnsn4ull@gmail.com, the user's personal Gmail, has no Gmail connection here and is off-limits; only its Drive folder is shared in.
+
+## Claude handoff
+
+Claude must read [`CLAUDE-HANDOFF.md`](CLAUDE-HANDOFF.md) before handling Benson's Bob/Obsidian captures, note refinement, routing, or handoff work.
+
+The handoff summarises the current user-approved capture intelligence, preview/approval gate, note UX, person/company linking model, and full-vault normalization status. Canonical safety and routing rules remain in the referenced contract files.
