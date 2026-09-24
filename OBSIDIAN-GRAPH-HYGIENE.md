@@ -560,3 +560,17 @@ For relationship presentation:
 - keep only a shortened `Relationship pulse` entry on the organisation/company note;
 - append an immediate `Full notes →` wikilink to the person note after each shortened interaction;
 - keep project/deal notes limited to the project-specific consequence/action/update.
+
+## Deal owner display/filter rule — 2026-09-24
+
+For user-facing Obsidian deal dashboards and Bases, use the human-readable owner name as the primary filter key.
+
+For Benson's views:
+- `deal_owner_name == "Benson Foo"` is the canonical My Active / Work filter.
+- `deal_owner_id` remains in frontmatter as technical reconciliation metadata only.
+- Do not use `deal_owner_id` as the primary user-facing inclusion filter.
+- On HubSpot refresh, hydrate both owner name and owner ID from current HubSpot data; the current human-readable owner name controls dashboard inclusion.
+- If owner name is missing but owner ID is present, resolve the name before deciding visibility.
+- If an owner name collision is ever discovered, surface it for resolution rather than silently reverting the dashboard to raw IDs.
+
+This applies to both `00 Home/Hubspot Live Deals.base` and `00 Home/Active Projects.base`.
