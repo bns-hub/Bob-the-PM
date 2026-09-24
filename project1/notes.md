@@ -2,6 +2,24 @@
 
 ---
 
+## 2026-09-24 Deal dashboard ownership rule completed
+
+**What is now settled:**
+- All user-facing Obsidian deal dashboards use the current human-readable `deal_owner_name` as the ownership and inclusion field.
+- Benson's `My Active` and the deal branch of `Active Projects.base` -> `Work` filter on `deal_owner_name == "Benson Foo"`.
+- Future HubSpot deal refreshes update both `deal_owner_name` and `deal_owner_id` from current HubSpot data before dashboard visibility is evaluated.
+- `deal_owner_id` remains only for reconciliation, audit, and provider identity checks. It must not be the primary filter for user-facing deal dashboards.
+- A missing owner name must be resolved before visibility is decided. A genuine display-name collision must be surfaced rather than silently reverting to raw-ID filtering.
+
+**Claude boundary:**
+- `CLAUDE-HANDOFF.md` carries the ongoing behaviour.
+- `CLAUDE-DEAL-OWNER-INSTRUCTION.md` is a concise, paste-only instruction that tells Claude to learn the rule and take no action.
+
+**The one goal for this phase:**
+- Keep deal ownership readable and stable in every dashboard and refresh without losing the numeric identifier needed for audit checks.
+
+---
+
 ## 2026-09-14 User reports access-key rotation done
 
 **What we already know, confirmed, not guessed:**

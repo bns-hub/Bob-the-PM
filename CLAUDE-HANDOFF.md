@@ -1,6 +1,6 @@
 # Claude handoff — Bob / Obsidian behavior update
 
-Last updated: 2026-09-23
+Last updated: 2026-09-24
 
 Claude: read this file before handling Benson's Bob/Obsidian captures, notes, routing, or project handoffs.
 
@@ -309,4 +309,4 @@ Use:
 
 for Benson's My Active / Work deal visibility.
 
-Keep `deal_owner_id` only as backend reconciliation metadata. When interpreting or preparing deal-note changes, prefer current HubSpot owner-name data for human-facing ownership and flag genuine name ambiguity instead of exposing raw IDs.
+Keep `deal_owner_id` only as reconciliation/audit metadata. On every deal refresh, update both owner fields from current HubSpot data, then evaluate user-facing ownership and dashboard visibility from `deal_owner_name`. Never fall back silently to owner-ID filtering. Resolve a missing name before deciding visibility, and flag any genuine display-name collision for Benson.

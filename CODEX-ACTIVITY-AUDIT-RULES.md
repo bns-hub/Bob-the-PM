@@ -21,7 +21,7 @@ Run the cloud activity-audit collection in ChatGPT cloud. Bob capture delivery i
 
 Incrementally export only new or changed authorized work activity from:
 - Gmail connection whose nickname is exactly "Work" and whose authenticated account is exactly bensonfoo@ecquaria.com or bensonfoo@toppanecquaria.com;
-- connected HubSpot, treating owner ID 86653749 as canonical Benson Foo;
+- connected HubSpot, resolving current deal owners to human-readable names and treating `deal_owner_name: "Benson Foo"` as the primary user-facing ownership value for Benson's deal dashboards. Retain owner ID `86653749` only as reconciliation/audit metadata and an identity-check value, not as the dashboard inclusion key;
 - authorized ChatGPT/Codex activity available to this cloud task; and
 - Claude handoffs separately supplied in the existing Google Drive structure.
 
