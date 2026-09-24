@@ -299,3 +299,14 @@ When Claude creates a handoff for Bob/Obsidian:
 - never write the live vault directly.
 
 If in doubt, preserve the information and ask the smallest useful clarification rather than guessing.
+
+## Deal owner filtering — 2026-09-24
+
+For Obsidian deal dashboards, Benson wants deals tied to the human-readable owner name, not the raw HubSpot owner ID.
+
+Use:
+`deal_owner_name == "Benson Foo"`
+
+for Benson's My Active / Work deal visibility.
+
+Keep `deal_owner_id` only as backend reconciliation metadata. When interpreting or preparing deal-note changes, prefer current HubSpot owner-name data for human-facing ownership and flag genuine name ambiguity instead of exposing raw IDs.
