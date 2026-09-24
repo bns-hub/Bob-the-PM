@@ -834,3 +834,15 @@ Before completion:
 - `E Efforts/HubSpot Deals/iZeno (Thailand) Company Limited.md`
 - `E Efforts/HubSpot Deals/redONE Mobile.md`
 - `E Efforts/Work/Lead Generation and Outreach/Lead Generation and Outreach.md`
+
+## Owner-filter override — 2026-09-24
+
+Benson explicitly requested that deal visibility be tied to the human-readable owner name instead of the HubSpot owner ID.
+
+Superseding rule:
+- `My Active` in `Hubspot Live Deals.base` filters on `deal_owner_name == "Benson Foo"`.
+- `Work` in `Active Projects.base` filters HubSpot deals on `deal_owner_name == "Benson Foo"`.
+- retain `deal_owner_id` only for reconciliation/audit and HubSpot identity verification.
+- every HubSpot refresh must update `deal_owner_name` from current HubSpot data before Base visibility is evaluated.
+
+Reason: stale historical owner IDs caused current Benson-owned Temasek Polytechnic deals to be incorrectly filtered out even when the visible owner name was Benson Foo.
