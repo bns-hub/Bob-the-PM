@@ -3,12 +3,12 @@ device_id: "LAPTOP-96G8839H"
 device_type: laptop
 writer: codex
 writer_enabled: true
-last_seen: "2026-09-21T07:48:00Z"
+last_seen: "2026-09-25T07:12:55Z"
 vault_validation_status: mcp_authenticated_vault_ben
 resolved_local_vault_path: "C:\\Users\\ECQ1131\\Desktop\\Work\\Obsidian Vault\\Ben"
-last_successful_capture_id: "bob-20260920-obsidian-local-writer-01"
-last_successful_content_hash: "sha256:2932bc4139089445aa35eb8fbb69cc6f9b6e6197a4674b4b1394d53764779d28"
-last_error: "unresolved_routing: bob-20260914-william-brunei-01 lacks one verified canonical campaign owner"
+last_successful_capture_id: "bob-20260925-tp-contract-review-ai-update-01"
+last_successful_content_hash: "sha256:394a65d16e0c1b20f0886e55b7a15b12dc8d78f4ebdc0b7297036c0a7fbc1b0e"
+last_error: null
 sync_status: local_mcp_verified_progress_cleared_cloud_not_checked
 last_repair_id: obsidian-repair-20260921-graph-filter-and-account-followup
 last_repair_status: local_mcp_verified_with_unresolved_crm_associations
